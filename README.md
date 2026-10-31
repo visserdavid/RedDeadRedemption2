@@ -60,6 +60,10 @@ Plain HTML, CSS and JavaScript, using classic `<script>` tags so it keeps workin
 
 The content is compiled from community guides such as rdr2.org, PowerPyx, the Red Dead Wiki and others. Every page lists the sources it uses at the bottom. Found a mistake? Please [open an issue](https://github.com/visserdavid/RedDeadRedemption2/issues).
 
+## License
+
+The code is released under the [MIT License](LICENSE). The bundled fonts in `assets/fonts/` keep their own SIL Open Font License; the license texts are next to the font files.
+
 ## Disclaimer
 
 This is an unofficial fan project. It is not affiliated with or endorsed by Rockstar Games or Take-Two Interactive. *Red Dead Redemption* is a trademark of Take-Two Interactive Software, Inc.
