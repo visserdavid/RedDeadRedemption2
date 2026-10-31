@@ -61,7 +61,7 @@
   const crafted = () => groups.flatMap(g => RDR.keysOf("recipes", g.id));
   RDR.list({
     id: "recipes", title: "Recipes", order: 90, group: "Gear",
-    heading: "Recipes Checklist", sub: "Red Dead Redemption 2 (story mode): every recipe you craft at the campfire, with ingredients and how to unlock it, plus cooking.", blurb: "Every crafting recipe at the campfire, with ingredients and how to unlock it, plus the meats to cook.",
+    sub: "Red Dead Redemption 2 (story mode): every recipe you craft at the campfire, with ingredients and how to unlock it, plus cooking.", blurb: "Every crafting recipe at the campfire, with ingredients and how to unlock it, plus the meats to cook.",
     filter: "Hide recipes you have already crafted",
     tips: [
     "You craft recipes at a <strong>campfire</strong>, in the gang's camp or at your own campsite. The ingredients are plants (see <a href=\"#/plants\">Plants</a>), animal products and ammo.",
@@ -90,7 +90,7 @@
     sections: [
       // Ingredients as "Needed:", how to unlock the recipe below that.
       { type: "checklist", grid: true, fields: ["name", "need", "where", "tag"], groups },
-      { type: "html", title: "Cooking", html: "<div class=\"card\"> <p class=\"intro\">You can cook right away; there is nothing to learn. Cook meat with or without a herb:</p> <div class=\"table-wrap\"> <table> <thead><tr><th>Herb</th><th>Effect</th></tr></thead> <tbody> <tr><td><strong>Wild Mint</strong></td><td>Mainly restores Health. Minty Big Game fortifies your Health core (gold) for a day.</td></tr> <tr><td><strong>Oregano</strong></td><td>Mainly restores Stamina. Oregano Big Game fortifies your Stamina core (gold) for a day.</td></tr> <tr><td><strong>Creeping Thyme</strong></td><td>Mainly restores Dead Eye. Thyme Big Game fortifies your Dead Eye core (gold) for a day.</td></tr> </tbody> </table> </div> <p class=\"intro\" style=\"margin-top:14px\"><strong>Herbalist 10</strong> asks you to season and cook <strong>11 kinds of meat</strong>. The sources list these meats. Check off what you have already cooked with seasoning.</p> </div>" },
+      { type: "html", title: "Cooking", html: "<div class=\"card\"> <p class=\"intro\">You can cook right away; there is nothing to learn. Cook meat with or without a herb:</p> <div class=\"table-wrap\"> <table> <thead><tr><th>Herb</th><th>Effect</th></tr></thead> <tbody> <tr><td><strong>Wild Mint</strong></td><td>Mainly restores Health. Minty Big Game fortifies your Health core (gold) for a day.</td></tr> <tr><td><strong>Oregano</strong></td><td>Mainly restores Stamina. Oregano Big Game fortifies your Stamina core (gold) for a day.</td></tr> <tr><td><strong>Creeping Thyme</strong></td><td>Mainly restores Dead Eye. Thyme Big Game fortifies your Dead Eye core (gold) for a day.</td></tr> </tbody> </table> </div> <p class=\"intro spaced\"><strong>Herbalist 10</strong> asks you to season and cook <strong>11 kinds of meat</strong>. The sources list these meats. Check off what you have already cooked with seasoning.</p> </div>" },
       { type: "checklist", columns: true, groups: [{ id: "meat", title: "Meats", items: meats }] }
     ],
     metrics: {

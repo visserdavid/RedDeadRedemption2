@@ -2,7 +2,6 @@
   const keys = () => RDR.groupsOf("poi").flatMap(g => g.keys);
   RDR.list({
     id: "poi", title: "Points of interest", nav: "POI", order: 105, group: "The world",
-    heading: "Points of Interest Checklist",
     sub: "Red Dead Redemption 2 (story mode): all 50 remarkable places Arthur sketches in his journal.",
     blurb: "The 50 remarkable places Arthur sketches in his journal. One is enough for 100%.",
     filter: "Hide places you have already found",

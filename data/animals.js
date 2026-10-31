@@ -69,6 +69,11 @@ RDR.animalCard = (a, need, boxes) => {
     </section>`;
 };
 
+// "Weapon by size" table; rows are [size, animals, best weapon + ammo, alternative] (HTML allowed).
+RDR.weaponTable = rows => `<div class="card table-wrap"><table>
+  <thead><tr><th>Size</th><th>Animals</th><th>Best weapon + ammo</th><th>Alternative</th></tr></thead>
+  <tbody>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+
 // Updates the counters on the animal cards and hides completed animals if requested.
 RDR.refreshAnimalCards = hide => {
   document.querySelectorAll("[data-animal]").forEach(card => {

@@ -57,7 +57,7 @@
   const MISSABLE = ["fundraiser", "helpbro", "widow"];
   RDR.list({
     id: "strangers", title: "Stranger missions", nav: "Strangers", order: 120, group: "Missions",
-    heading: "Stranger Missions Checklist", sub: "Red Dead Redemption 2 (story mode): every <em>Strangers</em> mission strand, by the chapter in which it unlocks.", blurb: "All 26 stranger mission strands (question-mark icons on the map). 10 completed strands are needed for 100%.",
+    sub: "Red Dead Redemption 2 (story mode): every <em>Strangers</em> mission strand, by the chapter in which it unlocks.", blurb: "All 26 stranger mission strands (question-mark icons on the map). 10 completed strands are needed for 100%.",
     filter: "Hide completed strands",
     tips: [
     "Strangers appear as a white <strong>question mark</strong> on the map. Some only appear when you are close. A strand often has several parts, sometimes with a few in-game days in between.",

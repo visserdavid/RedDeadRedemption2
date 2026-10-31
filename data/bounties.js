@@ -30,7 +30,7 @@
   const keys = () => RDR.groupsOf("bounties").flatMap(g => g.keys);
   RDR.list({
     id: "bounties", title: "Bounties", order: 130, group: "Missions",
-    heading: "Bounties Checklist", sub: "Red Dead Redemption 2 (story mode): every bounty from the sheriff's offices, with where to find the target.", blurb: "All 14 bounties from the sheriff's offices. 5 completed bounties are needed for 100%.",
+    sub: "Red Dead Redemption 2 (story mode): every bounty from the sheriff's offices, with where to find the target.", blurb: "All 14 bounties from the sheriff's offices. 5 completed bounties are needed for 100%.",
     filter: "Hide completed bounties",
     tips: [
     "Bounty hunting unlocks after the chapter 2 mission <em>Good, Honest, Snake Oil</em>. After that, <strong>bounty posters</strong> hang at sheriff's offices and post offices. Take the poster to start the job.",

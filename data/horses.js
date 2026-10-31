@@ -45,7 +45,7 @@
   const bondLevels = ["Level 1", "Level 2", "Level 3", "Level 4 (needed for 100%)"];
   RDR.list({
     id: "horses", title: "Horses", order: 50, group: "Gear",
-    heading: "Horses Checklist", sub: "Red Dead Redemption 2 (story mode): all 19 horse breeds, the wild breeds for the Horseman challenge, special horses and your horse bond.", blurb: "The 19 horse breeds, the wild breeds for Horseman 10, special horses and your horse bond.",
+    sub: "Red Dead Redemption 2 (story mode): all 19 horse breeds, the wild breeds for the Horseman challenge, special horses and your horse bond.", blurb: "The 19 horse breeds, the wild breeds for Horseman 10, special horses and your horse bond.",
     filter: "Hide what you already have",
     tips: [
     "For 100% you need <strong>10 of the 19 breeds</strong> in the compendium and <strong>bonding level 4</strong> with one horse. Both count automatically on the <a href=\"#/hundred\">100%</a> page.",
@@ -83,7 +83,7 @@
     sections: [
       { type: "checklist", title: "Horse bond", groups: [{ id: "bond", title: "Bonding level",
         items: bondLevels.map((name, i) => ({ id: String(i + 1), name })) }] },
-      { type: "html", html: "<div class=\"card\"> <ul class=\"tips small\" style=\"margin-top:10px\"> <li>The bond grows by <strong>riding</strong>, <strong>patting</strong> your horse (especially after a ride or when it gets spooked), <strong>brushing</strong> and <strong>feeding</strong> it.</li> <li>Do not let your horse die: with a new horse the bond starts at level 1 again. If you carry a Horse Reviver, you can save a wounded horse.</li> <li>Each level gives your horse more health and stamina and a new trick.</li> </ul> </div>" },
+      { type: "html", html: "<div class=\"card\"> <ul class=\"tips small spaced\"> <li>The bond grows by <strong>riding</strong>, <strong>patting</strong> your horse (especially after a ride or when it gets spooked), <strong>brushing</strong> and <strong>feeding</strong> it.</li> <li>Do not let your horse die: with a new horse the bond starts at level 1 again. If you carry a Horse Reviver, you can save a wounded horse.</li> <li>Each level gives your horse more health and stamina and a new trick.</li> </ul> </div>" },
       { type: "checklist", title: "Taming wild breeds (Horseman 10)", columns: true,
         intro: "The last <a href=\"#/challenges\">Horseman challenge</a>: tame one horse of each wild breed. Herds are not always there. If you see none, set up camp and sleep for a while, or come back later.",
         groups: [{ id: "wild", title: "Wild breeds", items: wild.map(([id, name, where]) => ({ id, name: `Wild ${name}`, where })) }] },

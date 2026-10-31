@@ -3,7 +3,7 @@
   const found = h => !!RDR.get(h.keys[h.keys.length - 1]);
   RDR.list({
     id: "treasure", title: "Treasure maps", nav: "Treasure", order: 180, group: "Challenges & treasure",
-    heading: "Treasure Maps Checklist", sub: "Red Dead Redemption 2 (story mode): the treasure hunts with gold bars, step by step.", blurb: "The treasure hunts with gold bars, step by step.",
+    sub: "Red Dead Redemption 2 (story mode): the treasure hunts with gold bars, step by step.", blurb: "The treasure hunts with gold bars, step by step.",
     tips: [
     "Each map is a drawing of a place, with a short text. At that place you find the next map, and at the last one lies the treasure.",
     "You sell a gold bar for <strong>$500</strong> at a Fence. All gold bars, including those outside the treasure hunts, are on <a href=\"#/gold\">Gold bars</a>. They already help a lot in chapter 2, for example for camp upgrades and weapons.",
@@ -27,7 +27,7 @@
       type: "checklist", groupHeadings: true, goalLast: true,
       // The last step of each hunt is the treasure itself.
       groups: [
-    { id: "jackhall", title: "Jack Hall Gang", gold: 2, when: "From chapter 2",
+    { id: "jackhall", title: "Jack Hall Gang", gold: 2, meta: "From chapter 2",
       intro: "Reward: 2 gold bars ($1000).",
       items: [
         ["Map 1 bought", "From Maximo at Flatneck Station (stranger mission <em>All That Glitters</em>), for $10, or $5 if you haggle"],
@@ -35,7 +35,7 @@
         ["Map 3 found at Cotorra Springs", "Piles of stones in a rectangle between the geysers. Dig under the middle pile."],
         ["Treasure found at O'Creagh's Run", "On a small island in the lake, under a small rock"]
       ] },
-    { id: "poison", title: "Poisonous Trail", gold: 4, when: "From chapter 2",
+    { id: "poison", title: "Poisonous Trail", gold: 4, meta: "From chapter 2",
       intro: "Reward: 4 gold bars ($2000).",
       items: [
         ["Map 1 found in Cairn Lodge", "In the snowy northwest. The map is in a small box under the bed."],
@@ -43,7 +43,7 @@
         ["Map 3 found", "On top of a hill with a rock formation, in a hole in the middle"],
         ["Treasure found", "In a cave behind the waterfall at Elysian Pool. Bring a lantern, keep right and look for the hidden passages."]
       ] },
-    { id: "highstakes", title: "High Stakes", gold: 3, when: "From chapter 3",
+    { id: "highstakes", title: "High Stakes", gold: 3, meta: "From chapter 3",
       intro: "Reward: 3 gold bars ($1500).",
       items: [
         ["Map 1 from the treasure hunter", "A random encounter with a treasure hunter. Catch him with your lasso and hogtie him to get the map."],
@@ -51,7 +51,7 @@
         ["Map 3 found at Barrow Lagoon", "A broken tree stump among the rocks on a small hill"],
         ["Treasure found at Bacchus Station", "Climb down the rock plateaus above the river until you reach a crack in the rocks"]
       ] },
-    { id: "tresor", title: "Le Trésor des Morts", gold: 6, when: "Special/Ultimate Edition or pre-order bonus only",
+    { id: "tresor", title: "Le Trésor des Morts", gold: 6, meta: "Special/Ultimate Edition or pre-order bonus only",
       intro: "Reward: 6 gold bars ($3000). PowerPyx says 5, other guides say 6.",
       items: [
         ["Map 1 found", "In the only building among the ruins that did not burn down, next to a body"],
@@ -59,7 +59,7 @@
         ["Map 3 found in the Saint Denis cemetery", "In a building in the cemetery"],
         ["Treasure found", "The gold bars are in the cemetery"]
       ] },
-    { id: "landmarks", title: "Landmarks of Riches", gold: 6, when: "From chapter 2. Came with the PC version, later also on PS4 and Xbox One.",
+    { id: "landmarks", title: "Landmarks of Riches", gold: 6, meta: "From chapter 2. Came with the PC version, later also on PS4 and Xbox One.",
       intro: "Reward: 6 gold bars ($3000); together with Le Trésor des Morts the biggest treasure.",
       items: [
         ["Map 1 found at the Obelisk", "Northwest of Strawberry (West Elizabeth). Inspect the picture on the back of the obelisk."],
@@ -68,7 +68,7 @@
         ["Map 4 found at Bolger Glade", "Scarlett Meadows (Lemoyne). In a hole at the bottom of a tree near a broken cannon."],
         ["Treasure found on Mount Shann", "At the large sundial on top of Mount Shann (West Elizabeth). Inspect the marked stone."]
       ] },
-    { id: "elemental", title: "Elemental Trail", gold: 0, when: "Epilogue. Came with the PC version.",
+    { id: "elemental", title: "Elemental Trail", gold: 0, meta: "Epilogue. Came with the PC version.",
       intro: "Reward: the <a href=\"#/trinkets\">Crow Beak Trinket</a> (+10% ammo when looting).",
       items: [
         ["Map 1 found", "In the far west of New Austin, by the Sea of Coronado. Shoot the rope of a hanged body and search it."],
@@ -76,20 +76,20 @@
         ["Map 3 found", "The old aqueduct at Benedict Point, south of Tumbleweed. Between two planks."],
         ["Treasure found at Coot's Chapel", "In the graveyard to the left of the church, southeast of Armadillo. Inspect the stone next to a grave with a wooden cross."]
       ] },
-    { id: "mended", title: "Mended Treasure Map (Otis Miller)", gold: 0, when: "Pieces from chapter 2, treasure only in the epilogue",
+    { id: "mended", title: "Mended Treasure Map (Otis Miller)", gold: 0, meta: "Pieces from chapter 2, treasure only in the epilogue",
       intro: "Reward: Otis Miller's Revolver and a set of photographs. No gold, but a unique revolver.",
       items: [
         ["Map piece 1 found", "In a drawer in a wooden cabin at the start of Little Creek River"],
         ["Map piece 2 found", "In a drawer in a house at Manito Glade. Together the pieces form the Mended Treasure Map."],
         ["Treasure found", "In a small cave west of Twin Rocks (New Austin, epilogue)"]
       ] },
-    { id: "chick", title: "Chick's Treasure Map", gold: 0, when: "Chapter 2 (mission <em>Money Lending and Other Sins</em>)",
+    { id: "chick", title: "Chick's Treasure Map", gold: 0, meta: "Chapter 2 (mission <em>Money Lending and Other Sins</em>)",
       intro: "Reward: $35. <strong>Missable:</strong> you have to get there before Chick Matthews.",
       items: [
         ["Map received", "During the mission <em>Money Lending and Other Sins</em>"],
         ["Treasure found", "Go there right away, before Chick arrives"]
       ] }
-  ].map(h => ({ ...h, meta: h.when })),
+  ],
       status: (h, have) => ({ done: found(h), text: found(h) ? "✓ found" : `${have}/${h.items.length} steps` })
     }],
     found,

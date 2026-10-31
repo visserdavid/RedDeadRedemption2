@@ -1,6 +1,6 @@
 (() => {
   const groups = [
-    { id: "prep", title: "Preparation", short: "Preparation",
+    { id: "prep", title: "Preparation",
       intro: "Jeremy Gill gives you a map with every fishing spot. After that you can buy the special lures.",
       items: [
         ["Spoke to Jeremy Gill", "Start of the stranger mission <em>A Fisher of Fish</em>"],
@@ -8,25 +8,25 @@
         ["Bought Special River Lure", "Bait Shop in Lagras"],
         ["Bought Special Swamp Lure", "Bait Shop in Lagras"]
       ] },
-    { id: "fish", title: "The 13 legendary fish", short: "Fish caught",
+    { id: "fish", title: "The 13 legendary fish",
       intro: "All 13 are needed for 100% and to complete Jeremy's mission.",
       finish: "All 13 sent to Jeremy Gill from a post office",
       items: [
-        ["Legendary Bluegill", "Flat Iron Lake (Lemoyne), east side of the lake, due west of Rhodes", "Lake"],
-        ["Legendary Perch", "Elysian Pool (New Hanover), on the Kamassa River, southwest of Annesburg", "Lake"],
-        ["Legendary Muskie", "Lannahechee River at the Van Horn Trading Post (New Hanover)", "River"],
-        ["Legendary Bullhead Catfish", "Lannahechee River, western inlet by the Sisika Penitentiary island", "River"],
-        ["Legendary Steelhead Trout", "Kamassa River at Brandywine Drop (Roanoke Ridge)", "River"],
-        ["Legendary Lake Sturgeon", "Where the Kamassa River flows into the Lannahechee, west of Saint Denis", "River"],
-        ["Legendary Longnose Gar", "Lake Lagras (Bluewater Marsh, Lemoyne), east of the Kamassa River", "Swamp"],
-        ["Legendary Chain Pickerel", "Dakota River, northwest of Flatneck Station (Heartlands)", "River"],
-        ["Legendary Sockeye Salmon", "Lake Isabella (Ambarino), where Beartooth Beck flows into the lake", "Lake"],
-        ["Legendary Smallmouth Bass", "Owanjila Lake (West Elizabeth), at the Upper Montana River", "Lake"],
-        ["Legendary Rock Bass", "Lower Montana River in Aurora Basin (West Elizabeth)", "Lake"],
-        ["Legendary Redfin Pickerel", "Stillwater Creek, east of MacFarlane's Ranch (Great Plains)", "Lake"],
-        ["Legendary Largemouth Bass", "San Luis River, west of Lake Don Julio (New Austin, epilogue). The guides list both the Lake and the River lure here, so bring both.", "Lake/River"]
+        ["Legendary Bluegill", "Flat Iron Lake (Lemoyne), east side of the lake, due west of Rhodes", "Lake Lure"],
+        ["Legendary Perch", "Elysian Pool (New Hanover), on the Kamassa River, southwest of Annesburg", "Lake Lure"],
+        ["Legendary Muskie", "Lannahechee River at the Van Horn Trading Post (New Hanover)", "River Lure"],
+        ["Legendary Bullhead Catfish", "Lannahechee River, western inlet by the Sisika Penitentiary island", "River Lure"],
+        ["Legendary Steelhead Trout", "Kamassa River at Brandywine Drop (Roanoke Ridge)", "River Lure"],
+        ["Legendary Lake Sturgeon", "Where the Kamassa River flows into the Lannahechee, west of Saint Denis", "River Lure"],
+        ["Legendary Longnose Gar", "Lake Lagras (Bluewater Marsh, Lemoyne), east of the Kamassa River", "Swamp Lure"],
+        ["Legendary Chain Pickerel", "Dakota River, northwest of Flatneck Station (Heartlands)", "River Lure"],
+        ["Legendary Sockeye Salmon", "Lake Isabella (Ambarino), where Beartooth Beck flows into the lake", "Lake Lure"],
+        ["Legendary Smallmouth Bass", "Owanjila Lake (West Elizabeth), at the Upper Montana River", "Lake Lure"],
+        ["Legendary Rock Bass", "Lower Montana River in Aurora Basin (West Elizabeth)", "Lake Lure"],
+        ["Legendary Redfin Pickerel", "Stillwater Creek, east of MacFarlane's Ranch (Great Plains)", "Lake Lure"],
+        ["Legendary Largemouth Bass", "San Luis River, west of Lake Don Julio (New Austin, epilogue). The guides list both the Lake and the River lure here, so bring both.", "Lake/River Lure"]
       ] },
-    { id: "bonus", title: "Bonus: Legendary Channel Catfish", short: "Bonus",
+    { id: "bonus", title: "Bonus: Legendary Channel Catfish",
       intro: "Not needed for 100%. A day or two after you have sent in all 13 fish, John gets an invitation from Jeremy Gill to Rio Bravo (New Austin, epilogue).",
       items: [
         ["Received Jeremy Gill's invitation", "After sending in all 13 fish"],
@@ -35,7 +35,7 @@
   ];
   RDR.list({
     id: "fish", title: "Legendary fish", nav: "Fish", order: 110, group: "The world",
-    heading: "Legendary Fish Checklist", sub: "Red Dead Redemption 2 (story mode): the 13 legendary fish for Jeremy Gill (stranger mission <em>A Fisher of Fish</em>), plus the bonus fish in the epilogue.", blurb: "The 13 legendary fish for Jeremy Gill, plus the bonus fish in the epilogue.",
+    sub: "Red Dead Redemption 2 (story mode): the 13 legendary fish for Jeremy Gill (stranger mission <em>A Fisher of Fish</em>), plus the bonus fish in the epilogue.", blurb: "The 13 legendary fish for Jeremy Gill, plus the bonus fish in the epilogue.",
     filter: "Hide what you have already caught",
     tips: [
     "Legendary fish <strong>only bite on a special lure</strong>, not on bait. A lure is not used up, so you only need one of each.",
@@ -59,8 +59,7 @@
     ]
   ],
     sections: [
-      // Show the lure as a tag, e.g. "Lake Lure".
-      { type: "checklist", columns: true, groups: groups.map(g => ({ ...g, items: g.items.map(([n, w, t]) => [n, w, t && `${t} Lure`]) })) },
+      { type: "checklist", columns: true, groups },
       { type: "html", title: "Lure by water type", html: "<div class=\"card table-wrap\"> <table> <thead><tr><th>Lure</th><th>For</th><th>Where to buy</th></tr></thead> <tbody> <tr><td><strong>Special Lake Lure</strong></td><td>Lakes and still water</td><td rowspan=\"3\">Bait Shop in Lagras (Bayou Nwa), $20 each. Available once you have spoken to Jeremy Gill.</td></tr> <tr><td><strong>Special River Lure</strong></td><td>Rivers and running water</td></tr> <tr><td><strong>Special Swamp Lure</strong></td><td>Swamps</td></tr> </tbody> </table> </div>" }
     ],
     metrics: {

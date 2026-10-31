@@ -3,7 +3,7 @@
   const tagged = t => RDR.ratio(all().filter(i => i.tag === t).map(i => i.key));
   RDR.list({
     id: "weapons", title: "Weapons", order: 60, group: "Gear",
-    heading: "Weapons Checklist", sub: "Red Dead Redemption 2 (story mode): all 65 weapons, from revolvers to hatchets, including the unique ones and where to find them.", blurb: "All 65 weapons in story mode, including the unique and missable ones. 48 weapon types are needed for 100%.",
+    sub: "Red Dead Redemption 2 (story mode): all 65 weapons, from revolvers to hatchets, including the unique ones and where to find them.", blurb: "All 65 weapons in story mode, including the unique and missable ones. 48 weapon types are needed for 100%.",
     filter: "Hide weapons you have already used",
     tips: [
     "For 100% you need to <strong>use 48 weapon types</strong>. Check a weapon off as soon as you have used it. The count carries over automatically to the <a href=\"#/hundred\">100%</a> page.",

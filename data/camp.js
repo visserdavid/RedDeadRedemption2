@@ -29,7 +29,7 @@
 
   RDR.list({
     id: "camp", title: "Camp decorations", nav: "Camp", order: 20, group: "Hunting & camp",
-    heading: "Camp Decorations Checklist", sub: "Red Dead Redemption 2 (story mode): every animal item Pearson needs to fully decorate the camp.", blurb: "Every animal item Pearson needs to fully decorate the camp.",
+    sub: "Red Dead Redemption 2 (story mode): every animal item Pearson needs to fully decorate the camp.", blurb: "Every animal item Pearson needs to fully decorate the camp.",
     filter: "Hide animals that are already complete",
     tips: [
     "<strong>The animal must already have 3 stars.</strong> The right weapon and a clean one-shot kill <em>keep</em> that quality, but never make a 1- or 2-star animal perfect. So study the animal first.",
@@ -93,7 +93,13 @@
             .map(a => RDR.animalCard(a, by[a].length, by[a].map(s => `<li>${RDR.box(s.key, `for ${s.decor.name}${nth(s)}${RDR.tag(s.kind)}`)}</li>`).join(""))).join("");
         },
         refresh: () => RDR.refreshAnimalCards(RDR.pref("camp.hide")) },
-      { type: "html", title: "Weapon by size", html: "<div class=\"card table-wrap\"> <table> <thead><tr><th>Size</th><th>Animals</th><th>Best weapon + ammo</th><th>Alternative</th></tr></thead> <tbody> <tr><td>Tiny</td><td>Snake</td><td><strong>Bow + Small Game Arrows</strong></td><td>Varmint Rifle (can damage the pelt)</td></tr> <tr><td>Small</td><td>Beaver, muskrat</td><td><strong>Varmint Rifle</strong> (regular .22 ammo)</td><td>Bow + Small Game Arrows</td></tr> <tr><td>Medium</td><td>Fox</td><td><strong>Bow with regular arrows</strong></td><td>Varmint Rifle or repeater</td></tr> <tr><td>Big</td><td>Boar, wolf, cougar, ram, pronghorn, goat, small alligator</td><td><strong>Springfield or Bolt Action Rifle</strong>, regular ammo</td><td>Bow with regular arrows (or poison arrows)</td></tr> <tr><td>Gigantic</td><td>Ox, cow, adult alligator, moose, elk</td><td><strong>Rolling Block or Carcano (sniper)</strong>, regular ammo</td><td>Springfield/Bolt Action, or bow with Improved Arrows</td></tr> </tbody> </table> </div>" }
+      { type: "custom", title: "Weapon by size", render: () => RDR.weaponTable([
+          ["Tiny", "Snake", "<strong>Bow + Small Game Arrows</strong>", "Varmint Rifle (can damage the pelt)"],
+          ["Small", "Beaver, muskrat", "<strong>Varmint Rifle</strong> (regular .22 ammo)", "Bow + Small Game Arrows"],
+          ["Medium", "Fox", "<strong>Bow with regular arrows</strong>", "Varmint Rifle or repeater"],
+          ["Big", "Boar, wolf, cougar, ram, pronghorn, goat, small alligator", "<strong>Springfield or Bolt Action Rifle</strong>, regular ammo", "Bow with regular arrows (or poison arrows)"],
+          ["Gigantic", "Ox, cow, adult alligator, moose, elk", "<strong>Rolling Block or Carcano (sniper)</strong>, regular ammo", "Springfield/Bolt Action, or bow with Improved Arrows"]
+        ]) }
     ],
     metrics: {
       items: () => RDR.ratio(SLOTS.map(s => s.key)),

@@ -30,7 +30,7 @@
   const value = (g, it) => RDR.get(g.finishKey) ? it.max : Math.min(RDR.get(it.key) || 0, it.max);
   RDR.list({
     id: "exotics", title: "Exotics", order: 70, group: "Gear",
-    heading: "Exotics Checklist", sub: "Red Dead Redemption 2 (story mode): all plumes, eggs and orchids for Algernon Wasp (stranger mission <em>Duchesses and Other Animals</em>).", blurb: "Plumes, gator eggs and orchids for Algernon Wasp in Saint Denis.",
+    sub: "Red Dead Redemption 2 (story mode): all plumes, eggs and orchids for Algernon Wasp (stranger mission <em>Duchesses and Other Animals</em>).", blurb: "Plumes, gator eggs and orchids for Algernon Wasp in Saint Denis.",
     tips: [
     "<strong>Egrets and herons</strong> live in the west of the Bayou, around Lagras and Bluewater Marsh. Most are around at midday. Mark them in Dead Eye before they fly off. Any weapon kills them in one shot, and the quality of the plume does not matter.",
     "<strong>Spoonbills</strong> have their own area east of the Kamassa River, by the railway. About five spawn per visit.",

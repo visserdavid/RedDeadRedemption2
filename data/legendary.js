@@ -111,7 +111,7 @@
 
   RDR.list({
     id: "legendary", title: "Legendary animals", nav: "Legendary", order: 30, group: "Hunting & camp",
-    heading: "Legendary Animals Checklist", sub: "Red Dead Redemption 2 (story mode): the 16 legendary animals, the clothing the Trapper makes from their pelts, and the Fence's trinkets and talismans.", blurb: "The 16 legendary animals, the Trapper clothing from their pelts, and the Fence's trinkets and talismans.",
+    sub: "Red Dead Redemption 2 (story mode): the 16 legendary animals, the clothing the Trapper makes from their pelts, and the Fence's trinkets and talismans.", blurb: "The 16 legendary animals, the Trapper clothing from their pelts, and the Fence's trinkets and talismans.",
     filter: "Hide what is already complete",
     tips: [
     "Every legendary animal is unique: there is only one of each and it does not come back. For 100% you only need to kill <strong>5</strong>, but for all trinkets, talismans and Trapper clothing you need every one.",

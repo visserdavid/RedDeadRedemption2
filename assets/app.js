@@ -3,12 +3,12 @@
 // A list is one call to RDR.list({...}) in data/*.js:
 //   id, title, order       – route (#/id), name in nav/overview, order within its group
 //   group                  – nav group, one of GROUPS below (otherwise "Other")
-//   nav?, heading?, blurb, sub – short nav name, page heading, text on the overview, subtitle
+//   nav?, heading?, blurb, sub – short nav name, page heading (default "<Title> Checklist"), text on the overview, subtitle
 //   tips?, sources?        – "How it works" bullets and sources [[label, url], ...]
 //   filter?                – text for the "hide checked" toggle (pref <id>.hide)
 //   sections               – array (or function returning an array) of { type, ... }:
 //       checklist  groups of checkboxes      { groups:[{ id, title, items, finish? }], fields?, columns?, grid?, numbered? }
-//       cards      one card per item         { id, items, fields?, layout?: "animal", checks? }
+//       cards      one card per item         { id, items:[{ id, name, checks?, fields? }], layout?: "animal" }
 //       table      rows with optional box    { id, rows, columns:[[heading, row => html, class?]], check?: false }
 //       counters   counters (−/+)            { groups:[{ id, title, items:[{ id, name, max, auto? }] }] }
 //       html       free content              { html }
@@ -35,6 +35,8 @@ window.RDR = (() => {
   const tags = t => (Array.isArray(t) ? t : t ? [t] : []).map(tag).join("");
   const box = (key, html) => `<label class="check"><input type="checkbox" data-key="${key}"><span>${html}</span></label>`;
   const pct = (have, total) => (total ? have / total * 100 : 0);
+  // "Points of interest" → "Points of Interest"; short joining words stay lowercase.
+  const titleCase = s => s.replace(/\b(?!(?:of|and|the)\b)[a-z]/g, c => c.toUpperCase());
   const sum = (arr, f) => arr.reduce((n, x) => n + f(x), 0);
 
   // ---------- storage ----------
@@ -49,8 +51,8 @@ window.RDR = (() => {
   const setPref = (k, on) => { if (on) state.prefs[k] = true; else delete state.prefs[k]; save(); };
 
   // ---------- theme (day/night); without a choice the app follows prefers-color-scheme ----------
-  const darkMQ = () => window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
-  const isDark = () => state.prefs["ui.theme"] ? state.prefs["ui.theme"] === "dark" : darkMQ();
+  const isDark = () => state.prefs["ui.theme"] ? state.prefs["ui.theme"] === "dark"
+    : !!window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
   function applyTheme() {
     const t = state.prefs["ui.theme"];
     if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme;
@@ -94,11 +96,10 @@ window.RDR = (() => {
           g.finishKey = g.finish ? claim(`${L}.${g.id}.done`) : null;
         });
       } else if (s.type === "cards") {
-        s.items = rows(s.fields || ["id", "name"], s.items).map(it => {
+        s.items.forEach(it => {
           it.id = it.id || slug(it.name);
-          const checks = it.checks || s.checks || [{ id: "done", label: s.checkLabel || "Done" }];
+          const checks = it.checks || [{ id: "done", label: s.checkLabel || "Done" }];
           it.checks = checks.map(c => ({ ...c, key: c.key || claim(`${L}.${s.id}.${it.id}${checks.length > 1 ? `.${c.id}` : ""}`) }));
-          return it;
         });
       } else if (s.type === "table") {
         s.rows = rows(s.fields || ["id", "name"], s.rows).map(r => {
@@ -146,7 +147,7 @@ window.RDR = (() => {
     <div class="bar"><div style="width:${pct(m.have, m.total)}%"></div></div></div>`;
   const metersOf = def => (def.meters || []).map(([m, label]) => [label, metric(`${def.id}.${m}`)]);
   const filterHTML = (key, text) =>
-    `<div class="filter"><label class="check"><input type="checkbox" data-pref="${key}"><span style="text-decoration:none;color:inherit">${text}</span></label></div>`;
+    `<div class="filter"><label class="check"><input type="checkbox" data-pref="${key}"><span>${text}</span></label></div>`;
   const counterHTML = (key, max, label) => `
     <span class="counter">
       <button type="button" data-step="-1" data-count="${key}" data-max="${max}" aria-label="${label} minus one">−</button>
@@ -214,7 +215,7 @@ window.RDR = (() => {
             <div class="card-head"><h3>${it.name}</h3><span class="status"></span></div>
             ${it.tags ? `<p class="small">${tags(it.tags)}</p>` : ""}
             ${fieldsHTML(it.fields)}
-            ${it.desc ? `<p class="small" style="margin-top:6px">${it.desc}</p>` : ""}
+            ${it.desc ? `<p class="small desc">${it.desc}</p>` : ""}
             ${it.note ? `<p class="small muted">${it.note}</p>` : ""}
             ${s.live ? `<p class="small" data-live></p>` : ""}
             <ul class="checks">${it.checks.map((c, i) =>
@@ -228,8 +229,8 @@ window.RDR = (() => {
           const done = s.layout === "animal" ? have === it.checks.length : !!get(it.checks[it.checks.length - 1].key);
           card.classList.toggle("done", done);
           card.hidden = pref(`${def.id}.hide`) && done;
-          const have$ = card.querySelector(".have");
-          if (have$) have$.textContent = have;
+          const haveEl = card.querySelector(".have");
+          if (haveEl) haveEl.textContent = have;
           const status = card.querySelector(".status");
           if (status) status.textContent = s.status ? s.status(it, done) : done ? (s.doneText || "✓") : "";
           const live = card.querySelector("[data-live]");
@@ -273,7 +274,7 @@ window.RDR = (() => {
                 : single ? "" : counterHTML(it.key, it.max, it.name)}
             </div>`;
           }).join("")}
-          ${g.finish ? `<ul class="checks" style="margin-top:8px"><li class="sep">${box(g.finishKey, g.finish)}</li></ul>` : ""}
+          ${g.finish ? `<ul class="checks finish"><li class="sep">${box(g.finishKey, g.finish)}</li></ul>` : ""}
         </section>`).join("")}</div>`,
       refresh: (def, s, el) => {
         s.groups.forEach(g => {
@@ -348,7 +349,7 @@ window.RDR = (() => {
   }
 
   function renderList(def) {
-    const heading = def.heading || `${def.title} Checklist`;
+    const heading = def.heading || `${titleCase(def.title)} Checklist`;
     document.title = `${heading} – RDR2`;
     view().innerHTML = `
       <header>
@@ -357,13 +358,13 @@ window.RDR = (() => {
         <div class="progress" id="meters"></div>
       </header>
       ${def.tips ? `<h2>How it works</h2><div class="card"><ul class="tips">${def.tips.map(t => `<li>${t}</li>`).join("")}</ul></div>` : ""}
-      ${def.filter ? `<div style="margin-top:24px">${filterHTML(`${def.id}.hide`, def.filter)}</div>` : ""}
+      ${def.filter ? `<div class="gap">${filterHTML(`${def.id}.hide`, def.filter)}</div>` : ""}
       ${sectionsOf(def).map((s, i) => `
         ${s.title ? `<h2>${s.title}</h2>` : ""}
         ${s.intro ? `<p class="muted small">${s.intro}</p>` : ""}
         ${s.filter ? filterHTML(`${def.id}.${s.filter[0]}`, s.filter[1]) : ""}
         <div data-sec="${i}" class="sec">${R[s.type].html(def, s)}</div>`).join("")}
-      <p style="margin-top:24px"><button id="reset">Reset all</button></p>
+      <p class="gap"><button id="reset">Reset all</button></p>
       <footer>Sources: ${(def.sources || []).map(([label, url]) => `<a href="${url}">${label}</a>`).join(", ")}.
         Your progress is saved only in this browser. The reset button clears only the checkboxes and counters on this page.</footer>`;
   }
@@ -437,7 +438,7 @@ window.RDR = (() => {
 
   return {
     list, setHome, lists, start,
-    slug, rows, tag, tags, box, sum,
+    slug, tag, box, sum,
     get, count, pref, keysOf, itemsOf, groupsOf, part, metric, ratio, capped
   };
 })();

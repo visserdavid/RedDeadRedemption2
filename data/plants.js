@@ -35,7 +35,7 @@
   const orchids = () => RDR.lists.exotics.requests.flatMap(r => r.items.filter(it => /Orchid/.test(it[1])).map(it => [r, it]));
   RDR.list({
     id: "plants", title: "Plants", order: 80, group: "Gear",
-    heading: "Plants Checklist", sub: "Red Dead Redemption 2 (story mode): all 43 plant species, the 30 herbs and the 13 orchids, with locations and uses.", blurb: "All 43 plant species: 30 herbs for Herbalist 9 and 13 orchids. 20 species are needed for 100%.",
+    sub: "Red Dead Redemption 2 (story mode): all 43 plant species, the 30 herbs and the 13 orchids, with locations and uses.", blurb: "All 43 plant species: 30 herbs for Herbalist 9 and 13 orchids. 20 species are needed for 100%.",
     filter: "Hide plants you have already picked",
     tips: [
     "For 100% you need <strong>20 of the 43 species</strong> in the compendium. That count goes automatically to the <a href=\"#/hundred\">100%</a> page.",

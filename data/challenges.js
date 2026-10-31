@@ -2,7 +2,7 @@
   const groups = () => RDR.groupsOf("challenges");
   RDR.list({
     id: "challenges", title: "Challenges", order: 160, group: "Challenges & treasure",
-    heading: "Challenges Checklist", sub: "Red Dead Redemption 2 (story mode): all 90 challenges in 9 categories. All 9 categories up to rank 10 are needed for 100%.", blurb: "All 90 challenges in 9 categories, in order.",
+    sub: "Red Dead Redemption 2 (story mode): all 90 challenges in 9 categories. All 9 categories up to rank 10 are needed for 100%.", blurb: "All 90 challenges in 9 categories, in order.",
     filter: "Hide completed challenges",
     tips: [
     "Within a category you complete the challenges <strong>in order</strong>: what you do for a later rank only counts once the previous rank is done. The next challenge is shown in <strong>bold</strong> below.",

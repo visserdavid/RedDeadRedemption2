@@ -2,7 +2,7 @@
   const all = () => RDR.groupsOf("encounters").flatMap(g => g.keys);
   RDR.list({
     id: "encounters", title: "Chance encounters", nav: "Encounters", order: 150, group: "Missions",
-    heading: "Chance Encounters Checklist", sub: "Red Dead Redemption 2 (story mode): the random encounters on the road and in town.", blurb: "Random encounters on the road and in town. 25 are needed for 100%.",
+    sub: "Red Dead Redemption 2 (story mode): the random encounters on the road and in town.", blurb: "Random encounters on the road and in town. 25 are needed for 100%.",
     filter: "Hide encounters you have already had",
     tips: [
     "Chance encounters are short, random events. You recognise them by a <strong>white dot</strong> that suddenly appears on your minimap, or by someone calling for help.",

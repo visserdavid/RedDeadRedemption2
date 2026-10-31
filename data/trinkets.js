@@ -48,7 +48,7 @@
 
   RDR.list({
     id: "trinkets", title: "Trinkets & talismans", nav: "Trinkets", order: 40, group: "Hunting & camp",
-    heading: "Trinkets &amp; Talismans Checklist", sub: "Red Dead Redemption 2 (story mode): all 16 trinkets and 6 talismans, from the Fence and elsewhere, with their ingredients and effects.", blurb: "All 16 trinkets and 6 talismans, with their ingredients and effects.",
+    sub: "Red Dead Redemption 2 (story mode): all 16 trinkets and 6 talismans, from the Fence and elsewhere, with their ingredients and effects.", blurb: "All 16 trinkets and 6 talismans, with their ingredients and effects.",
     filter: "Hide what you already have",
     tips: [
     "A <strong>Fence</strong> (for example at Emerald Ranch, in Saint Denis, Lagras or Van Horn) crafts trinkets and talismans in his crafting menu. You pay a small fee plus the ingredients.",

@@ -64,7 +64,7 @@
 
   RDR.list({
     id: "hundred", title: "100%", order: 210, group: "Completion",
-    heading: "100% Checklist", sub: "Red Dead Redemption 2 (story mode): everything that counts towards 100% completion and the trophy/achievement <em>Best in the West</em>.", blurb: "Everything that counts towards 100% completion. Parts with their own list count automatically.",
+    sub: "Red Dead Redemption 2 (story mode): everything that counts towards 100% completion and the trophy/achievement <em>Best in the West</em>.", blurb: "Everything that counts towards 100% completion. Parts with their own list count automatically.",
     tips: [
     "Your current percentage and the official checklist are in the pause menu under <em>Progress</em>. Many parts only become visible once you have finished the story (including the epilogue).",
     "You do not need everything: the game asks for only 5 of the 16 legendary animals and 10 of the 30 fish species, for example. Those requirements are listed below.",

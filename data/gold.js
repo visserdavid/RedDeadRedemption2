@@ -20,7 +20,7 @@
 
   RDR.list({
     id: "gold", title: "Gold bars", nav: "Gold", order: 200, group: "Challenges & treasure",
-    heading: "Gold Bars Checklist", sub: "Red Dead Redemption 2 (story mode): every gold bar, from treasure hunts, a puzzle and fixed locations.", blurb: "Every gold bar in story mode: from treasure hunts, a puzzle and fixed locations. $500 per bar at a Fence.",
+    sub: "Red Dead Redemption 2 (story mode): every gold bar, from treasure hunts, a puzzle and fixed locations.", blurb: "Every gold bar in story mode: from treasure hunts, a puzzle and fixed locations. $500 per bar at a Fence.",
     filter: "Hide locations you have found",
     tips: [
     "A gold bar is worth <strong>$500</strong>. It is stolen goods, so you can only sell it to a <strong>Fence</strong>, for example in Saint Denis, Rhodes, Emerald Ranch or Van Horn.",
@@ -55,7 +55,7 @@
         rows: hunts().map(h => ({ id: h.id, name: h.title, h })),
         rowDone: r => found(r.h),
         columns: [["Treasure hunt", r => `<a href="#/treasure">${r.name}</a>`], ["Bars", r => r.h.gold, "num"],
-          ["When", r => r.h.when, "small"],
+          ["When", r => r.h.meta, "small"],
           ["Status", r => found(r.h) ? "✓ found" : `${RDR.count(r.h.keys)}/${r.h.items.length} steps`, "small"]] },
       { type: "cards", id: "fixed", title: "Fixed locations", checkLabel: "<strong>Found</strong>",
         items: fixed.map(([id, name, n, where, when, tags]) => ({ id, name, bars: n, tags: tags.length ? tags : null, desc: where, note: when })),

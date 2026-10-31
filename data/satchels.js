@@ -83,7 +83,12 @@
             .map(a => RDR.animalCard(a, n[a].length, n[a].map(s => `<li>${RDR.box(peltKey(s.id, a), `for ${s.name.replace(" Satchel", "")}`)}</li>`).join(""))).join("");
         },
         refresh: () => RDR.refreshAnimalCards(RDR.pref("satchels.hide")) },
-      { type: "html", title: "Weapon by size", html: "<div class=\"card table-wrap\"> <table> <thead><tr><th>Size</th><th>Animals</th><th>Best weapon + ammo</th><th>Alternative</th></tr></thead> <tbody> <tr><td>Tiny</td><td>Squirrel</td><td><strong>Bow + Small Game Arrows</strong></td><td>Varmint Rifle (can damage the carcass)</td></tr> <tr><td>Small</td><td>Rabbit, iguana, raccoon, badger, beaver</td><td><strong>Varmint Rifle</strong> (regular .22 ammo)</td><td>Bow + Small Game Arrows</td></tr> <tr><td>Big</td><td>Deer, buck, boar, wolf, cougar, panther</td><td><strong>Springfield or Bolt Action Rifle</strong>, regular ammo</td><td>Bow with regular arrows (or poison arrows)</td></tr> <tr><td>Gigantic</td><td>Elk, bison</td><td><strong>Rolling Block or Carcano (sniper)</strong>, regular ammo</td><td>Springfield/Bolt Action, or bow with Improved Arrows</td></tr> </tbody> </table> </div>" }
+      { type: "custom", title: "Weapon by size", render: () => RDR.weaponTable([
+          ["Tiny", "Squirrel", "<strong>Bow + Small Game Arrows</strong>", "Varmint Rifle (can damage the carcass)"],
+          ["Small", "Rabbit, iguana, raccoon, badger, beaver", "<strong>Varmint Rifle</strong> (regular .22 ammo)", "Bow + Small Game Arrows"],
+          ["Big", "Deer, buck, boar, wolf, cougar, panther", "<strong>Springfield or Bolt Action Rifle</strong>, regular ammo", "Bow with regular arrows (or poison arrows)"],
+          ["Gigantic", "Elk, bison", "<strong>Rolling Block or Carcano (sniper)</strong>, regular ammo", "Springfield/Bolt Action, or bow with Improved Arrows"]
+        ]) }
     ],
     metrics: {
       pelts: () => RDR.ratio(SATCHELS.flatMap(s => s.pelts.map(a => peltKey(s.id, a)))),

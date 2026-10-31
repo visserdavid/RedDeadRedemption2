@@ -2,7 +2,6 @@
   const keys = () => RDR.keysOf("shacks", "shacks");
   RDR.list({
     id: "shacks", title: "Shacks", order: 107, group: "The world",
-    heading: "Shacks Checklist",
     sub: "Red Dead Redemption 2 (story mode): the 19 abandoned shacks, each with its own (often grim) story and some loot.",
     blurb: "The 19 abandoned shacks with their own story and loot. 5 are needed for 100%.",
     filter: "Hide shacks you have already visited",

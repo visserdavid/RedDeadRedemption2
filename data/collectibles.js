@@ -1,6 +1,6 @@
 RDR.list({
   id: "collectibles", title: "Collectibles", order: 100, group: "The world",
-  heading: "Collectibles Checklist", sub: "Red Dead Redemption 2 (story mode): dinosaur bones, dreamcatchers, rock carvings and graves. All needed for 100%.", blurb: "Dinosaur bones, dreamcatchers, rock carvings and graves.",
+  sub: "Red Dead Redemption 2 (story mode): dinosaur bones, dreamcatchers, rock carvings and graves. All needed for 100%.", blurb: "Dinosaur bones, dreamcatchers, rock carvings and graves.",
   filter: "Hide what you have already found",
   tips: [
     "The descriptions are meant to help you recognise the spot. For exact map markers, use the guides listed under sources.",
@@ -35,7 +35,7 @@ RDR.list({
     ]
   ],
   sections: [{ type: "checklist", columns: true, numbered: true, groups: [
-    { id: "bones", title: "Dinosaur bones", short: "Bones",
+    { id: "bones", title: "Dinosaur bones",
       intro: "For Deborah MacGuiness (stranger mission <em>A Test of Faith</em>). You meet her in chapter 2 at Bacchus Station. Send in every location from a post office. A day later she invites you to her cabin at Firewood Rise.",
       finish: "All locations sent in and Deborah visited",
       items: [
@@ -70,7 +70,7 @@ RDR.list({
         ["Bank of the Kamassa River", "Roanoke Ridge, New Hanover"],
         ["High ridge in Roanoke Valley", "Roanoke Ridge, New Hanover"]
       ] },
-    { id: "dream", title: "Dreamcatchers", short: "Dreamcatchers",
+    { id: "dream", title: "Dreamcatchers",
       intro: "They hang in trees, mostly in New Hanover. Once you have them all, the points on the map form a bison. The missing point leads to a cave at Elysian Pool. There you find the <strong>Ancient Arrowhead</strong>: after that, your bow costs less stamina.",
       finish: "Ancient Arrowhead found in the cave at Elysian Pool",
       items: [
@@ -95,7 +95,7 @@ RDR.list({
         ["Ambarino (1)", "South of the R, just above the southern railway"],
         ["Ambarino (2)", "Northeast of the O, south of The Loft"]
       ] },
-    { id: "carvings", title: "Rock carvings", short: "Rock carvings",
+    { id: "carvings", title: "Rock carvings",
       intro: "For Francis Sinclair (stranger mission <em>Geology for Beginners</em>). His cabin is northwest of Strawberry. Send in the locations from a post office. Afterwards you find the <strong>Old Brass Compass</strong> at his cabin (for the Raven Claw Talisman).",
       finish: "Locations sent in and Old Brass Compass found",
       items: [
@@ -110,7 +110,7 @@ RDR.list({
         ["Mountain path", "Down a path between the trees, facing the valley"],
         ["Owanjila", "At Owanjila Lake, West Elizabeth"]
       ] },
-    { id: "graves", title: "Graves", short: "Graves",
+    { id: "graves", title: "Graves",
       intro: "Only after the story (epilogue), as John. Pay your respects at each grave. That earns the trophy/achievement <em>Paying Respects</em>. None of the graves are missable.",
       items: [
         ["Jenny Kirk", "Spider Gorge (Ambarino), in the snow east of a river"],

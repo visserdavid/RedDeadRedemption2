@@ -19,13 +19,13 @@ All text, code comments and docs are in English. In-game names (weapons, animals
 
 ## Architecture
 
-`index.html` is only a shell (`<nav>`, `<main id="view">`). It loads `assets/app.js`, then every `data/*.js`, then calls `RDR.start()`. Data files are named after their list id (`data/weapons.js` → `#/weapons`); `data/animals.js` holds shared animal data and `data/home.js` the overview text. Script order among data files does not matter: anything that depends on another list is computed lazily (getters/functions), not at load time.
+`index.html` is only a shell (`<nav>`, `<main id="view">`). It loads `assets/app.js`, then every `data/*.js`, then calls `RDR.start()`. Data files are named after their list id (`data/weapons.js` → `#/weapons`); `data/animals.js` holds shared animal data and helpers for satchels/camp (`RDR.animalCard`, `RDR.weaponTable`, …) and `data/home.js` the overview text. Script order among data files does not matter: anything that depends on another list is computed lazily (getters/functions), not at load time.
 
 ### `assets/app.js` – the `RDR` core
 
 The format of a list definition is documented in the header comment of this file; read it before adding or changing a list.
 
-- **`RDR.list({...})` registers one list.** It includes id/route, title, group, order, tips, sources, a filter label, `sections`, `metrics` and `meters`, plus an optional `refresh(view)` hook.
+- **`RDR.list({...})` registers one list.** It includes id/route, title, group, order, an optional `heading` (default: the title in title case + " Checklist"), tips, sources, a filter label, `sections`, `metrics` and `meters`, plus an optional `refresh(view)` hook.
 - **`RDR.setHome({...})`** supplies the overview page text (`data/home.js`).
 - **Six section renderers** do all rendering. `checklist`, `cards`, `table` and `counters` are data-driven; `html` holds static HTML; `custom` has its own `render`/`refresh` and is only used by satchels/camp for their per-item and per-animal double views.
 - **Rendering cycle:** a list page is rendered once per route change. After every change, `refresh()` syncs checkboxes, statuses and meters in place, without re-rendering. Events are delegated once on `document`.

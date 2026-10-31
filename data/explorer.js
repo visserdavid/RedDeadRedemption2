@@ -16,7 +16,7 @@
 
   RDR.list({
     id: "explorer", title: "Explorer treasures", nav: "Explorer", order: 190, group: "Challenges & treasure",
-    heading: "Explorer Treasures Checklist", sub: "Red Dead Redemption 2 (story mode): the 10 Explorer challenges, rank by rank, with the treasure you need to find for each.", blurb: "The 10 Explorer challenges: the route through the treasures of three treasure hunts, with the reward per rank.",
+    sub: "Red Dead Redemption 2 (story mode): the 10 Explorer challenges, rank by rank, with the treasure you need to find for each.", blurb: "The 10 Explorer challenges: the route through the treasures of three treasure hunts, with the reward per rank.",
     filter: "Hide ranks you have reached",
     tips: [
     "The Explorer challenges have no treasure maps of their own. <strong>Rank 1</strong> is finding a treasure map. <strong>Ranks 2 through 10</strong> come from the nine locations of three treasure hunts: <em>Jack Hall Gang</em>, <em>Poisonous Trail</em> and <em>High Stakes</em>.",

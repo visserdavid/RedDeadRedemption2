@@ -29,7 +29,7 @@
   const cards = () => RDR.itemsOf("hideouts", "hideouts");
   RDR.list({
     id: "hideouts", title: "Gang hideouts", nav: "Hideouts", order: 140, group: "Missions",
-    heading: "Gang Hideouts Checklist", sub: "Red Dead Redemption 2 (story mode): the gang hideouts to clear out, and the gangs for the compendium.", blurb: "The gang hideouts and the 7 gangs for the compendium. 6 hideouts are needed for 100%.",
+    sub: "Red Dead Redemption 2 (story mode): the gang hideouts to clear out, and the gangs for the compendium.", blurb: "The gang hideouts and the 7 gangs for the compendium. 6 hideouts are needed for 100%.",
     filter: "Hide what you have already done",
     tips: [
     "For 100% you need <strong>6 hideouts</strong>, and only those tagged <em>100%</em> count. Four of them happen in the story. The other two, Thieves' Landing and Fort Mercer, you clear in the epilogue. The count goes automatically to the <a href=\"#/hundred\">100%</a> page.",

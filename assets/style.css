@@ -185,6 +185,12 @@ tr.bought { color: var(--muted); text-decoration: line-through; text-decoration-
 
 .tips li { margin-bottom: 6px; }
 .filter { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; font-size: .95rem; }
+.filter span { text-decoration: none !important; color: inherit !important; }
+.gap { margin-top: 24px; }
+.desc { margin-top: 6px; }
+ul.finish { margin-top: 8px; }
+ul.tips.spaced { margin-top: 10px; }
+p.intro.spaced { margin-top: 14px; }
 button {
   font: inherit; font-variant: small-caps; letter-spacing: .08em; color: var(--accent); background: transparent;
   border: 3px double var(--accent); padding: 4px 14px; cursor: pointer;

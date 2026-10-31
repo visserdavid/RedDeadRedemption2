@@ -4,7 +4,7 @@
   const cards = g => (RDR.get(g.finishKey) ? g.items.length : RDR.count(g.keys));
   RDR.list({
     id: "cigcards", title: "Cigarette cards", nav: "Cigarette cards", order: 170, group: "Challenges & treasure",
-    heading: "Cigarette Cards Checklist", sub: "Red Dead Redemption 2 (story mode): all 144 cigarette cards in 12 sets, for Phineas T. Ramsbottom.", blurb: "All 144 cigarette cards in 12 sets, for Phineas T. Ramsbottom.",
+    sub: "Red Dead Redemption 2 (story mode): all 144 cigarette cards in 12 sets, for Phineas T. Ramsbottom.", blurb: "All 144 cigarette cards in 12 sets, for Phineas T. Ramsbottom.",
     filter: "Hide cards you already have",
     tips: [
     "You find cards at fixed spots in the world (the spot is listed under each card) or in <strong>packs of cigarettes</strong> from the store. Every pack you open contains a card.",
