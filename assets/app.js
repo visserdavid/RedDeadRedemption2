@@ -1,32 +1,34 @@
-// RDR2-checklists: één datagedreven app (index.html + #/<lijst> routes).
+// RDR2 checklists: one data-driven app (index.html + #/<list> routes).
 //
-// Een lijst is één aanroep van RDR.list({...}) in data/*.js:
-//   id, title, order       – route (#/id), naam in nav/overzicht, volgorde
-//   nav?, heading?, blurb, sub – korte navnaam, paginakop, tekst op overzicht, ondertitel
-//   tips?, sources?        – "Zo werkt het"-punten en bronnen [[label, url], ...]
-//   filter?                – tekst voor de "verberg afgevinkt"-schakelaar (pref <id>.hide)
-//   sections               – array (of functie die een array geeft) met { type, ... }:
-//       checklist  groepen met vinkjes        { groups:[{ id, title, items, finish? }], fields?, columns?, grid?, numbered? }
-//       cards      kaart per item             { id, items, fields?, layout?: "animal", checks? }
-//       table      rijen met optioneel vinkje { id, rows, columns:[[kop, row => html, class?]], check?: false }
-//       counters   tellers (−/+)              { groups:[{ id, title, items:[{ id, name, max, auto? }] }] }
-//       html       vrije inhoud               { html }
-//       custom     eigen weergave             { render(def), refresh(def, el) }
-//   metrics        – { naam: () => ({ have, total }) }, op te vragen met RDR.metric("<id>.<naam>")
-//   meters         – [["naam", "label"], ...] bovenaan de pagina en op het overzicht
-//   v1?            – migratie van de oude opslag { store, map(oudeSleutel) => nieuweSleutel(s), prefs? }
+// A list is one call to RDR.list({...}) in data/*.js:
+//   id, title, order       – route (#/id), name in nav/overview, order within its group
+//   group                  – nav group, one of GROUPS below (otherwise "Other")
+//   nav?, heading?, blurb, sub – short nav name, page heading, text on the overview, subtitle
+//   tips?, sources?        – "How it works" bullets and sources [[label, url], ...]
+//   filter?                – text for the "hide checked" toggle (pref <id>.hide)
+//   sections               – array (or function returning an array) of { type, ... }:
+//       checklist  groups of checkboxes      { groups:[{ id, title, items, finish? }], fields?, columns?, grid?, numbered? }
+//       cards      one card per item         { id, items, fields?, layout?: "animal", checks? }
+//       table      rows with optional box    { id, rows, columns:[[heading, row => html, class?]], check?: false }
+//       counters   counters (−/+)            { groups:[{ id, title, items:[{ id, name, max, auto? }] }] }
+//       html       free content              { html }
+//       custom     own rendering             { render(def), refresh(def, el) }
+//   metrics        – { name: () => ({ have, total }) }, read with RDR.metric("<id>.<name>")
+//   meters         – [["name", "label"], ...] at the top of the page and on the overview
 //
-// Opslagsleutels zijn stabiel: <lijst>.<groep/sectie>.<item-id>[.<vinkje>]; item-id = id of slug(name).
+// Storage keys are stable: <list>.<group/section>.<item-id>[.<check>]; item-id = id or slug(name).
 window.RDR = (() => {
-  const STORE = "rdr2-v2";
+  const STORE = "rdr2";
   const lists = {};
   let home = { title: "", sub: "", html: "" };
   let current = null;
+  // Order of the groups in the navigation and on the overview.
+  const GROUPS = ["Hunting & camp", "Gear", "The world", "Missions", "Challenges & treasure", "Completion"];
 
-  // ---------- kleine helpers ----------
+  // ---------- small helpers ----------
   const slug = s => String(s).replace(/<[^>]+>/g, "").replace(/['’]/g, "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
-    .replace(/&/g, " en ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-  // Tuples → objecten volgens `fields`; een losse string wordt { name }.
+    .replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  // Tuples → objects according to `fields`; a plain string becomes { name }.
   const rows = (fields, arr) => arr.map(r => typeof r === "string" ? { name: r }
     : Array.isArray(r) ? Object.fromEntries(fields.map((f, i) => [f, r[i]])) : r);
   const tag = t => `<span class="tag">${t}</span>`;
@@ -35,10 +37,10 @@ window.RDR = (() => {
   const pct = (have, total) => (total ? have / total * 100 : 0);
   const sum = (arr, f) => arr.reduce((n, x) => n + f(x), 0);
 
-  // ---------- opslag ----------
+  // ---------- storage ----------
   let state = { checks: {}, prefs: {} };
   function save() {
-    try { localStorage.setItem(STORE, JSON.stringify({ v: 2, checks: state.checks, prefs: state.prefs })); } catch (e) {}
+    try { localStorage.setItem(STORE, JSON.stringify({ v: 3, checks: state.checks, prefs: state.prefs })); } catch (e) {}
   }
   const get = k => state.checks[k];
   const set = (k, v) => { if (v) state.checks[k] = v; else delete state.checks[k]; save(); };
@@ -46,18 +48,37 @@ window.RDR = (() => {
   const pref = k => !!state.prefs[k];
   const setPref = (k, on) => { if (on) state.prefs[k] = true; else delete state.prefs[k]; save(); };
 
-  // ---------- lijsten en normalisatie ----------
+  // ---------- theme (day/night); without a choice the app follows prefers-color-scheme ----------
+  const darkMQ = () => window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+  const isDark = () => state.prefs["ui.theme"] ? state.prefs["ui.theme"] === "dark" : darkMQ();
+  function applyTheme() {
+    const t = state.prefs["ui.theme"];
+    if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme;
+  }
+  function toggleTheme() {
+    state.prefs["ui.theme"] = isDark() ? "light" : "dark";
+    save();
+    applyTheme();
+    renderNav();
+  }
+
+  // ---------- lists and normalisation ----------
   const list = def => (lists[def.id] = def);
   const setHome = def => (home = def);
   const ordered = () => Object.values(lists).sort((a, b) => a.order - b.order);
+  // [[group name, lists], ...] in GROUPS order; lists without a known group go under "Other".
+  const grouped = () => {
+    const rest = ordered().filter(d => !GROUPS.includes(d.group));
+    return [...GROUPS.map(g => [g, ordered().filter(d => d.group === g)]), ["Other", rest]].filter(([, ds]) => ds.length);
+  };
 
-  // Geeft de genormaliseerde secties van een lijst: items als objecten met een vaste sleutel.
+  // Returns the normalised sections of a list: items as objects with a fixed key.
   function sectionsOf(def) {
     if (def._sections) return def._sections;
     const L = def.id;
     const raw = typeof def.sections === "function" ? def.sections() : def.sections;
     const seen = new Set();
-    const claim = k => { if (seen.has(k)) console.error(`Dubbele sleutel ${k}`); seen.add(k); return k; };
+    const claim = k => { if (seen.has(k)) console.error(`Duplicate key ${k}`); seen.add(k); return k; };
     const prepItems = (items, fields, prefix) => rows(fields, items).map(it => {
       it.id = it.id || slug(it.name);
       it.key = it.key || claim(`${prefix}.${it.id}`);
@@ -75,7 +96,7 @@ window.RDR = (() => {
       } else if (s.type === "cards") {
         s.items = rows(s.fields || ["id", "name"], s.items).map(it => {
           it.id = it.id || slug(it.name);
-          const checks = it.checks || s.checks || [{ id: "done", label: s.checkLabel || "Afgevinkt" }];
+          const checks = it.checks || s.checks || [{ id: "done", label: s.checkLabel || "Done" }];
           it.checks = checks.map(c => ({ ...c, key: c.key || claim(`${L}.${s.id}.${it.id}${checks.length > 1 ? `.${c.id}` : ""}`) }));
           return it;
         });
@@ -91,16 +112,16 @@ window.RDR = (() => {
     return def._sections;
   }
 
-  // Zoekt een (genormaliseerde) groep of sectie op id binnen een lijst.
+  // Finds a (normalised) group or section by id within a list.
   function part(listId, id) {
     for (const s of sectionsOf(lists[listId])) {
       if (s.id === id) return s;
       const g = (s.groups || []).find(g => g.id === id);
       if (g) return g;
     }
-    throw new Error(`Onbekend onderdeel ${listId}.${id}`);
+    throw new Error(`Unknown part ${listId}.${id}`);
   }
-  // Alle vinkjessleutels van een groep (checklist), sectie (cards/table) of meerdere.
+  // All checkbox keys of a group (checklist), a section (cards/table) or several.
   function keysOf(listId, ...ids) {
     return ids.flatMap(id => {
       const p = part(listId, id);
@@ -109,7 +130,7 @@ window.RDR = (() => {
       return p.rows.filter(r => r.key).map(r => r.key);
     });
   }
-  // Items van groepen/secties, en alle groepen van een lijst (checklist en counters).
+  // Items of groups/sections, and all groups of a list (checklist and counters).
   const itemsOf = (listId, ...ids) => ids.flatMap(id => { const p = part(listId, id); return p.items || p.rows; });
   const groupsOf = listId => sectionsOf(lists[listId]).flatMap(s => s.groups || []);
   const metric = name => {
@@ -119,7 +140,7 @@ window.RDR = (() => {
   const ratio = keys => ({ have: count(keys), total: keys.length });
   const capped = (m, max) => ({ have: Math.min(m.have, max), total: max });
 
-  // ---------- weergave-onderdelen ----------
+  // ---------- view parts ----------
   const meterHTML = (label, m) => `
     <div class="meter"><div class="label"><span>${label}</span><span class="num">${m.have} / ${m.total}</span></div>
     <div class="bar"><div style="width:${pct(m.have, m.total)}%"></div></div></div>`;
@@ -128,13 +149,13 @@ window.RDR = (() => {
     `<div class="filter"><label class="check"><input type="checkbox" data-pref="${key}"><span style="text-decoration:none;color:inherit">${text}</span></label></div>`;
   const counterHTML = (key, max, label) => `
     <span class="counter">
-      <button type="button" data-step="-1" data-count="${key}" data-max="${max}" aria-label="${label} min één">−</button>
+      <button type="button" data-step="-1" data-count="${key}" data-max="${max}" aria-label="${label} minus one">−</button>
       <span class="n"><span data-n="${key}">0</span> / ${max}</span>
-      <button type="button" data-step="1" data-count="${key}" data-max="${max}" aria-label="${label} plus één">+</button>
+      <button type="button" data-step="1" data-count="${key}" data-max="${max}" aria-label="${label} plus one">+</button>
     </span>`;
   const itemLabel = (it, n, strong) =>
     `${n ? `${n}. ` : ""}${strong || it.strong ? `<strong>${it.name}</strong>` : it.name}${tags(it.tag || it.tags)}` +
-    (it.need ? `<span class="where"><em>Nodig:</em> ${it.need}</span>` : "") +
+    (it.need ? `<span class="where"><em>Needed:</em> ${it.need}</span>` : "") +
     (it.where ? `<span class="where">${it.where}</span>` : "") +
     (it.note ? `<span class="where">${it.note}</span>` : "") +
     (it.link ? `<span class="where"><a href="${it.link[0]}">${it.link[1]}</a></span>` : "");
@@ -151,7 +172,7 @@ window.RDR = (() => {
         <section class="card group" data-group="${g.id}">
           <div class="card-head">${s.groupHeadings ? `<span class="small muted">${g.meta || ""}</span>` : `<h3>${g.title}</h3>`}<span class="status"></span></div>
           ${!s.groupHeadings && g.meta ? `<p class="small muted">${g.meta}</p>` : ""}
-          ${g.reward ? `<p class="reward">Beloning: ${g.reward}</p>` : ""}
+          ${g.reward ? `<p class="reward">Reward: ${g.reward}</p>` : ""}
           ${g.intro ? `<p class="intro">${g.intro}</p>` : ""}
           <ul class="checks${s.columns ? " cols" : ""}">${g.items.map((it, i) => {
             const goal = s.goalLast && i === last;
@@ -165,7 +186,7 @@ window.RDR = (() => {
           const card = el.querySelector(`[data-group="${g.id}"]`);
           const have = count(g.keys);
           const full = have === g.items.length && (!g.finishKey || !!get(g.finishKey));
-          const st = s.status ? s.status(g, have) : { done: full, text: full ? "✓ compleet" : `${have}/${g.items.length}` };
+          const st = s.status ? s.status(g, have) : { done: full, text: full ? "✓ complete" : `${have}/${g.items.length}` };
           card.classList.toggle("done", st.done);
           card.querySelector(".status").textContent = st.text;
           if (s.highlightNext) {
@@ -203,7 +224,7 @@ window.RDR = (() => {
         s.items.forEach(it => {
           const card = el.querySelector(`[data-card="${it.id}"]`);
           const have = count(it.checks.map(c => c.key));
-          // Bij layout "animal" moeten alle vinkjes staan; anders telt het laatste vinkje (bijv. "Gemaakt").
+          // With layout "animal" every box must be checked; otherwise the last box counts (e.g. "Crafted").
           const done = s.layout === "animal" ? have === it.checks.length : !!get(it.checks[it.checks.length - 1].key);
           card.classList.toggle("done", done);
           card.hidden = pref(`${def.id}.hide`) && done;
@@ -247,7 +268,7 @@ window.RDR = (() => {
             return `
             <div class="row" data-row="${it.key}">
               ${single ? `<input type="checkbox" data-count="${it.key}" id="c-${slug(it.key)}">` : ""}
-              <span class="what"><span>${single ? `<label for="c-${slug(it.key)}">${it.name}</label>` : it.name}</span>${tags(it.tag)}${it.link ? `<a href="${it.link}">details</a>` : ""}${it.hint ? `<span class="hint">${it.hint}</span>` : ""}${it.auto ? `<span class="hint auto">automatisch uit de lijst</span>` : ""}</span>
+              <span class="what"><span>${single ? `<label for="c-${slug(it.key)}">${it.name}</label>` : it.name}</span>${tags(it.tag)}${it.link ? `<a href="${it.link}">details</a>` : ""}${it.hint ? `<span class="hint">${it.hint}</span>` : ""}${it.auto ? `<span class="hint auto">automatic from the list</span>` : ""}</span>
               ${it.auto ? `<span class="counter"><span class="n"><span data-auto="${it.key}">0</span> / ${it.max}</span></span>`
                 : single ? "" : counterHTML(it.key, it.max, it.name)}
             </div>`;
@@ -269,7 +290,7 @@ window.RDR = (() => {
           const done = g.finishKey ? !!get(g.finishKey) : full === g.items.length;
           const card = el.querySelector(`[data-group="${g.id}"]`);
           card.classList.toggle("done", done);
-          card.querySelector(".status").textContent = s.status ? s.status(g, full, done) : done ? "✓ compleet" : `${full}/${g.items.length}`;
+          card.querySelector(".status").textContent = s.status ? s.status(g, full, done) : done ? "✓ complete" : `${full}/${g.items.length}`;
         });
       }
     },
@@ -278,34 +299,52 @@ window.RDR = (() => {
     custom: { html: (def, s) => s.render(def), refresh: (def, s, el) => s.refresh && s.refresh(def, el) }
   };
 
-  // ---------- pagina's ----------
+  // ---------- pages ----------
   const view = () => document.getElementById("view");
 
+  // Table of contents per group; collapsed on narrow screens (rebuilt on every route, so it closes again).
   function renderNav() {
     const here = current ? current.id : "";
-    document.querySelector("nav").innerHTML = [["", "Overzicht"], ...ordered().map(d => [d.id, d.nav || d.title])]
-      .map(([id, label]) => `<a href="#/${id}"${id === here ? ' aria-current="page"' : ""}>${label}</a>`).join("");
+    const link = (id, label) => `<a href="#/${id}"${id === here ? ' aria-current="page"' : ""}>${label}</a>`;
+    const wide = !window.matchMedia || matchMedia("(min-width: 700px)").matches;
+    const hereLabel = current ? current.nav || current.title : "Overview";
+    document.querySelector("nav").innerHTML = `
+      <div class="nav-bar">
+        ${link("", "Overview")}
+        <button type="button" id="theme" aria-label="Switch between day and night">${isDark() ? "☼ Day" : "☾ Night"}</button>
+      </div>
+      <details class="toc"${wide ? " open" : ""}>
+        <summary>Contents <span class="muted">· ${hereLabel}</span></summary>
+        ${grouped().map(([g, ds]) => `
+          <div class="toc-group"><span class="toc-label">${g}</span>
+            <span class="toc-links">${ds.map(d => link(d.id, d.nav || d.title)).join("")}</span>
+          </div>`).join("")}
+      </details>`;
   }
 
   function renderHome() {
     document.title = "RDR2 Checklists";
     view().innerHTML = `
-      <header><h1>${home.title}</h1><p class="sub">${home.sub}</p></header>
-      <h2>Alle lijsten</h2>
-      <div class="grid dash">${ordered().map(d => {
+      <header class="masthead">
+        <p class="dateline"><span>Story mode</span><span>Checklists</span><span>Anno 1899</span></p>
+        <h1>${home.title}</h1>
+        <p class="sub">${home.sub}</p>
+      </header>
+      ${grouped().map(([g, ds]) => `<h2>${g}</h2>
+      <div class="grid dash">${ds.map(d => {
         const meters = metersOf(d);
         const done = meters.length > 0 && meters.every(([, m]) => m.total > 0 && m.have === m.total);
         const main = meters[0] ? meters[0][1] : { have: 0, total: 0 };
         return `
         <section class="card${done ? " done" : ""}" data-list="${d.id}">
-          <div class="card-head"><h3><a href="#/${d.id}">${d.title}</a></h3><span class="status">${done ? "✓ klaar" : `${Math.floor(pct(main.have, main.total))}%`}</span></div>
+          <div class="card-head"><h3><a href="#/${d.id}">${d.title}</a></h3><span class="status">${done ? "✓ done" : `${Math.floor(pct(main.have, main.total))}%`}</span></div>
           <p>${d.blurb}</p>
           ${meters.map(([label, m]) => meterHTML(label, m)).join("")}
-          <a class="open" href="#/${d.id}">Open lijst →</a>
+          <a class="open" href="#/${d.id}">Open list →</a>
         </section>`;
-      }).join("")}</div>
+      }).join("")}</div>`).join("")}
       ${home.html}
-      <footer>Je voortgang wordt alleen in deze browser bewaard (localStorage). Elke lijst heeft onderaan een eigen resetknop en een overzicht van de gebruikte bronnen.</footer>`;
+      <footer>Your progress is saved only in this browser (localStorage). Every list has its own reset button and its sources at the bottom.</footer>`;
   }
 
   function renderList(def) {
@@ -317,16 +356,16 @@ window.RDR = (() => {
         <p class="sub">${def.sub}</p>
         <div class="progress" id="meters"></div>
       </header>
-      ${def.tips ? `<h2>Zo werkt het</h2><div class="card"><ul class="tips">${def.tips.map(t => `<li>${t}</li>`).join("")}</ul></div>` : ""}
+      ${def.tips ? `<h2>How it works</h2><div class="card"><ul class="tips">${def.tips.map(t => `<li>${t}</li>`).join("")}</ul></div>` : ""}
       ${def.filter ? `<div style="margin-top:24px">${filterHTML(`${def.id}.hide`, def.filter)}</div>` : ""}
       ${sectionsOf(def).map((s, i) => `
         ${s.title ? `<h2>${s.title}</h2>` : ""}
         ${s.intro ? `<p class="muted small">${s.intro}</p>` : ""}
         ${s.filter ? filterHTML(`${def.id}.${s.filter[0]}`, s.filter[1]) : ""}
         <div data-sec="${i}" class="sec">${R[s.type].html(def, s)}</div>`).join("")}
-      <p style="margin-top:24px"><button id="reset">Alles resetten</button></p>
-      <footer>Bronnen: ${(def.sources || []).map(([label, url]) => `<a href="${url}">${label}</a>`).join(", ")}.
-        Je voortgang wordt alleen in deze browser bewaard. De resetknop wist alleen de vinkjes en tellers op deze pagina.</footer>`;
+      <p style="margin-top:24px"><button id="reset">Reset all</button></p>
+      <footer>Sources: ${(def.sources || []).map(([label, url]) => `<a href="${url}">${label}</a>`).join(", ")}.
+        Your progress is saved only in this browser. The reset button clears only the checkboxes and counters on this page.</footer>`;
   }
 
   function refresh() {
@@ -370,8 +409,10 @@ window.RDR = (() => {
         const k = b.dataset.count;
         set(k, Math.max(0, Math.min(Number(b.dataset.max), (get(k) || 0) + Number(b.dataset.step))));
         refresh();
+      } else if (e.target.closest("#theme")) {
+        toggleTheme();
       } else if (e.target.id === "reset") {
-        if (!confirm("Weet je zeker dat je alle vinkjes en tellers op deze pagina wilt wissen?")) return;
+        if (!confirm("Are you sure you want to clear all checkboxes and counters on this page?")) return;
         view().querySelectorAll("[data-key], [data-count]").forEach(el => delete state.checks[el.dataset.key || el.dataset.count]);
         save();
         refresh();
@@ -380,49 +421,16 @@ window.RDR = (() => {
     window.addEventListener("hashchange", route);
   }
 
-  // ---------- migratie van de oude opslag (één localStorage-sleutel per lijst, v1) ----------
-  const v1 = {
-    // "groep:3" → derde item van die groep, "groep:finish" → afsluitend vinkje van die groep.
-    byIndex: listId => k => {
-      const [g, i] = k.split(":");
-      try {
-        const grp = part(listId, g);
-        if (i === "finish") return grp.finishKey;
-        const it = grp.items && grp.items[Number(i) - 1];
-        return it ? it.key : null;
-      } catch (e) { return null; }
-    },
-    // id → sleutel van het item met die id in een groep/sectie (bij kaarten: het laatste vinkje).
-    byId: (listId, partId) => id => {
-      const p = part(listId, partId);
-      const it = (p.items || p.rows).find(x => x.id === id);
-      return !it ? null : it.checks ? it.checks[it.checks.length - 1].key : it.key;
-    }
-  };
-
-  function migrate() {
+  function load() {
     try {
       const s = JSON.parse(localStorage.getItem(STORE));
-      if (s && s.v === 2) { state = { checks: s.checks || {}, prefs: s.prefs || {} }; return; }
+      if (s && s.v === 3) state = { checks: s.checks || {}, prefs: s.prefs || {} };
     } catch (e) {}
-    Object.values(lists).forEach(def => {
-      if (!def.v1) return;
-      const { store, map, prefs } = def.v1;
-      let old = null;
-      try { old = JSON.parse(localStorage.getItem(store)); } catch (e) {}
-      if (old && map) Object.entries(old).forEach(([k, v]) => {
-        const nk = map(k, v);
-        (Array.isArray(nk) ? nk : nk ? [nk] : []).forEach(x => { state.checks[x] = v; });
-      });
-      (prefs || [["hide", "hide"]]).forEach(([o, n]) => {
-        try { if (localStorage.getItem(`${store}:${o}`) === "1") state.prefs[`${def.id}.${n}`] = true; } catch (e) {}
-      });
-    });
-    save();
   }
 
   function start() {
-    migrate();
+    load();
+    applyTheme();
     bindEvents();
     route();
   }
@@ -430,6 +438,6 @@ window.RDR = (() => {
   return {
     list, setHome, lists, start,
     slug, rows, tag, tags, box, sum,
-    get, count, pref, keysOf, itemsOf, groupsOf, part, metric, ratio, capped, v1
+    get, count, pref, keysOf, itemsOf, groupsOf, part, metric, ratio, capped
   };
 })();

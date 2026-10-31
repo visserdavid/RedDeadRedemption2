@@ -1,49 +1,49 @@
 (() => {
   const keys = () => RDR.keysOf("shacks", "shacks");
   RDR.list({
-    id: "shacks", title: "Shacks", order: 107,
+    id: "shacks", title: "Shacks", order: 107, group: "The world",
     heading: "Shacks Checklist",
-    sub: "Red Dead Redemption 2 (story mode): de 19 verlaten hutten, elk met een eigen (vaak somber) verhaal en wat buit.",
-    blurb: "De 19 verlaten hutten met een eigen verhaal en buit. 5 zijn nodig voor 100%.",
-    filter: "Verberg hutten die je al hebt bezocht",
+    sub: "Red Dead Redemption 2 (story mode): the 19 abandoned shacks, each with its own (often grim) story and some loot.",
+    blurb: "The 19 abandoned shacks with their own story and loot. 5 are needed for 100%.",
+    filter: "Hide shacks you have already visited",
     tips: [
-      "Een shack is een afgelegen hut met een eigen verhaal: je vindt er briefjes, lichamen of andere aanwijzingen over wat er is gebeurd, en meestal wat buit (sigarettenkaarten, sieraden, proviand).",
-      "Voor 100% heb je er <strong>5</strong> nodig; je ziet je stand in de game onder <em>Progress → Total Completion → Shacks</em>. Volgens GamingBolt telt een hut zodra je naar binnen gaat; PowerPyx noemt de eerste vijf waar de game je naartoe leidt. Het aantal hier gaat automatisch naar de pagina <a href=\"#/hundred\">100%</a>.",
-      "Geen enkele hut is missable. Drie hutten worden pas na het verhaal gebouwd en bezoek je dus in de epiloog.",
-      "Doorzoek kasten, lades en kisten: in veel hutten ligt een <a href=\"#/cigcards\">sigarettenkaart</a>."
+      "A shack is a remote cabin with its own story: you find notes, bodies or other clues about what happened there, and usually some loot (cigarette cards, jewelry, provisions).",
+      "For 100% you need <strong>5</strong>; you can see your count in the game under <em>Progress → Total Completion → Shacks</em>. According to GamingBolt a shack counts as soon as you go inside; PowerPyx names the first five the game leads you to. The count here goes automatically to the <a href=\"#/hundred\">100%</a> page.",
+      "None of the shacks are missable. Three shacks are only built after the story, so you visit them in the epilogue.",
+      "Search cupboards, drawers and chests: many shacks contain a <a href=\"#/cigcards\">cigarette card</a>."
     ],
     sources: [
-      ["SegmentNext (alle 19 hutten)", "https://segmentnext.com/red-dead-redemption-2-shacks-locations-guide/"],
-      ["GosuNoob (verhalen)", "https://www.gosunoob.com/red-dead-redemption-2/shacks-locations-map/"],
-      ["Game Rant (bijzondere hutten)", "https://gamerant.com/red-dead-redemption-2-best-shacks-locations/"],
-      ["PowerPyx (aantal en 100%)", "https://www.powerpyx.com/red-dead-redemption-2-all-shack-locations/"],
-      ["GamingBolt (wat telt)", "https://gamingbolt.com/red-dead-redemption-2-guide-shacks-for-100-completion-and-fence-locations"]
+      ["SegmentNext (all 19 shacks)", "https://segmentnext.com/red-dead-redemption-2-shacks-locations-guide/"],
+      ["GosuNoob (stories)", "https://www.gosunoob.com/red-dead-redemption-2/shacks-locations-map/"],
+      ["Game Rant (notable shacks)", "https://gamerant.com/red-dead-redemption-2-best-shacks-locations/"],
+      ["PowerPyx (count and 100%)", "https://www.powerpyx.com/red-dead-redemption-2-all-shack-locations/"],
+      ["GamingBolt (what counts)", "https://gamingbolt.com/red-dead-redemption-2-guide-shacks-for-100-completion-and-fence-locations"]
     ],
     sections: [{ type: "checklist", columns: true, groups: [{ id: "shacks", title: "Shacks (19)", items: [
-      ["Dormin Crest", "In het ijzige noordwesten, ten westen van Spider Gorge. Sigarettenkaart en proviand."],
-      ["Fairvale Shanty", "Ten oosten van Calumet Ravine, ten noorden van O'Creagh's Run. Lijken, een gouden klompje, een platina zakhorloge en sieraden."],
-      ["Snowfield", "Ten zuiden van Dormin Crest, ten westen van Lake Isabella. In een afgesloten la ligt een briefje met een cheatcode."],
-      ["Dodd's Bluff", "Ten zuiden van Window Rock, bij de rivier. Twee bebloede lichamen, een koevoet en het gouden klompje waar ze om vochten."],
-      ["Clawson's Rest", "Ten westen van Valentine, voorbij de Dakota River en het spoor. Meerdere lichamen, een stuiversroman en sigarettenkaarten."],
-      ["Martha's Swain", "Tussen Annesburg en Moonstone Pond, bij Three Sisters. Proviand en sieraden."],
-      ["Hani's Bethel", "Direct ten noorden van Emerald Ranch, bij een klein meer. Bedden met menselijke resten en het briefje <em>Mysterious Sermon</em>."],
-      ["Vetter's Echo", "Big Valley, ten oosten van Pronghorn Ranch. Sigarettenkaart en geld. Pas op voor een grizzly."],
-      ["Shepherd's Rise", "Ten zuidoosten van Wallace Station, bij het spoor. Wordt pas na het verhaal gebouwd.", "Epiloog"],
-      ["Ridge View", "Ten oosten van Emerald Station. Vol kruiden. Wordt pas na het verhaal gebouwd.", "Epiloog"],
-      ["Osman Grove", "Ten zuidwesten van Ridge View. Lichamen, een boek en proviand."],
-      ["Lenora View", "Blauw huisje op de oostflank van Mount Shann, ten noorden van Strawberry. Bloemen en een brief van een man die zijn nieuwe vrouw gaat ophalen."],
-      ["Old Trail Rise", "De Heartlands, ten oosten van Dewberry Creek. Afgebrand; in de kelder liggen Valerian Root, een sigarettenkaart en geld."],
-      ["Robard Farm", "Ten noorden van Rhodes. Sigarettenkaart, geld en proviand."],
-      ["Bayall Edge", "In het westen van de Bayou, bij de Kamassa River. Een van de griezeligste: rijmpjes en verhalen over Arthur op de muren."],
-      ["Bear Claw Camp", "Ten zuidwesten van Blackwater. Meerdere gebouwen; in de droge put ligt een kistje met geld."],
-      ["Argil Rise", "Ten zuidoosten van Rhodes. Wordt pas na het verhaal gebouwd.", "Epiloog"],
-      ["Crawdad Willies", "Ten oosten van Shady Belle. Een bloedspoor leidt naar ontsnapte gevangenen."],
-      ["Old Harry Fen", "Het zuidelijkste puntje van Lemoyne, ten zuiden van Braithwaite Manor en Bolger Glade. Een foto van een slavenfamilie en een krantenknipsel over een beloning voor een gevluchte slaaf."]
+      ["Dormin Crest", "In the icy northwest, west of Spider Gorge. Cigarette card and provisions."],
+      ["Fairvale Shanty", "East of Calumet Ravine, north of O'Creagh's Run. Bodies, a gold nugget, a platinum pocket watch and jewelry."],
+      ["Snowfield", "South of Dormin Crest, west of Lake Isabella. A locked drawer holds a note with a cheat code."],
+      ["Dodd's Bluff", "South of Window Rock, by the river. Two bloodied bodies, a crowbar and the gold nugget they fought over."],
+      ["Clawson's Rest", "West of Valentine, past the Dakota River and the railway. Several bodies, a dime novel and cigarette cards."],
+      ["Martha's Swain", "Between Annesburg and Moonstone Pond, near Three Sisters. Provisions and jewelry."],
+      ["Hani's Bethel", "Directly north of Emerald Ranch, by a small lake. Beds with human remains and the note <em>Mysterious Sermon</em>."],
+      ["Vetter's Echo", "Big Valley, east of Pronghorn Ranch. Cigarette card and money. Watch out for a grizzly."],
+      ["Shepherd's Rise", "Southeast of Wallace Station, by the railway. Only built after the story.", "Epilogue"],
+      ["Ridge View", "East of Emerald Station. Full of herbs. Only built after the story.", "Epilogue"],
+      ["Osman Grove", "Southwest of Ridge View. Bodies, a book and provisions."],
+      ["Lenora View", "Blue cottage on the eastern slope of Mount Shann, north of Strawberry. Flowers and a letter from a man going to collect his new wife."],
+      ["Old Trail Rise", "The Heartlands, east of Dewberry Creek. Burned down; the cellar holds Valerian Root, a cigarette card and money."],
+      ["Robard Farm", "North of Rhodes. Cigarette card, money and provisions."],
+      ["Bayall Edge", "In the west of the Bayou, by the Kamassa River. One of the creepiest: rhymes and stories about Arthur on the walls."],
+      ["Bear Claw Camp", "Southwest of Blackwater. Several buildings; the dry well holds a small box of money."],
+      ["Argil Rise", "Southeast of Rhodes. Only built after the story.", "Epilogue"],
+      ["Crawdad Willies", "East of Shady Belle. A trail of blood leads to escaped prisoners."],
+      ["Old Harry Fen", "The southernmost tip of Lemoyne, south of Braithwaite Manor and Bolger Glade. A photo of an enslaved family and a newspaper clipping about a reward for a runaway slave."]
     ] }] }],
     metrics: {
       visited: () => RDR.ratio(keys()),
       counted: () => RDR.capped(RDR.ratio(keys()), 5)
     },
-    meters: [["visited", "Hutten bezocht"], ["counted", "Voor 100% (5 nodig)"]]
+    meters: [["visited", "Shacks visited"], ["counted", "For 100% (5 needed)"]]
   });
 })();

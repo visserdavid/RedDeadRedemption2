@@ -1,19 +1,19 @@
-// Trinkets en talismannen. De vinkjes "gemaakt" zijn dezelfde sleutels als op de pagina Legendarische dieren.
+// Trinkets and talismans. The "crafted" checkboxes use the same keys as the Legendary animals page.
 (() => {
-  // Extra ingrediënten voor de talismannen, met vindplaats.
+  // Extra ingredients for the talismans, with where to find them.
   const INGREDIENTS = {
-    "Silver Chain Bracelet":       "Willekeurige buit van lijken en uit kistjes. Tip: maak een save en laad die opnieuw als je hem niet vindt.",
-    "Quartz Chunk":                "Beloning van Deborah MacGuiness zodra je de eerste dinosaurusbot-locatie opstuurt (zie <a href=\"#/collectibles\">Verzamelobjecten</a>).",
-    "Gold Earring":                "Buit van lijken, en soms te vinden in lades.",
-    "Cobalt Petrified Wood":       "In een kapotte koets onder een rotswand bij Lake Isabella (Grizzlies West).",
-    "Vintage Civil War Handcuffs": "Beloning voor je eerste complete set <a href=\"#/cigcards\">sigarettenkaarten</a>.",
-    "Gold Jointed Bracelet":       "Buit van lijken, en te vinden in kistjes en lockboxes op de kaart.",
-    "Abalone Shell Fragment":      "Er bestaat er maar één! In een dichtgetimmerd huis aan de noordrand van Rhodes, op de werkbank in de zuidelijke kamer.",
-    "Silver Earring":              "Buit van lijken. Plunder je vaak, dan heb je er waarschijnlijk al een.",
-    "Old Brass Compass":           "Bij de hut van Francis Sinclair, na alle 10 <a href=\"#/collectibles\">rotstekeningen</a>."
+    "Silver Chain Bracelet":       "Random loot from bodies and small chests. Tip: make a save and reload it if you cannot find one.",
+    "Quartz Chunk":                "Reward from Deborah MacGuiness once you send in the first dinosaur bone location (see <a href=\"#/collectibles\">Collectibles</a>).",
+    "Gold Earring":                "Loot from bodies, and sometimes found in drawers.",
+    "Cobalt Petrified Wood":       "In a broken-down stagecoach under a cliff at Lake Isabella (Grizzlies West).",
+    "Vintage Civil War Handcuffs": "Reward for your first complete set of <a href=\"#/cigcards\">cigarette cards</a>.",
+    "Gold Jointed Bracelet":       "Loot from bodies, and found in chests and lockboxes around the map.",
+    "Abalone Shell Fragment":      "There is only one! In a boarded-up house on the northern edge of Rhodes, on the workbench in the southern room.",
+    "Silver Earring":              "Loot from bodies. If you loot a lot, you probably already have one.",
+    "Old Brass Compass":           "At Francis Sinclair's cabin, after all 10 <a href=\"#/collectibles\">rock carvings</a>."
   };
   const ingKey = name => `trinkets.ingredients.${RDR.slug(name)}`;
-  // Items die je niet bij de Fence maakt, maar direct krijgt.
+  // Items you do not craft at the Fence, but receive directly.
   const GIFTS = ["owl", "iguana", "eagle", "crow"];
   const EXTRA_INGREDIENTS = { raven: ["Old Brass Compass"] };
 
@@ -34,27 +34,27 @@
     desc: t.legend ? `${t.part}<span class="where" data-part="${t.legend.id}"></span>` : !t.extras.length ? t.how : "",
     checks: [
       ...t.extras.map(n => ({ id: RDR.slug(n), label: `${n}<span class="where">${INGREDIENTS[n]}</span>`, key: ingKey(n) })),
-      { id: "made", label: `<strong>${t.gift ? "In bezit" : "Gemaakt bij de Fence"}</strong>`, key: t.key }
+      { id: "made", label: `<strong>${t.gift ? "Owned" : "Crafted at the Fence"}</strong>`, key: t.key }
     ]
   });
   const status = (it, done) => {
     const t = it.t;
-    if (done) return "✓ klaar";
+    if (done) return "✓ done";
     if (t.gift || (t.how && !t.extras.length)) return "";
     const partOk = !t.legend || !!RDR.get(L().animalKey(t.legend.id, "kill"));
-    return partOk && t.extras.every(n => RDR.get(ingKey(n))) ? "klaar om te maken" : "ingrediënten nodig";
+    return partOk && t.extras.every(n => RDR.get(ingKey(n))) ? "ready to craft" : "ingredients needed";
   };
   const of = type => all().filter(t => t.type === type).map(t => t.key);
 
   RDR.list({
-    id: "trinkets", title: "Trinkets & talismannen", nav: "Trinkets", order: 40,
-    heading: "Trinkets &amp; Talismannen Checklist", sub: "Red Dead Redemption 2 (story mode): alle 16 trinkets en 6 talismannen, van de Fence en daarbuiten, met hun ingrediënten en effecten.", blurb: "Alle 16 trinkets en 6 talismannen, met hun ingrediënten en effecten.",
-    filter: "Verberg wat je al hebt",
+    id: "trinkets", title: "Trinkets & talismans", nav: "Trinkets", order: 40, group: "Hunting & camp",
+    heading: "Trinkets &amp; Talismans Checklist", sub: "Red Dead Redemption 2 (story mode): all 16 trinkets and 6 talismans, from the Fence and elsewhere, with their ingredients and effects.", blurb: "All 16 trinkets and 6 talismans, with their ingredients and effects.",
+    filter: "Hide what you already have",
     tips: [
-    "Een <strong>Fence</strong> (bijvoorbeeld bij Emerald Ranch, in Saint Denis, Lagras of Van Horn) maakt trinkets en talismannen in zijn craftingmenu. Je betaalt een klein bedrag plus de ingrediënten.",
-    "Ze werken <strong>meteen en permanent</strong> zodra je ze hebt. Je hoeft ze niet uit te rusten.",
-    "De meeste onderdelen komen van <a href=\"#/legendary\">legendarische dieren</a>. Zodra je een dier hebt gedood en gevild, zie je dat hier vanzelf. Een vinkje bij \"gemaakt\" staat ook op die pagina, en andersom.",
-    "Talismannen vragen naast het dierlijke onderdeel ook <strong>sieraden of zeldzame items</strong>. Waar je die vindt, staat onderaan."
+    "A <strong>Fence</strong> (for example at Emerald Ranch, in Saint Denis, Lagras or Van Horn) crafts trinkets and talismans in his crafting menu. You pay a small fee plus the ingredients.",
+    "They work <strong>immediately and permanently</strong> once you own them. You do not need to equip them.",
+    "Most parts come from <a href=\"#/legendary\">legendary animals</a>. As soon as you have killed and skinned an animal, it shows up here automatically. A \"crafted\" check here also appears on that page, and vice versa.",
+    "Besides the animal part, talismans also need <strong>jewelry or rare items</strong>. Where to find them is listed at the bottom."
   ],
     sources: [
     [
@@ -62,11 +62,11 @@
       "https://www.powerpyx.com/red-dead-redemption-2-how-to-get-trinkets/"
     ],
     [
-      "Shacknews (trinkets en talismannen)",
+      "Shacknews (trinkets and talismans)",
       "https://www.shacknews.com/article/108291/all-talismans-and-trinkets-in-red-dead-redemption-2"
     ],
     [
-      "ProdigyGamers (talismannen)",
+      "ProdigyGamers (talismans)",
       "https://prodigygamers.com/2018/10/29/red-dead-redemption-2-how-to-get-all-six-talismans"
     ],
     [
@@ -74,32 +74,31 @@
       "https://www.rdr2.org/guides/abalone-shell-fragment-guide/"
     ],
     [
-      "Hold To Reset (recepten)",
+      "Hold To Reset (recipes)",
       "https://holdtoreset.com/fence-trinkets-and-talismans-in-red-dead-redemption-2/"
     ]
   ],
     sections: () => [
-      { type: "cards", id: "talismans", title: "Talismannen", status, items: all().filter(t => t.type === "talisman").map(card) },
-      { type: "cards", id: "fromlegends", title: "Trinkets van legendarische dieren", status,
+      { type: "cards", id: "talismans", title: "Talismans", status, items: all().filter(t => t.type === "talisman").map(card) },
+      { type: "cards", id: "fromlegends", title: "Trinkets from legendary animals", status,
         items: all().filter(t => t.type === "trinket" && t.legend).map(card) },
-      { type: "cards", id: "others", title: "Overige trinkets", status, items: all().filter(t => t.type === "trinket" && !t.legend).map(card) },
-      { type: "table", id: "ingredients", title: "Waar vind je de extra ingrediënten?",
+      { type: "cards", id: "others", title: "Other trinkets", status, items: all().filter(t => t.type === "trinket" && !t.legend).map(card) },
+      { type: "table", id: "ingredients", title: "Where to find the extra ingredients",
         rows: Object.entries(INGREDIENTS).map(([name, where]) => ({ id: RDR.slug(name), name, where, key: ingKey(name) })),
-        columns: [["Ingrediënt", r => r.name], ["Waar", r => r.where, "small"],
-          ["Voor", r => all().filter(t => t.extras.includes(r.name)).map(t => t.name.replace(/ (Trinket|Talisman)$/, "")).join(", "), "small muted"]] }
+        columns: [["Ingredient", r => r.name], ["Where", r => r.where, "small"],
+          ["For", r => all().filter(t => t.extras.includes(r.name)).map(t => t.name.replace(/ (Trinket|Talisman)$/, "")).join(", "), "small muted"]] }
     ],
-    // Of het onderdeel van het legendarische dier al binnen is.
+    // Whether the part from the legendary animal is already in hand.
     refresh: view => view.querySelectorAll("[data-part]").forEach(el => {
       const l = L().legends.find(x => x.id === el.dataset.part);
-      el.innerHTML = RDR.get(L().animalKey(l.id, "kill")) ? "✓ in bezit (dier gedood)"
-        : `Van de ${l.name}: nog niet gedood, zie <a href="#/legendary">Legendarische dieren</a>`;
+      el.innerHTML = RDR.get(L().animalKey(l.id, "kill")) ? "✓ owned (animal killed)"
+        : `From the ${l.name}: not killed yet, see <a href="#/legendary">Legendary animals</a>`;
     }),
     metrics: {
       trinkets: () => RDR.ratio(of("trinket")),
       talismans: () => RDR.ratio(of("talisman")),
       ingredients: () => RDR.ratio(Object.keys(INGREDIENTS).map(ingKey))
     },
-    meters: [["trinkets", "Trinkets gemaakt"], ["talismans", "Talismannen gemaakt"], ["ingredients", "Extra ingrediënten"]],
-    v1: { store: "rdr2-legendary-v1", prefs: [["trinkets-hide", "hide"]] }
+    meters: [["trinkets", "Trinkets crafted"], ["talismans", "Talismans crafted"], ["ingredients", "Extra ingredients"]]
   });
 })();

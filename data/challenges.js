@@ -1,21 +1,21 @@
 (() => {
   const groups = () => RDR.groupsOf("challenges");
   RDR.list({
-    id: "challenges", title: "Uitdagingen", order: 160,
-    heading: "Uitdagingen Checklist", sub: "Red Dead Redemption 2 (story mode): alle 90 uitdagingen (challenges) in 9 categorieën. Alle 9 categorieën tot rang 10 zijn nodig voor 100%.", blurb: "Alle 90 uitdagingen in 9 categorieën, op volgorde.",
-    filter: "Verberg voltooide uitdagingen",
+    id: "challenges", title: "Challenges", order: 160, group: "Challenges & treasure",
+    heading: "Challenges Checklist", sub: "Red Dead Redemption 2 (story mode): all 90 challenges in 9 categories. All 9 categories up to rank 10 are needed for 100%.", blurb: "All 90 challenges in 9 categories, in order.",
+    filter: "Hide completed challenges",
     tips: [
-    "Per categorie doe je de uitdagingen <strong>op volgorde</strong>: wat je voor een latere rang doet, telt pas als de vorige rang klaar is. De eerstvolgende uitdaging staat hieronder <strong>vetgedrukt</strong>.",
-    "De uitdagingen komen vrij vanaf hoofdstuk 2. Je voortgang zie je in het pauzemenu onder <em>Progress → Challenges</em>.",
-    "Bij veel rangen krijg je een beloning, zoals geld, XP of een uitrustingsstuk (bij Explorer staat die beloning erbij)."
+    "Within a category you complete the challenges <strong>in order</strong>: what you do for a later rank only counts once the previous rank is done. The next challenge is shown in <strong>bold</strong> below.",
+    "Challenges unlock from chapter 2. You can see your progress in the pause menu under <em>Progress → Challenges</em>.",
+    "Many ranks give a reward, such as money, XP or a piece of gear (for Explorer the reward is listed)."
   ],
     sources: [
     [
-      "rdr2.org (alle challenges)",
+      "rdr2.org (all challenges)",
       "https://www.rdr2.org/wiki/challenges/"
     ],
     [
-      "rdr2.org (Explorer-schatkaarten)",
+      "rdr2.org (Explorer treasure maps)",
       "https://www.rdr2.org/guides/explorer-challenges-guide/"
     ],
     [
@@ -35,121 +35,120 @@
       type: "checklist", grid: true, numbered: true, highlightNext: true,
       groups: [
     { id: "bandit", title: "Bandit", items: [
-      ["Beroof 5 burgers (hold up)", ""],
-      ["Beroof 2 koetsen, of lever 2 gestolen koetsen in bij een Fence", ""],
-      ["Beroof de kassa van 4 winkels op één dag", ""],
-      ["Beroof 3 koetsen op één dag, of lever ze in bij een Fence", ""],
-      ["Verzamel een bounty van $250 in één staat", ""],
-      ["Steel 5 paarden en verkoop ze aan de paardenheler bij Clemens Cove", ""],
-      ["Roof voor $50 aan geld en waardevolle spullen van burgers en reizigers", ""],
-      ["Steel 7 wagens en verkoop ze aan de Fence bij Emerald Ranch", ""],
-      ["Bind 3 keer iemand vast en leg hem op het spoor", "De trein moet de persoon raken"],
-      ["Pleeg 5 treinovervallen zonder te sterven of gepakt te worden", ""]
+      ["Hold up 5 townsfolk", ""],
+      ["Rob 2 coaches or return 2 stolen coaches to a Fence", ""],
+      ["Rob the cash register in any 4 shops in 1 day", ""],
+      ["Rob 3 coaches or return 3 stolen coaches to a Fence in 1 day", ""],
+      ["Amass a $250 bounty in one state", ""],
+      ["Steal 5 horses and sell them to the horse fence at Clemens Cove", ""],
+      ["Rob $50 worth of cash and valuables from townsfolk and travelers", ""],
+      ["Steal 7 wagons and sell them to the Fence at Emerald Ranch", ""],
+      ["Hogtie someone and leave them on the railroad tracks 3 times", "The train has to hit the person"],
+      ["Complete 5 train robberies without dying or being caught", ""]
     ] },
-    { id: "explorer", title: "Explorer", intro: "Haal je met de schatten van de Jack Hall Gang, Poisonous Trail en High Stakes. De route per rang staat op <a href=\"#/explorer\">Explorer-schatten</a>.", items: [
-      ["Vind de eerste schatkaart", "Explorer Holster"],
-      ["Vind de eerste schat", "$5 + stamina-XP"],
-      ["Vind de tweede schat", "Explorer Bandolier"],
-      ["Vind de derde schat", "$10 + stamina-XP"],
-      ["Vind de vierde schat", "$10 + stamina-XP"],
-      ["Vind de vijfde schat", "$15 + stamina-XP"],
-      ["Vind de zesde schat", "Explorer Gun Belt"],
-      ["Vind de zevende schat", "$15 + stamina-XP"],
-      ["Vind de achtste schat", "$20 + stamina-XP"],
-      ["Vind de negende schat", "Explorer Off-Hand Holster"]
+    { id: "explorer", title: "Explorer", intro: "Earned with the Jack Hall Gang, Poisonous Trail and High Stakes treasures. The route per rank is on <a href=\"#/explorer\">Explorer treasures</a>.", items: [
+      ["Find the first treasure map", "Explorer Holster"],
+      ["Find the first treasure", "$5 + stamina XP"],
+      ["Find the second treasure", "Explorer Bandolier"],
+      ["Find the third treasure", "$10 + stamina XP"],
+      ["Find the fourth treasure", "$10 + stamina XP"],
+      ["Find the fifth treasure", "$15 + stamina XP"],
+      ["Find the sixth treasure", "Explorer Gun Belt"],
+      ["Find the seventh treasure", "$15 + stamina XP"],
+      ["Find the eighth treasure", "$20 + stamina XP"],
+      ["Find the ninth treasure", "Explorer Off-Hand Holster"]
     ] },
     { id: "gambler", title: "Gambler", items: [
-      ["Win 5 handen poker", ""],
-      ["Blackjack: verdubbel (double down) en win 5 keer", ""],
-      ["Win 3 potjes Five Finger Fillet", ""],
-      ["Versla de pokerspelers in Flatneck Station, Saint Denis en Valentine", ""],
-      ["Win 3 potjes domino zonder stenen te pakken, tegen hooguit 2 tegenstanders", ""],
-      ["Versla de blackjackdealer in Rhodes en Van Horn", ""],
-      ["Versla de Five Finger Fillet-speler in Strawberry, Valentine en Van Horn", ""],
-      ["Win 3 handen blackjack waarin je 3 keer of vaker hit", ""],
-      ["Win 3 potjes domino op rij", ""],
-      ["Win 3 handen poker op rij", ""]
+      ["Win 5 hands of Poker", ""],
+      ["In Blackjack, double down and win the hand 5 times", ""],
+      ["Win 3 games of Five Finger Fillet", ""],
+      ["Bust out the Poker players in Flatneck Station, Saint Denis and Valentine", ""],
+      ["Win 3 rounds of Dominoes without drawing any tiles, against 2 or fewer opponents", ""],
+      ["Beat the Blackjack dealer in Rhodes and Van Horn", ""],
+      ["Beat the Five Finger Fillet player in Strawberry, Valentine and Van Horn", ""],
+      ["Win 3 hands of Blackjack in which you hit 3 or more times", ""],
+      ["Win 3 games of Dominoes in a row", ""],
+      ["Win 3 hands of Poker in a row", ""]
     ] },
     { id: "herbalist", title: "Herbalist", items: [
-      ["Pluk 6 Yarrow", ""],
-      ["Pluk en eet 4 soorten bessen", ""],
-      ["Maak 7 items met Sage als ingrediënt", ""],
-      ["Pluk 5 paddenstoelen en voer ze aan je paard", ""],
-      ["Maak 9 items met Indian Tobacco als ingrediënt", ""],
-      ["Pluk 15 verschillende soorten kruiden", ""],
-      ["Maak en gebruik 5 Special Miracle Tonics", ""],
-      ["Maak 6 gifwapens met Oleander", "Poison arrows of poison throwing knives"],
-      ["Pluk één van elke kruidensoort", "Alle 30 kruiden, vier daarvan in New Austin. Zie <a href=\"#/plants\">Planten</a>."],
-      ["Kruid en bak alle 11 soorten vlees", ""]
+      ["Pick 6 Yarrow", ""],
+      ["Pick and eat 4 species of berry", ""],
+      ["Craft 7 items using Sage as an ingredient", ""],
+      ["Pick 5 mushrooms and feed them to your horse", ""],
+      ["Craft 9 items using Indian Tobacco as an ingredient", ""],
+      ["Pick 15 different species of herb", ""],
+      ["Craft and use 5 Special Miracle Tonics", ""],
+      ["Use Oleander to craft 6 poison weapons", "Poison arrows or poison throwing knives"],
+      ["Pick one of each species of herb", "All 30 herbs, four of them in New Austin. See <a href=\"#/plants\">Plants</a>."],
+      ["Season and cook all 11 types of meat", ""]
     ] },
     { id: "horseman", title: "Horseman", items: [
-      ["Dood 5 konijnen vanaf je paard", ""],
-      ["Spring binnen 15 seconden over 3 obstakels", ""],
-      ["Rijd in minder dan 5 minuten van Valentine naar Rhodes", ""],
-      ["Sleep te paard iemand 3300 voet (ca. 1 km) mee met je lasso", ""],
-      ["Vertrap 5 dieren vanaf je paard", ""],
-      ["Rijd van Strawberry naar Saint Denis in minder dan 9 minuten, zonder water te raken", ""],
-      ["Dood 7 vijanden vanaf je paard zonder af te stijgen", ""],
-      ["Dood 9 roofdieren vanaf je paard", ""],
-      ["Rijd van Van Horn naar Blackwater in minder dan 17 minuten, zonder water te raken", ""],
-      ["Tem (break) elk wild paardenras", ""]
+      ["Kill 5 rabbits from horseback", ""],
+      ["Jump over 3 obstacles in 15 seconds", ""],
+      ["Ride from Valentine to Rhodes in less than 5 minutes", ""],
+      ["While mounted, drag a victim 3300 feet with your lasso", ""],
+      ["Trample 5 animals while on horseback", ""],
+      ["Ride from Strawberry to Saint Denis in less than 9 minutes without touching any water", ""],
+      ["Kill 7 enemies from horseback without dismounting", ""],
+      ["Kill 9 predators from horseback", ""],
+      ["Ride from Van Horn to Blackwater in less than 17 minutes without touching any water", ""],
+      ["Break every wild horse breed", ""]
     ] },
     { id: "hunter", title: "Master Hunter", items: [
-      ["Vil 3 herten", ""],
-      ["Verzamel 3 perfecte konijnenhuiden", ""],
-      ["Volg (track) 10 verschillende diersoorten met je verrekijker", ""],
-      ["Lok een dier en maak 5 keer een schone kill", ""],
-      ["Vil 3 zwarte beren of grizzlyberen", ""],
-      ["Dood 5 poema's met je boog en vil ze", ""],
-      ["Lok met aas een planteneter en een roofdier en dood ze allebei", ""],
-      ["Vang 3 vissen zonder hengel", ""],
-      ["Vang een opossum die zich dood houdt", "Benader hem, hij speelt dood, en raap hem op"],
-      ["Vind en dood de legendarische panter Giaguaro", "Ten westen van Shady Belle"]
+      ["Skin 3 deer", ""],
+      ["Collect 3 perfect quality rabbit pelts", ""],
+      ["Track 10 different animal species using your binoculars", ""],
+      ["Call an animal and get a clean kill 5 times", ""],
+      ["Skin 3 black or grizzly bears", ""],
+      ["Kill 5 cougars with your bow, then skin them", ""],
+      ["Use bait to lure and kill both a herbivore and a predator", ""],
+      ["Catch 3 fish without using a fishing rod", ""],
+      ["Catch an opossum playing possum", "Approach it, it plays dead, and pick it up"],
+      ["Find and kill the legendary panther Giaguaro", "West of Shady Belle"]
     ] },
     { id: "sharp", title: "Sharpshooter", items: [
-      ["Schiet 3 vliegende vogels neer", ""],
-      ["Dood 2 verschillende diersoorten in één Dead Eye", ""],
-      ["Schiet vanuit een rijdende trein 5 vliegende vogels neer", ""],
-      ["Dood iemand op 80 voet (ca. 25 m) met een tomahawk", ""],
-      ["Dood 6 dieren zonder van wapen te wisselen of te herladen", ""],
-      ["Dood iemand op minstens 660 voet (ca. 200 m) met een geweer met lange scope", ""],
-      ["Maak 7 headshots op rij", ""],
-      ["Ontwapen 3 vijanden zonder te herladen of te wisselen", ""],
-      ["Schiet in één Dead Eye 3 mensen hun hoed af", ""],
-      ["Schiet 3 vliegende vogels neer met 3 opeenvolgende schoten met een lange scope", ""]
+      ["Kill 3 flying birds", ""],
+      ["Kill 2 different species of animal in 1 Dead Eye use", ""],
+      ["Kill 5 flying birds while on a moving train", ""],
+      ["Kill someone 80 feet away with a tomahawk", ""],
+      ["Kill 6 animals without switching or reloading your weapon", ""],
+      ["Kill someone at least 660 feet away with a long scoped rifle", ""],
+      ["Get 7 headshots in a row", ""],
+      ["Disarm 3 enemies without reloading or switching your weapon", ""],
+      ["Shoot 3 people's hats off in the same Dead Eye use", ""],
+      ["Kill 3 flying birds with 3 consecutive long scoped rifle shots", ""]
     ] },
     { id: "survival", title: "Survivalist", items: [
-      ["Vang 3 bluegills", ""],
-      ["Lever 5 dieren in bij het kamp of een Trapper", ""],
-      ["Dood 5 dieren met een Varmint Rifle", ""],
-      ["Maak dynamite-, fire-, improved-, poison- en small game-pijlen", ""],
-      ["Vang een vis in de Bayou vanaf een rivierboot én staand op het spoor", ""],
-      ["Dood 5 aaseters die op een lijk zitten te eten", ""],
-      ["Dood 8 kleine dieren met opeenvolgende schoten met Small Game Arrows", ""],
-      ["Maak een homing tomahawk, improved tomahawk, volatile dynamite en volatile fire bottle", ""],
-      ["Vang een vis van minstens 19 pond", ""],
-      ["Vang één van elke vissoort", ""]
+      ["Catch 3 Bluegill fish", ""],
+      ["Hand 5 animals in to camp or to a Trapper", ""],
+      ["Kill 5 animals with a Varmint Rifle", ""],
+      ["Craft a dynamite, fire, improved, poison and small game arrow", ""],
+      ["Catch a fish in the Bayou from a riverboat and while standing on train tracks", ""],
+      ["Kill a scavenging animal while it is feeding on a corpse 5 times", ""],
+      ["Kill 8 small game animals with consecutive shots using Small Game Arrows", ""],
+      ["Craft a homing tomahawk, improved tomahawk, volatile dynamite and volatile fire bottle", ""],
+      ["Catch a fish that weighs at least 19 lbs", ""],
+      ["Catch one of each type of fish", ""]
     ] },
     { id: "weapons", title: "Weapons Expert", items: [
-      ["Dood 3 vijanden met een mes", ""],
-      ["Dood 3 vijanden in 10 seconden met alleen werpmessen", ""],
-      ["Dood 3 roofvogels met alleen een tomahawk", ""],
-      ["Dood 10 vijanden met een shotgun en zelfgemaakte munitie", ""],
-      ["Dood 5 vijanden te paard met één werpmes per kill", ""],
-      ["Dood 4 vijanden met één staaf dynamiet", ""],
-      ["Dood 4 vijanden op rij door dezelfde tomahawk te gooien en op te rapen", ""],
-      ["Dood 15 vijanden met een shotgun met lange loop", ""],
-      ["Dood 9 nietsvermoedende vijanden van achteren met de boog", ""],
-      ["Dood een grizzlybeer met alleen werpmessen, zonder schade op te lopen", ""]
+      ["Kill 3 enemies with a knife", ""],
+      ["Kill 3 enemies in 10 seconds using only throwing knives", ""],
+      ["Kill 3 birds of prey using only a tomahawk", ""],
+      ["Kill 10 enemies with a shotgun using crafted ammo", ""],
+      ["Kill 5 mounted enemies, using 1 throwing knife per kill", ""],
+      ["Kill 4 enemies with a single stick of dynamite", ""],
+      ["Kill 4 consecutive enemies by throwing and retrieving the same tomahawk", ""],
+      ["Kill 15 enemies using a long-barreled shotgun", ""],
+      ["Kill 9 unaware enemies from behind using the bow", ""],
+      ["Kill a grizzly bear without taking damage using only throwing knives", ""]
     ] }
   ],
-      status: (g, have) => ({ done: have === g.items.length, text: have === g.items.length ? "✓ rang 10" : `rang ${have}/10` })
+      status: (g, have) => ({ done: have === g.items.length, text: have === g.items.length ? "✓ rank 10" : `rank ${have}/10` })
     }],
     metrics: {
       done: () => RDR.ratio(groups().flatMap(g => g.keys)),
       categories: () => ({ have: groups().filter(g => RDR.count(g.keys) === g.items.length).length, total: groups().length })
     },
-    meters: [["done", "Uitdagingen voltooid"], ["categories", "Categorieën compleet"]],
-    v1: { store: "rdr2-challenges-v1", map: RDR.v1.byIndex("challenges") }
+    meters: [["done", "Challenges completed"], ["categories", "Categories complete"]]
   });
 })();

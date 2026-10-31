@@ -1,53 +1,53 @@
 (() => {
   const herbs = [
-    ["alaskanginseng", "Alaskan Ginseng",      "Bossen en vochtige plekken in Ambarino en het noordwesten van West Elizabeth. Herkenbaar aan rode bessen.", "Potent Miracle Tonic"],
-    ["americanginseng","American Ginseng",     "Bossen en vochtige plekken in West Elizabeth en aan de randen van New Hanover. Rode bessen.", "Potent Miracle Tonic"],
-    ["baybolete",      "Bay Bolete",           "Paddenstoel. Tall Trees (West Elizabeth) en bij de rivier rond Caliban's Seat.", "Potent Predator Bait"],
-    ["blackberry",     "Blackberry",           "Struiken bij heuvels en bossen, bijna overal.", "Potent Herbivore Bait"],
-    ["blackcurrant",   "Blackcurrant",         "Zonnige plekken in Gaptooth Ridge en Cholla Springs.", "Special Snake Oil", "Epiloog"],
-    ["burdock",        "Burdock Root",         "Great Plains, langs rivieroevers en het spoor.", "Special Bitters"],
-    ["chanterelles",   "Chanterelles",         "Gele paddenstoelen in de graslanden en bossen van Lemoyne en het oosten van New Hanover.", "Potent Herbivore Bait"],
-    ["bulrush",        "Common Bulrush",       "Langs beken en meren in alle regio's.", "Horse Ointment"],
-    ["thyme",          "Creeping Thyme",       "Overal, op zanderige grond bij rotsen en rivieroevers.", "Kruiden voor vlees"],
-    ["desertsage",     "Desert Sage",          "Alleen in het westen van Gaptooth Ridge. Paarse bloemen.", "Horse Ointment", "Epiloog"],
-    ["englishmace",    "English Mace",         "Ten oosten van O'Creagh's Run. In de epiloog ook bij Rio Bravo. Gele bloemen.", "Special Health Cure"],
-    ["huckleberry",    "Evergreen Huckleberry","Langs de hele Kamassa River, door Lemoyne en New Hanover.", "Potent Predator Bait"],
-    ["goldencurrant",  "Golden Currant",       "Langs beken in West Elizabeth en het noordoosten van New Hanover. Goudkleurige bessen.", "Special Snake Oil"],
-    ["hummingbird",    "Hummingbird Sage",     "Dichte begroeiing in Lemoyne, het westen van West Elizabeth en langs de Kamassa River.", "Kruiden voor vlees"],
-    ["tobacco",        "Indian Tobacco",       "Bossen en savannes in West Elizabeth, Ambarino en Lemoyne. Hoge plant, van ver te zien.", "Potent Miracle Tonic"],
-    ["milkweed",       "Milkweed",             "Lemoyne: Bayou Nwa, Dewberry Creek en de moerassen rond Saint Denis.", "Herstelt je Health-core"],
-    ["oleander",       "Oleander Sage",        "Rond Saint Denis en langs de oevers in Bayou Nwa. Roze bloemen.", "Gifpijlen en gifwerpmessen"],
-    ["oregano",        "Oregano",              "Droge graslanden, bijna overal.", "Kruiden voor vlees"],
-    ["parasol",        "Parasol Mushroom",     "Bossen met goed doorlatende grond, verspreid over de kaart. Bleke paddenstoel.", "Special Horse Reviver"],
-    ["poppy",          "Prairie Poppy",        "Great Plains (West Elizabeth), vooral langs het spoor. Gele bloemen.", "Special Snake Oil"],
-    ["ramshead",       "Ram's Head",           "Paddenstoel aan de voet van bomen in de bossen van West Elizabeth en Ambarino.", "Potent Herbivore Bait"],
-    ["raspberry",      "Red Raspberry",        "Grote struiken, bijna overal.", "Herbivore en Predator Bait"],
-    ["redsage",        "Red Sage",             "Alleen bij Rio Bravo (New Austin). Rode bloemen.", "Kruiden voor vlees", "Epiloog"],
-    ["vanilla",        "Vanilla Flower",       "Op boomschors langs de oevers in Bayou Nwa (Lemoyne).", "Potent Herbivore Bait"],
-    ["snowdrops",      "Violet Snowdrops",     "Noord-Ambarino, bij de sneeuw maar niet erin. Zeldzaam.", "Potent Herbivore Bait"],
-    ["carrot",         "Wild Carrot",          "Bijna overal, vooral op de vlaktes. Witte bloemschermen.", "Herstelt je paard, Horse Meal"],
-    ["feverfew",       "Wild Feverfew",        "Cholla Springs (New Austin). Kleine witte blaadjes.", "Herstelt je Stamina-core", "Epiloog"],
-    ["mint",           "Wild Mint",            "Bij beken, moerassen en vochtige weides, overal. Bijvoorbeeld langs de weg naar het noordwesten vanuit Strawberry.", "Kruiden voor vlees"],
-    ["wintergreen",    "Wintergreen Berry",    "De koudste gebieden van Noordoost-Ambarino en New Hanover. Rode bessen.", "Potent Predator Bait"],
-    ["yarrow",         "Yarrow",               "Graslanden en open bossen in New Hanover en Lemoyne. Rode bloemen.", "Potent Health Cure"]
+    ["alaskanginseng", "Alaskan Ginseng",      "Forests and damp spots in Ambarino and northwestern West Elizabeth. Recognisable by its red berries.", "Potent Miracle Tonic"],
+    ["americanginseng","American Ginseng",     "Forests and damp spots in West Elizabeth and on the edges of New Hanover. Red berries.", "Potent Miracle Tonic"],
+    ["baybolete",      "Bay Bolete",           "Mushroom. Tall Trees (West Elizabeth) and by the river around Caliban's Seat.", "Potent Predator Bait"],
+    ["blackberry",     "Blackberry",           "Bushes near hills and forests, almost everywhere.", "Potent Herbivore Bait"],
+    ["blackcurrant",   "Blackcurrant",         "Sunny spots in Gaptooth Ridge and Cholla Springs.", "Special Snake Oil", "Epilogue"],
+    ["burdock",        "Burdock Root",         "Great Plains, along riverbanks and the railway.", "Special Bitters"],
+    ["chanterelles",   "Chanterelles",         "Yellow mushrooms in the grasslands and forests of Lemoyne and eastern New Hanover.", "Potent Herbivore Bait"],
+    ["bulrush",        "Common Bulrush",       "Along creeks and lakes in every region.", "Horse Ointment"],
+    ["thyme",          "Creeping Thyme",       "Everywhere, on sandy soil near rocks and riverbanks.", "Seasoning for meat"],
+    ["desertsage",     "Desert Sage",          "Only in western Gaptooth Ridge. Purple flowers.", "Horse Ointment", "Epilogue"],
+    ["englishmace",    "English Mace",         "East of O'Creagh's Run. In the epilogue also near Rio Bravo. Yellow flowers.", "Special Health Cure"],
+    ["huckleberry",    "Evergreen Huckleberry","All along the Kamassa River, through Lemoyne and New Hanover.", "Potent Predator Bait"],
+    ["goldencurrant",  "Golden Currant",       "Along creeks in West Elizabeth and northeastern New Hanover. Golden berries.", "Special Snake Oil"],
+    ["hummingbird",    "Hummingbird Sage",     "Dense vegetation in Lemoyne, western West Elizabeth and along the Kamassa River.", "Seasoning for meat"],
+    ["tobacco",        "Indian Tobacco",       "Forests and savannas in West Elizabeth, Ambarino and Lemoyne. A tall plant, visible from afar.", "Potent Miracle Tonic"],
+    ["milkweed",       "Milkweed",             "Lemoyne: Bayou Nwa, Dewberry Creek and the swamps around Saint Denis.", "Restores your Health core"],
+    ["oleander",       "Oleander Sage",        "Around Saint Denis and along the banks in Bayou Nwa. Pink flowers.", "Poison arrows and poison throwing knives"],
+    ["oregano",        "Oregano",              "Dry grasslands, almost everywhere.", "Seasoning for meat"],
+    ["parasol",        "Parasol Mushroom",     "Forests with well-drained soil, spread across the map. A pale mushroom.", "Special Horse Reviver"],
+    ["poppy",          "Prairie Poppy",        "Great Plains (West Elizabeth), mainly along the railway. Yellow flowers.", "Special Snake Oil"],
+    ["ramshead",       "Ram's Head",           "Mushroom at the foot of trees in the forests of West Elizabeth and Ambarino.", "Potent Herbivore Bait"],
+    ["raspberry",      "Red Raspberry",        "Large bushes, almost everywhere.", "Herbivore and Predator Bait"],
+    ["redsage",        "Red Sage",             "Only near Rio Bravo (New Austin). Red flowers.", "Seasoning for meat", "Epilogue"],
+    ["vanilla",        "Vanilla Flower",       "On tree bark along the banks in Bayou Nwa (Lemoyne).", "Potent Herbivore Bait"],
+    ["snowdrops",      "Violet Snowdrop",      "Northern Ambarino, near the snow but not in it. Rare.", "Potent Herbivore Bait"],
+    ["carrot",         "Wild Carrot",          "Almost everywhere, especially on the plains. White flower clusters.", "Restores your horse, Horse Meal"],
+    ["feverfew",       "Wild Feverfew",        "Cholla Springs (New Austin). Small white petals.", "Restores your Stamina core", "Epilogue"],
+    ["mint",           "Wild Mint",            "Near creeks, swamps and damp meadows, everywhere. For example along the road heading northwest from Strawberry.", "Seasoning for meat"],
+    ["wintergreen",    "Wintergreen Berry",    "The coldest areas of northeastern Ambarino and New Hanover. Red berries.", "Potent Predator Bait"],
+    ["yarrow",         "Yarrow",               "Grasslands and open forests in New Hanover and Lemoyne. Red flowers.", "Potent Health Cure"]
   ];
-  // De 13 orchideeën komen uit de Exotics-opdrachten.
+  // The 13 orchids come from the Exotics requests.
   const orchids = () => RDR.lists.exotics.requests.flatMap(r => r.items.filter(it => /Orchid/.test(it[1])).map(it => [r, it]));
   RDR.list({
-    id: "plants", title: "Planten", order: 80,
-    heading: "Planten Checklist", sub: "Red Dead Redemption 2 (story mode): alle 43 plantensoorten, de 30 kruiden en de 13 orchideeën, met vindplaats en gebruik.", blurb: "Alle 43 plantensoorten: 30 kruiden voor Herbalist 9 en 13 orchideeën. 20 soorten zijn nodig voor 100%.",
-    filter: "Verberg planten die je al hebt geplukt",
+    id: "plants", title: "Plants", order: 80, group: "Gear",
+    heading: "Plants Checklist", sub: "Red Dead Redemption 2 (story mode): all 43 plant species, the 30 herbs and the 13 orchids, with locations and uses.", blurb: "All 43 plant species: 30 herbs for Herbalist 9 and 13 orchids. 20 species are needed for 100%.",
+    filter: "Hide plants you have already picked",
     tips: [
-    "Voor 100% moet je <strong>20 van de 43 soorten</strong> in het compendium hebben. Dat aantal gaat automatisch naar de pagina <a href=\"#/hundred\">100%</a>.",
-    "<strong>Herbalist 9</strong> (zie <a href=\"#/challenges\">Uitdagingen</a>) vraagt één exemplaar van alle <strong>30 kruiden</strong>, zonder orchideeën. Planten die je plukte <em>voordat</em> je die uitdaging had, tellen niet. Vier kruiden groeien alleen in New Austin, dus Herbalist 9 rond je in de epiloog af.",
-    "Waar je de kruiden voor gebruikt, staat bij elk kruid. De volledige recepten staan op <a href=\"#/recipes\">Recepten</a>.",
-    "Planten lichten op in <strong>Eagle Eye</strong>. Geplukte planten groeien na verloop van tijd terug.",
-    "Met de <a href=\"#/trinkets\">Ram Horn Trinket</a> (van de legendarische bighorn ram) pluk je van sommige kruiden dubbel zoveel.",
-    "De orchideeën heb je ook nodig voor de <a href=\"#/exotics\">Exotics</a> van Algernon Wasp. Hoeveel je daar al hebt, zie je hieronder per orchidee."
+    "For 100% you need <strong>20 of the 43 species</strong> in the compendium. That count goes automatically to the <a href=\"#/hundred\">100%</a> page.",
+    "<strong>Herbalist 9</strong> (see <a href=\"#/challenges\">Challenges</a>) asks for one of each of the <strong>30 herbs</strong>, without orchids. Plants you picked <em>before</em> you had that challenge do not count. Four herbs only grow in New Austin, so you finish Herbalist 9 in the epilogue.",
+    "What each herb is used for is listed with it. The full recipes are on <a href=\"#/recipes\">Recipes</a>.",
+    "Plants light up in <strong>Eagle Eye</strong>. Picked plants grow back over time.",
+    "With the <a href=\"#/trinkets\">Ram Horn Trinket</a> (from the legendary bighorn ram) you pick double from some herbs.",
+    "You also need the orchids for Algernon Wasp's <a href=\"#/exotics\">Exotics</a>. How many you already have there is shown per orchid below."
   ],
     sources: [
     [
-      "rdr2.org (kruiden en orchideeën)",
+      "rdr2.org (herbs and orchids)",
       "https://www.rdr2.org/guides/herbs-and-orchids-guide/"
     ],
     [
@@ -55,20 +55,20 @@
       "https://www.rdr2.org/guides/herbalist-challenge-guide/"
     ],
     [
-      "PowerPyx (alle 43 planten)",
+      "PowerPyx (all 43 plants)",
       "https://www.powerpyx.com/red-dead-redemption-2-plants-locations/"
     ]
   ],
     sections: () => [
-      { type: "checklist", title: "Kruiden (30)", columns: true, groups: [{ id: "herbs", title: "Kruiden",
-        items: herbs.map(([id, name, where, use, tag]) => ({ id, name, where, note: `<em>Gebruik:</em> ${use}`, tag })) }] },
-      { type: "checklist", title: "Orchideeën (13)", columns: true,
-        intro: "Orchideeën groeien vooral in de moerassen van Lemoyne (Bayou Nwa, Bluewater Marsh) en in Roanoke Ridge, aan bomen of op de grond (zie de tag). Hoeveel je er al hebt voor de <a href=\"#/exotics\">Exotics</a>, staat erbij.",
-        groups: [{ id: "orchids", title: "Orchideeën", items: orchids().map(([r, [id, name, need, tag]]) => ({
+      { type: "checklist", title: "Herbs (30)", columns: true, groups: [{ id: "herbs", title: "Herbs",
+        items: herbs.map(([id, name, where, use, tag]) => ({ id, name, where, note: `<em>Use:</em> ${use}`, tag })) }] },
+      { type: "checklist", title: "Orchids (13)", columns: true,
+        intro: "Orchids grow mainly in the swamps of Lemoyne (Bayou Nwa, Bluewater Marsh) and in Roanoke Ridge, on trees or on the ground (see the tag). How many you already have for the <a href=\"#/exotics\">Exotics</a> is shown with each one.",
+        groups: [{ id: "orchids", title: "Orchids", items: orchids().map(([r, [id, name, need, tag]]) => ({
           id, name, tag, where: `Exotics ${r.name.toLowerCase()}: <span data-exotic="${r.id}.${id}"></span> / ${need}`
         })) }] }
     ],
-    // Live telling uit de Exotics-lijst bij elke orchidee.
+    // Live count from the Exotics list for each orchid.
     refresh: view => view.querySelectorAll("[data-exotic]").forEach(el => {
       const [rid, id] = el.dataset.exotic.split(".");
       el.textContent = RDR.lists.exotics.value(rid, id);
@@ -78,11 +78,6 @@
       orchids: () => RDR.ratio(RDR.keysOf("plants", "orchids")),
       species: () => RDR.capped(RDR.ratio(RDR.keysOf("plants", "herbs", "orchids")), 20)
     },
-    meters: [["herbs", "Kruiden geplukt"], ["orchids", "Orchideeën geplukt"], ["species", "Soorten voor 100% (20 nodig)"]],
-    v1: {
-      store: "rdr2-plants-v1",
-      map: k => k.startsWith("herb:") ? RDR.v1.byId("plants", "herbs")(k.slice(5))
-        : k.startsWith("orchid:") ? RDR.v1.byId("plants", "orchids")(k.slice(7)) : null
-    }
+    meters: [["herbs", "Herbs picked"], ["orchids", "Orchids picked"], ["species", "Species for 100% (20 needed)"]]
   });
 })();

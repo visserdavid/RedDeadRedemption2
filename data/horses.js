@@ -1,74 +1,74 @@
 (() => {
   const breeds = [
-    ["arabian",    "Arabian",              "Elite",       "Black Arabian in de stal van Saint Denis (hoofdstuk 4). De White Arabian is gratis te temmen bij Lake Isabella. De Rose Grey Bay staat in de stal van Blackwater (epiloog)."],
-    ["thorough",   "Thoroughbred",         "Race",        "Brindle Thoroughbred in de stal, vanaf hoofdstuk 3."],
-    ["nokota",     "Nokota",               "Race",        "Reverse Dapple Roan in de stal van Saint Denis (hoofdstuk 4). Wild ten zuiden van Armadillo (epiloog)."],
-    ["standard",   "American Standardbred","Race",        "Palomino Dapple in de stal van Valentine. Wild bij Little Creek River (noorden van West Elizabeth)."],
-    ["turkoman",   "Turkoman",             "War / Race",  "Gold Turkoman in de stal van Saint Denis (hoofdstuk 4). Dark Bay in Blackwater (epiloog)."],
-    ["foxtrotter", "Missouri Fox Trotter", "Race / Work", "Amber Champagne in de stal van Scarlett Meadows (hoofdstuk 4)."],
-    ["andalusian", "Andalusian",           "War",         "Dark Bay in de stal van Strawberry."],
-    ["ardennes",   "Ardennes",             "War",         "Bay Roan in de stal van Scarlett Meadows. Strawberry Roan in Van Horn (hoofdstuk 6)."],
-    ["hungarian",  "Hungarian Halfbred",   "War",         "Dapple Dark Grey in de stal van Valentine. Wild rond Blackwater."],
-    ["warmblood",  "Dutch Warmblood",      "Work",        "Chocolate Roan in Valentine, Seal Brown in Strawberry (hoofdstuk 3), Sooty Buckskin in Scarlett Meadows. Buell (Cremello Gold) via <em>The Veteran</em>."],
-    ["tennessee",  "Tennessee Walker",     "Riding",      "Je eerste paard in hoofdstuk 1. Red Roan in de stal van Valentine. Wild in de Heartlands."],
-    ["morgan",     "Morgan",               "Riding",      "Palomino en Bay Roan in de stal van Valentine. Wild bij Little Creek River."],
-    ["kentucky",   "Kentucky Saddler",     "Riding",      "Grey in de stal van Valentine. Wild in de Heartlands."],
-    ["mustang",    "Mustang",              "",            "Wild in de Heartlands. De Tiger Striped Bay loopt wild rond Fort Mercer (New Austin, epiloog)."],
-    ["appaloosa",  "Appaloosa",            "",            "Wild ten zuiden van Wapiti, bij Donner Falls (Ambarino). Leopard-vachten in de stal."],
-    ["paint",      "American Paint",       "",            "Wild ten zuiden van Tumbleweed (New Austin, epiloog). Grey Overo in de stal van Tumbleweed."],
-    ["shire",      "Shire",                "Draft",       "Trekpaard. De Raven Black Shire krijg je in de hoofdstuk 2-missie <em>Exit Pursued by a Bruised Ego</em>. Ook voor wagens."],
-    ["belgian",    "Belgian Draft",        "Draft",       "Trekpaard voor wagens en op boerderijen. Bestuderen met de verrekijker is genoeg voor het compendium."],
-    ["suffolk",    "Suffolk Punch",        "Draft",       "Trekpaard voor wagens en op boerderijen. Bestuderen met de verrekijker is genoeg voor het compendium."]
+    ["arabian",    "Arabian",              "Elite",       "Black Arabian at the Saint Denis stable (chapter 4). The White Arabian can be tamed for free at Lake Isabella. The Rose Grey Bay is at the Blackwater stable (epilogue)."],
+    ["thorough",   "Thoroughbred",         "Race",        "Brindle Thoroughbred at the stable, from chapter 3."],
+    ["nokota",     "Nokota",               "Race",        "Reverse Dapple Roan at the Saint Denis stable (chapter 4). Wild south of Armadillo (epilogue)."],
+    ["standard",   "American Standardbred","Race",        "Palomino Dapple at the Valentine stable. Wild at Little Creek River (northern West Elizabeth)."],
+    ["turkoman",   "Turkoman",             "War / Race",  "Gold Turkoman at the Saint Denis stable (chapter 4). Dark Bay in Blackwater (epilogue)."],
+    ["foxtrotter", "Missouri Fox Trotter", "Race / Work", "Amber Champagne at the Scarlett Meadows stable (chapter 4)."],
+    ["andalusian", "Andalusian",           "War",         "Dark Bay at the Strawberry stable."],
+    ["ardennes",   "Ardennes",             "War",         "Bay Roan at the Scarlett Meadows stable. Strawberry Roan in Van Horn (chapter 6)."],
+    ["hungarian",  "Hungarian Halfbred",   "War",         "Dapple Dark Grey at the Valentine stable. Wild around Blackwater."],
+    ["warmblood",  "Dutch Warmblood",      "Work",        "Chocolate Roan in Valentine, Seal Brown in Strawberry (chapter 3), Sooty Buckskin in Scarlett Meadows. Buell (Cremello Gold) through <em>The Veteran</em>."],
+    ["tennessee",  "Tennessee Walker",     "Riding",      "Your first horse in chapter 1. Red Roan at the Valentine stable. Wild in the Heartlands."],
+    ["morgan",     "Morgan",               "Riding",      "Palomino and Bay Roan at the Valentine stable. Wild at Little Creek River."],
+    ["kentucky",   "Kentucky Saddler",     "Riding",      "Grey at the Valentine stable. Wild in the Heartlands."],
+    ["mustang",    "Mustang",              "",            "Wild in the Heartlands. The Tiger Striped Bay roams wild around Fort Mercer (New Austin, epilogue)."],
+    ["appaloosa",  "Appaloosa",            "",            "Wild south of Wapiti, near Donner Falls (Ambarino). Leopard coats at the stable."],
+    ["paint",      "American Paint",       "",            "Wild south of Tumbleweed (New Austin, epilogue). Grey Overo at the Tumbleweed stable."],
+    ["shire",      "Shire",                "Draft",       "Draft horse. You get the Raven Black Shire in the chapter 2 mission <em>Exit Pursued by a Bruised Ego</em>. Also pulls wagons."],
+    ["belgian",    "Belgian Draft",        "Draft",       "Draft horse for wagons and on farms. Studying it with binoculars is enough for the compendium."],
+    ["suffolk",    "Suffolk Punch",        "Draft",       "Draft horse for wagons and on farms. Studying it with binoculars is enough for the compendium."]
   ];
   const wild = [
-    ["standard",  "American Standardbred", "Little Creek River, helemaal in het noorden van West Elizabeth"],
-    ["morgan",    "Morgan",                "Little Creek River, samen met de American Standardbred"],
-    ["mustang",   "Mustang",               "De Heartlands (New Hanover)"],
-    ["tennessee", "Tennessee Walker",      "De Heartlands, in hetzelfde gebied als de Mustang"],
-    ["kentucky",  "Kentucky Saddler",      "De Heartlands. Volgens sommige gidsen ook ten zuidwesten van Blackwater."],
-    ["appaloosa", "Appaloosa",             "Ambarino, ten zuiden van Wapiti en bij Donner Falls (ook rond Cattail Pond)"],
-    ["hungarian", "Hungarian Halfbred",    "Rond Blackwater. Zeldzaam."],
-    ["nokota",    "Nokota",                "New Austin, ten zuiden van Armadillo (epiloog)"],
-    ["paint",     "American Paint",        "New Austin, ten zuiden van Tumbleweed (epiloog)"]
+    ["standard",  "American Standardbred", "Little Creek River, in the far north of West Elizabeth"],
+    ["morgan",    "Morgan",                "Little Creek River, together with the American Standardbred"],
+    ["mustang",   "Mustang",               "The Heartlands (New Hanover)"],
+    ["tennessee", "Tennessee Walker",      "The Heartlands, in the same area as the Mustang"],
+    ["kentucky",  "Kentucky Saddler",      "The Heartlands. Some guides also mention southwest of Blackwater."],
+    ["appaloosa", "Appaloosa",             "Ambarino, south of Wapiti and near Donner Falls (also around Cattail Pond)"],
+    ["hungarian", "Hungarian Halfbred",    "Around Blackwater. Rare."],
+    ["nokota",    "Nokota",                "New Austin, south of Armadillo (epilogue)"],
+    ["paint",     "American Paint",        "New Austin, south of Tumbleweed (epilogue)"]
   ];
   const special = [
-    ["whitearab", "White Arabian",                     "Gratis en Elite. Op het smalle stuk land ten westen van Lake Isabella (Grizzlies West), vanaf hoofdstuk 2. Heel schrikachtig: benader hem langzaam. Is hij weg, dan komt hij na 2 tot 3 dagen in de game terug."],
-    ["blackarab", "Black Arabian",                     "Stal van Saint Denis, vanaf hoofdstuk 4, ongeveer $1050."],
-    ["rosearab",  "Rose Grey Bay Arabian",             "Stal van Blackwater in de epiloog, $1250. Het duurste paard in de game."],
-    ["buell",     "Buell (Cremello Gold Dutch Warmblood)", "Beloning van de stranger-missies <em>The Veteran</em> met Hamish Sinclair (O'Creagh's Run)."],
-    ["turkoman",  "Gold Turkoman",                     "Stal van Saint Denis, vanaf hoofdstuk 4, $950."],
-    ["foxtrot",   "Amber Champagne Missouri Fox Trotter", "Stal van Scarlett Meadows, vanaf hoofdstuk 4, $950. Snel en veelzijdig."],
-    ["brindle",   "Brindle Thoroughbred",              "Stal, vanaf hoofdstuk 3, ongeveer $450. Een snel paard voor weinig geld."],
-    ["ardennes",  "Strawberry Roan Ardennes",          "Stal van Van Horn, vanaf hoofdstuk 6. Een oorlogspaard dat niet snel schrikt."],
-    ["tiger",     "Tiger Striped Bay Mustang",         "Gratis. Loopt wild rond Fort Mercer (New Austin, epiloog)."]
+    ["whitearab", "White Arabian",                     "Free and Elite. On the narrow strip of land west of Lake Isabella (Grizzlies West), from chapter 2. Very skittish: approach slowly. If it runs off, it comes back after 2 to 3 in-game days."],
+    ["blackarab", "Black Arabian",                     "Saint Denis stable, from chapter 4, about $1050."],
+    ["rosearab",  "Rose Grey Bay Arabian",             "Blackwater stable in the epilogue, $1250. The most expensive horse in the game."],
+    ["buell",     "Buell (Cremello Gold Dutch Warmblood)", "Reward of the stranger missions <em>The Veteran</em> with Hamish Sinclair (O'Creagh's Run)."],
+    ["turkoman",  "Gold Turkoman",                     "Saint Denis stable, from chapter 4, $950."],
+    ["foxtrot",   "Amber Champagne Missouri Fox Trotter", "Scarlett Meadows stable, from chapter 4, $950. Fast and versatile."],
+    ["brindle",   "Brindle Thoroughbred",              "Stable, from chapter 3, about $450. A fast horse for little money."],
+    ["ardennes",  "Strawberry Roan Ardennes",          "Van Horn stable, from chapter 6. A war horse that does not spook easily."],
+    ["tiger",     "Tiger Striped Bay Mustang",         "Free. Roams wild around Fort Mercer (New Austin, epilogue)."]
   ];
-  const bondLevels = ["Niveau 1", "Niveau 2", "Niveau 3", "Niveau 4 (nodig voor 100%)"];
+  const bondLevels = ["Level 1", "Level 2", "Level 3", "Level 4 (needed for 100%)"];
   RDR.list({
-    id: "horses", title: "Paarden", order: 50,
-    heading: "Paarden Checklist", sub: "Red Dead Redemption 2 (story mode): alle 19 paardenrassen, de wilde rassen voor de Horseman-uitdaging, bijzondere paarden en de band met je paard.", blurb: "De 19 paardenrassen, de wilde rassen voor Horseman 10, bijzondere paarden en de band met je paard.",
-    filter: "Verberg wat je al hebt",
+    id: "horses", title: "Horses", order: 50, group: "Gear",
+    heading: "Horses Checklist", sub: "Red Dead Redemption 2 (story mode): all 19 horse breeds, the wild breeds for the Horseman challenge, special horses and your horse bond.", blurb: "The 19 horse breeds, the wild breeds for Horseman 10, special horses and your horse bond.",
+    filter: "Hide what you already have",
     tips: [
-    "Voor 100% moet je <strong>10 van de 19 rassen</strong> in het compendium hebben en met één paard <strong>bandniveau 4</strong> halen. Beide tellen automatisch mee op de pagina <a href=\"#/hundred\">100%</a>.",
-    "Een ras komt in het compendium als je het <strong>bestudeert</strong> met de verrekijker of door erop te richten. Je hoeft het paard niet te kopen.",
-    "<strong>Wild paard temmen:</strong> stijg af en benader het langzaam. Richt op het paard en kalmeer het, en stijg dan op. Houd daarna de linkerstick in balans tot het paard rustig is.",
-    "Nieuwe stalpaarden komen vrij naarmate het verhaal vordert. De beste staan in Saint Denis (hoofdstuk 4) en in Blackwater (epiloog).",
-    "In een stal kun je meerdere paarden stallen, wisselen en uitrusten met een ander zadel. Een gestolen paard kun je bij een stal laten registreren of verkopen."
+    "For 100% you need <strong>10 of the 19 breeds</strong> in the compendium and <strong>bonding level 4</strong> with one horse. Both count automatically on the <a href=\"#/hundred\">100%</a> page.",
+    "A breed is added to the compendium when you <strong>study</strong> it with binoculars or by aiming at it. You do not have to buy the horse.",
+    "<strong>Taming a wild horse:</strong> dismount and approach slowly. Aim at the horse and calm it, then mount. Keep the left stick balanced until the horse settles down.",
+    "New stable horses unlock as the story progresses. The best ones are in Saint Denis (chapter 4) and Blackwater (epilogue).",
+    "At a stable you can keep several horses, swap them and fit another saddle. A stolen horse can be registered or sold at a stable."
   ],
     sources: [
     [
-      "PowerPyx (wilde rassen)",
+      "PowerPyx (wild breeds)",
       "https://www.powerpyx.com/red-dead-redemption-2-wild-horse-breed-locations/"
     ],
     [
-      "rdr2.org (wilde paarden)",
+      "rdr2.org (wild horses)",
       "https://www.rdr2.org/guides/wild-horse-locations-guide/"
     ],
     [
-      "Fextralife (paarden per stal)",
+      "Fextralife (horses per stable)",
       "https://fextralife.com/red-dead-redemption-2-all-horse-type-guide/"
     ],
     [
-      "HighGround Gaming (beste paarden)",
+      "HighGround Gaming (best horses)",
       "https://www.highgroundgaming.com/best-horses-in-rdr2-story/"
     ],
     [
@@ -81,16 +81,16 @@
     ]
   ],
     sections: [
-      { type: "checklist", title: "Band met je paard", groups: [{ id: "bond", title: "Bandniveau",
+      { type: "checklist", title: "Horse bond", groups: [{ id: "bond", title: "Bonding level",
         items: bondLevels.map((name, i) => ({ id: String(i + 1), name })) }] },
-      { type: "html", html: "<div class=\"card\"> <ul class=\"checks\" id=\"bond\"></ul> <ul class=\"tips small\" style=\"margin-top:10px\"> <li>De band groeit door te <strong>rijden</strong>, je paard te <strong>aaien</strong> (vooral na een rit of als het schrikt), te <strong>borstelen</strong> en te <strong>voeren</strong>.</li> <li>Laat je paard niet sterven: bij een nieuw paard begint de band weer op niveau 1. Heb je een Horse Reviver bij je, dan kun je een gewond paard redden.</li> <li>Elk niveau geeft je paard meer health en stamina en een nieuw kunstje.</li> </ul> </div>".replace(/<ul class="checks" id="bond"><\/ul>/, "") },
-      { type: "checklist", title: "Wilde rassen temmen (Horseman 10)", columns: true,
-        intro: "De laatste <a href=\"#/challenges\">Horseman-uitdaging</a>: tem één paard van elk wild ras. Kudden zijn er niet altijd. Zie je er geen, sla dan je kamp op en slaap even, of kom later terug.",
-        groups: [{ id: "wild", title: "Wilde rassen", items: wild.map(([id, name, where]) => ({ id, name: `Wilde ${name}`, where })) }] },
-      { type: "cards", id: "special", title: "Bijzondere paarden", intro: "De moeite waard om te bezitten: gratis wilde paarden, beloningen en de beste stalpaarden.",
-        checkLabel: "<strong>In bezit</strong>", items: special.map(([id, name, desc]) => ({ id, name, desc })) },
-      { type: "table", id: "breeds", title: "Alle rassen (compendium)", fields: ["id", "name", "type", "where"], rows: breeds,
-        columns: [["Ras", r => r.name], ["Type", r => r.type || "–", "small muted"], ["Waar te vinden", r => r.where, "small"]] }
+      { type: "html", html: "<div class=\"card\"> <ul class=\"tips small\" style=\"margin-top:10px\"> <li>The bond grows by <strong>riding</strong>, <strong>patting</strong> your horse (especially after a ride or when it gets spooked), <strong>brushing</strong> and <strong>feeding</strong> it.</li> <li>Do not let your horse die: with a new horse the bond starts at level 1 again. If you carry a Horse Reviver, you can save a wounded horse.</li> <li>Each level gives your horse more health and stamina and a new trick.</li> </ul> </div>" },
+      { type: "checklist", title: "Taming wild breeds (Horseman 10)", columns: true,
+        intro: "The last <a href=\"#/challenges\">Horseman challenge</a>: tame one horse of each wild breed. Herds are not always there. If you see none, set up camp and sleep for a while, or come back later.",
+        groups: [{ id: "wild", title: "Wild breeds", items: wild.map(([id, name, where]) => ({ id, name: `Wild ${name}`, where })) }] },
+      { type: "cards", id: "special", title: "Special horses", intro: "Worth owning: free wild horses, rewards and the best stable horses.",
+        checkLabel: "<strong>Owned</strong>", items: special.map(([id, name, desc]) => ({ id, name, desc })) },
+      { type: "table", id: "breeds", title: "All breeds (compendium)", fields: ["id", "name", "type", "where"], rows: breeds,
+        columns: [["Breed", r => r.name], ["Type", r => r.type || "–", "small muted"], ["Where to find", r => r.where, "small"]] }
     ],
     metrics: {
       breeds: () => RDR.ratio(RDR.keysOf("horses", "breeds")),
@@ -98,14 +98,6 @@
       special: () => RDR.ratio(RDR.keysOf("horses", "special")),
       bond: () => RDR.ratio(RDR.keysOf("horses", "bond"))
     },
-    meters: [["breeds", "Rassen ontdekt"], ["wild", "Wilde rassen getemd"], ["special", "Bijzondere paarden"], ["bond", "Band met je paard"]],
-    v1: {
-      store: "rdr2-horses-v1",
-      map: k => {
-        const [p, id] = k.split(":");
-        const part = { breed: "breeds", wild: "wild", own: "special", bond: "bond" }[p];
-        return part ? RDR.v1.byId("horses", part)(id) : null;
-      }
-    }
+    meters: [["breeds", "Breeds discovered"], ["wild", "Wild breeds tamed"], ["special", "Special horses"], ["bond", "Horse bond"]]
   });
 })();

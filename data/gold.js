@@ -1,12 +1,12 @@
-// Goudstaven: vaste vindplaatsen plus de schattenjachten uit de schatkaarten.
+// Gold bars: fixed locations plus the treasure hunts from the treasure maps.
 (() => {
   const PRICE = 500;
-  // [id, naam, aantal, waar, wanneer, tags]
+  // [id, name, count, where, when, tags]
   const fixed = [
-    ["train",      "Ontspoorde trein",       2, "Een rechtopstaande treinwagon bij Cotorra Springs, in het noorden van Ambarino (rdr2.org noemt Granite Pass)", "Vanaf hoofdstuk 2", []],
-    ["statues",    "Strange Statues",        3, "In een grot ten noordoosten van Bacchus Station (Ambarino). Los het raadsel van de beelden op. Volgens GameSkinny druk je op de beelden met de priemgetallen 2, 3, 5 en 7.", "Vanaf hoofdstuk 2", ["Puzzel"]],
-    ["limpany",    "Sheriffkantoor van Limpany", 1, "Het afgebrande dorp Limpany (New Hanover). In een la of kistje achter het bureau, links van de ingang.", "Vanaf hoofdstuk 2", []],
-    ["braithwaite","Braithwaite Manor",      1, "Het afgebrande hoofdgebouw, ten zuiden van Rhodes. In een kist naast het lichaam van Catherine Braithwaite.", "Vanaf hoofdstuk 4, nadat het landhuis is afgebrand", []]
+    ["train",      "Derailed train",         2, "An upright train car at Cotorra Springs, in northern Ambarino (rdr2.org says Granite Pass)", "From chapter 2", []],
+    ["statues",    "Strange Statues",        3, "In a cave northeast of Bacchus Station (Ambarino). Solve the statue puzzle. According to GameSkinny you press the statues with the prime numbers 2, 3, 5 and 7.", "From chapter 2", ["Puzzle"]],
+    ["limpany",    "Limpany sheriff's office", 1, "The burned-down town of Limpany (New Hanover). In a drawer or small box behind the desk, left of the entrance.", "From chapter 2", []],
+    ["braithwaite","Braithwaite Manor",      1, "The burned-down main house, south of Rhodes. In a chest next to Catherine Braithwaite's body.", "From chapter 4, after the manor has burned down", []]
   ];
   const hunts = () => RDR.groupsOf("treasure").filter(h => h.gold > 0);
   const found = h => RDR.lists.treasure.found(h);
@@ -19,26 +19,26 @@
   };
 
   RDR.list({
-    id: "gold", title: "Goudstaven", order: 200,
-    heading: "Goudstaven Checklist", sub: "Red Dead Redemption 2 (story mode): alle goudstaven, uit schattenjachten, een puzzel en vaste vindplaatsen.", blurb: "Alle goudstaven in story mode: uit schattenjachten, een puzzel en vaste vindplaatsen. $500 per staaf bij een Fence.",
-    filter: "Verberg gevonden vindplaatsen",
+    id: "gold", title: "Gold bars", nav: "Gold", order: 200, group: "Challenges & treasure",
+    heading: "Gold Bars Checklist", sub: "Red Dead Redemption 2 (story mode): every gold bar, from treasure hunts, a puzzle and fixed locations.", blurb: "Every gold bar in story mode: from treasure hunts, a puzzle and fixed locations. $500 per bar at a Fence.",
+    filter: "Hide locations you have found",
     tips: [
-    "Een goudstaaf is <strong>$500</strong> waard. Het is gestolen waar, dus je verkoopt hem alleen bij een <strong>Fence</strong>, bijvoorbeeld in Saint Denis, Rhodes, Emerald Ranch of Van Horn.",
-    "Veel goud ligt al in hoofdstuk 2 binnen bereik. Daarmee betaal je makkelijk kampupgrades, wapens en een goed paard.",
-    "De schattenjachten tellen hier <strong>automatisch</strong> mee zodra je de schat hebt afgevinkt op <a href=\"#/treasure\">Schatkaarten</a>. De vaste vindplaatsen vink je hieronder zelf af.",
-    "<em>Le Trésor des Morts</em> zit alleen in de Special/Ultimate Edition of was een pre-orderbonus. <em>Landmarks of Riches</em> kwam met de pc-versie en later ook op PS4 en Xbox One. Mogelijk heb je ze dus niet allebei."
+    "A gold bar is worth <strong>$500</strong>. It is stolen goods, so you can only sell it to a <strong>Fence</strong>, for example in Saint Denis, Rhodes, Emerald Ranch or Van Horn.",
+    "A lot of gold is already within reach in chapter 2. It easily pays for camp upgrades, weapons and a good horse.",
+    "The treasure hunts count here <strong>automatically</strong> as soon as you have checked off the treasure on <a href=\"#/treasure\">Treasure maps</a>. You check off the fixed locations below yourself.",
+    "<em>Le Trésor des Morts</em> is only in the Special/Ultimate Edition or was a pre-order bonus. <em>Landmarks of Riches</em> came with the PC version and later also on PS4 and Xbox One. So you may not have both."
   ],
     sources: [
     [
-      "GIGA (alle goudstaven)",
+      "GIGA (all gold bars, German)",
       "https://www.giga.de/tipp/red-dead-redemption-2-alle-22-goldbarren-fundorte/"
     ],
     [
-      "rdr2.org (goud verkopen)",
+      "rdr2.org (selling gold)",
       "https://www.rdr2.org/guides/red-dead-redemption-2-finding-and-selling-gold-bars-guide/"
     ],
     [
-      "GameSkinny (vindplaatsen)",
+      "GameSkinny (locations)",
       "https://www.gameskinny.com/tips/red-dead-redemption-2-gold-bar-locations-guide/"
     ],
     [
@@ -46,20 +46,20 @@
       "https://www.rdr2.org/guides/landmark-of-riches-treasure-hunt/"
     ],
     [
-      "PowerPyx (schatkaarten)",
+      "PowerPyx (treasure maps)",
       "https://www.powerpyx.com/red-dead-redemption-2-treasure-map-locations-solutions/"
     ]
   ],
     sections: () => [
-      { type: "table", id: "hunts", title: "Uit schattenjachten", check: false,
+      { type: "table", id: "hunts", title: "From treasure hunts", check: false,
         rows: hunts().map(h => ({ id: h.id, name: h.title, h })),
         rowDone: r => found(r.h),
-        columns: [["Schattenjacht", r => `<a href="#/treasure">${r.name}</a>`], ["Staven", r => r.h.gold, "num"],
-          ["Wanneer", r => r.h.when, "small"],
-          ["Status", r => found(r.h) ? "✓ gevonden" : `${RDR.count(r.h.keys)}/${r.h.items.length} stappen`, "small"]] },
-      { type: "cards", id: "fixed", title: "Vaste vindplaatsen", checkLabel: "<strong>Gevonden</strong>",
+        columns: [["Treasure hunt", r => `<a href="#/treasure">${r.name}</a>`], ["Bars", r => r.h.gold, "num"],
+          ["When", r => r.h.when, "small"],
+          ["Status", r => found(r.h) ? "✓ found" : `${RDR.count(r.h.keys)}/${r.h.items.length} steps`, "small"]] },
+      { type: "cards", id: "fixed", title: "Fixed locations", checkLabel: "<strong>Found</strong>",
         items: fixed.map(([id, name, n, where, when, tags]) => ({ id, name, bars: n, tags: tags.length ? tags : null, desc: where, note: when })),
-        status: it => `${it.bars} ${it.bars === 1 ? "staaf" : "staven"}` }
+        status: it => `${it.bars} ${it.bars === 1 ? "bar" : "bars"}` }
     ],
     metrics: {
       places: () => ({
@@ -69,7 +69,6 @@
       bars,
       value: () => { const b = bars(); return { have: b.have * PRICE, total: b.total * PRICE }; }
     },
-    meters: [["places", "Vindplaatsen"], ["bars", "Goudstaven gevonden"], ["value", "Waarde bij de Fence ($)"]],
-    v1: { store: "rdr2-gold-v1", map: k => k.startsWith("f:") ? `gold.fixed.${k.slice(2)}` : null }
+    meters: [["places", "Locations"], ["bars", "Gold bars found"], ["value", "Value at the Fence ($)"]]
   });
 })();

@@ -1,46 +1,45 @@
 (() => {
   const DECOR = [
-    { id: "gatorskull",  name: "Alligator Skull",               items: [["alligator", "huid", 1]] },
-    { id: "ramskull",    name: "Big Horn Ram Skull",            items: [["ram", "karkas", 1]] },
-    { id: "cougarchest", name: "Cougar Pelt Covered Chest",     items: [["cougar", "huid", 2]] },
-    { id: "boartable",   name: "Boar Skin Table Cover",         items: [["boar", "huid", 1]] },
-    { id: "boarrug",     name: "Boar Skin Rug",                 items: [["boar", "huid", 4]] },
-    { id: "oxrug",       name: "Ox Hide Rug",                   items: [["ox", "huid", 2]] },
-    { id: "pronghtable", name: "Pronghorn Leather Table Tops",  items: [["pronghorn", "huid", 2]] },
-    { id: "pronghskull", name: "Pronghorn Skull",               items: [["pronghorn", "karkas", 1]] },
-    { id: "wolfskull",   name: "Wolf Skull",                    items: [["wolf", "karkas", 1]] },
-    { id: "logseat",     name: "Campfire Log Seat Cover",       items: [["wolf", "huid", 2]] },
-    { id: "banjo",       name: "Snake Skin Banjo Head",         items: [["snake", "huid", 2]] },
-    { id: "campseat",    name: "Campfire Seat Cover",           items: [["beaver", "huid", 1], ["muskrat", "huid", 1], ["fox", "huid", 1]] },
-    { id: "leanto",      name: "Lean-to Cow Hide Ground Cover", items: [["cow", "huid", 1]] },
-    { id: "scoutfire",   name: "Scout Fire Ground Cover",       items: [["goat", "huid", 2]] },
-    { id: "mooseant",    name: "Moose Antlers",                 items: [["moose", "gewei", 1]] },
-    { id: "elkant",      name: "Elk Antlers",                   items: [["elk", "gewei", 1]] },
-    { id: "bones",       name: "Hanging Bones",                 items: [["buck", "gewei", 1]] }
+    { id: "gatorskull",  name: "Alligator Skull",               items: [["alligator", "pelt", 1]] },
+    { id: "ramskull",    name: "Big Horn Ram Skull",            items: [["ram", "carcass", 1]] },
+    { id: "cougarchest", name: "Cougar Pelt Covered Chest",     items: [["cougar", "pelt", 2]] },
+    { id: "boartable",   name: "Boar Skin Table Cover",         items: [["boar", "pelt", 1]] },
+    { id: "boarrug",     name: "Boar Skin Rug",                 items: [["boar", "pelt", 4]] },
+    { id: "oxrug",       name: "Ox Hide Rug",                   items: [["ox", "pelt", 2]] },
+    { id: "pronghtable", name: "Pronghorn Leather Table Tops",  items: [["pronghorn", "pelt", 2]] },
+    { id: "pronghskull", name: "Pronghorn Skull",               items: [["pronghorn", "carcass", 1]] },
+    { id: "wolfskull",   name: "Wolf Skull",                    items: [["wolf", "carcass", 1]] },
+    { id: "logseat",     name: "Campfire Log Seat Cover",       items: [["wolf", "pelt", 2]] },
+    { id: "banjo",       name: "Snake Skin Banjo Head",         items: [["snake", "pelt", 2]] },
+    { id: "campseat",    name: "Campfire Seat Cover",           items: [["beaver", "pelt", 1], ["muskrat", "pelt", 1], ["fox", "pelt", 1]] },
+    { id: "leanto",      name: "Lean-to Cow Hide Ground Cover", items: [["cow", "pelt", 1]] },
+    { id: "scoutfire",   name: "Scout Fire Ground Cover",       items: [["goat", "pelt", 2]] },
+    { id: "mooseant",    name: "Moose Antlers",                 items: [["moose", "antlers", 1]] },
+    { id: "elkant",      name: "Elk Antlers",                   items: [["elk", "antlers", 1]] },
+    { id: "bones",       name: "Hanging Bones",                 items: [["buck", "antlers", 1]] }
   ];
-  const KINDS = { huid: "huid", karkas: "karkas", gewei: "gewei" };
-  // Eén slot per fysiek item, gedeeld door de decoratiekaarten en de dierenlijst.
+  // One slot per physical item, shared by the decoration cards and the animal list.
   const SLOTS = DECOR.flatMap(d => d.items.flatMap(([animal, kind, n]) =>
     Array.from({ length: n }, (_, j) => ({ key: `camp.item:${d.id}:${animal}:${kind}:${j + 1}`, decor: d, animal, kind, i: j + 1, n }))));
   const kindText = (a, kind) => {
     const name = RDR.animalLabel(a).toLowerCase();
-    return kind === "huid" ? `Perfecte huid: ${name}` : kind === "karkas" ? `Perfect karkas: ${name}` : `Gewei: ${name}`;
+    return kind === "pelt" ? `Perfect pelt: ${name}` : kind === "carcass" ? `Perfect carcass: ${name}` : `Antlers: ${name}`;
   };
   const nth = s => (s.n > 1 ? ` (${s.i}/${s.n})` : "");
 
   RDR.list({
-    id: "camp", title: "Kampdecoraties", order: 20,
-    heading: "Kampdecoraties Checklist", sub: "Red Dead Redemption 2 (story mode): alle dierlijke items die Pearson nodig heeft om het kamp volledig te decoreren.", blurb: "Alle dierlijke items die Pearson nodig heeft om het kamp volledig te decoreren.",
-    filter: "Verberg dieren die al compleet zijn",
+    id: "camp", title: "Camp decorations", nav: "Camp", order: 20, group: "Hunting & camp",
+    heading: "Camp Decorations Checklist", sub: "Red Dead Redemption 2 (story mode): every animal item Pearson needs to fully decorate the camp.", blurb: "Every animal item Pearson needs to fully decorate the camp.",
+    filter: "Hide animals that are already complete",
     tips: [
-    "<strong>Het dier moet al 3 sterren hebben.</strong> Het juiste wapen en een schone kill met één schot <em>behouden</em> die kwaliteit, maar maken een 1- of 2-sterrendier nooit perfect. Bestudeer het dier dus eerst.",
-    "<strong>Karkassen niet villen.</strong> Voor de schedels van de ram, de pronghorn en de wolf wil Pearson het hele perfecte karkas. Leg het op je paard en rijd direct naar het kamp.",
-    "<strong>Wolf en pronghorn: jaag er telkens 3.</strong> Van twee exemplaren gebruik je de huid, het derde breng je heel mee.",
-    "<strong>Os, koe en geit zijn vee.</strong> Schiet ze buiten het zicht van boeren en andere getuigen, anders loop je kans op een bounty en verlies je honor.",
-    "Voor het gewei heb je een <strong>mannetje</strong> nodig: een bull elk, een bull moose of een buck. Het gewei krijg je bij het villen.",
-    "Je paard draagt maar één groot karkas of één grote huid tegelijk. Plan daarom korte ritten en breng alles direct naar Pearson. Karkassen bederven na verloop van tijd.",
-    "De Boar Skin Rug vraagt 4 zwijnenhuiden. Als je ook de satchels maakt, heb je in totaal 6 perfecte zwijnenhuiden nodig.",
-    "Pearson maakt alles alleen in het kamp (hoofdstuk 2 tot en met 6). Verzamel daarom alles vóór de epiloog."
+    "<strong>The animal must already have 3 stars.</strong> The right weapon and a clean one-shot kill <em>keep</em> that quality, but never make a 1- or 2-star animal perfect. So study the animal first.",
+    "<strong>Do not skin carcasses.</strong> For the ram, pronghorn and wolf skulls Pearson wants the whole perfect carcass. Put it on your horse and ride straight to camp.",
+    "<strong>Wolf and pronghorn: hunt 3 of each.</strong> You use the pelt of two of them and bring the third back whole.",
+    "<strong>Ox, cow and goat are livestock.</strong> Shoot them out of sight of farmers and other witnesses, or you risk a bounty and lose honor.",
+    "For antlers you need a <strong>male</strong>: a bull elk, a bull moose or a buck. You get the antlers when you skin it.",
+    "Your horse carries only one large carcass or one large pelt at a time, so plan short trips and bring everything straight to Pearson. Carcasses rot over time.",
+    "The Boar Skin Rug needs 4 boar pelts. If you also craft the satchels, you need 6 perfect boar pelts in total.",
+    "Pearson only crafts in camp (chapter 2 through 6), so collect everything before the epilogue."
   ],
     sources: [
     [
@@ -52,29 +51,29 @@
       "https://www.rdr2.org/forums/topic/3979-red-dead-redemption-2-pearson-crafting-materials-guide/"
     ],
     [
-      "GosuNoob (totalen)",
+      "GosuNoob (totals)",
       "https://www.gosunoob.com/red-dead-redemption-2/crafting-ingredients-pearson-trapper/"
     ],
     [
-      "PowerPyx (diervindplaatsen)",
+      "PowerPyx (animal locations)",
       "https://www.powerpyx.com/red-dead-redemption-2-all-animal-locations-zoologist-skin-deep/"
     ],
     [
-      "PowerPyx (perfecte huiden)",
+      "PowerPyx (perfect pelts)",
       "https://www.powerpyx.com/red-dead-redemption-2-how-to-get-perfect-pelts/"
     ]
   ],
     sections: [
-      { type: "checklist", title: "Eerst nodig", groups: [{ id: "prep", title: "Pearson",
-        intro: "Deze decoraties zijn puur cosmetisch: ze geven geen nieuwe functies, alleen een mooier kamp. Huiden en karkassen moeten <strong>perfect</strong> zijn. Voor het gewei noemen de bronnen geen kwaliteitseis.",
-        items: [{ id: "leather", key: "satchels.leather", name: "<strong>Leather Working Tools</strong> kopen via het kampboek (ledger) bij Pearsons wagen. Dit is dezelfde upgrade als voor de <a href=\"#/satchels\">satchels</a>." }] }] },
-      { type: "custom", title: "Per decoratie",
+      { type: "checklist", title: "Needed first", groups: [{ id: "prep", title: "Pearson",
+        intro: "These decorations are purely cosmetic: they add no new features, just a nicer camp. Pelts and carcasses must be <strong>perfect</strong>. The sources list no quality requirement for antlers.",
+        items: [{ id: "leather", key: "satchels.leather", name: "Buy <strong>Leather Working Tools</strong> through the camp ledger at Pearson's wagon. This is the same upgrade as for the <a href=\"#/satchels\">satchels</a>." }] }] },
+      { type: "custom", title: "Per decoration",
         render: () => `<div class="grid">${DECOR.map(d => `
           <section class="card" data-decor="${d.id}">
             <div class="card-head"><h3>${d.name}</h3><span class="status"></span></div>
             <ul class="checks">
               ${SLOTS.filter(s => s.decor === d).map(s => `<li>${RDR.box(s.key, `${kindText(s.animal, s.kind)}${nth(s)}${RDR.tag(RDR.ANIMALS[s.animal].weapon)}`)}</li>`).join("")}
-              <li class="sep">${RDR.box(`camp.craft:${d.id}`, "<strong>Gemaakt bij Pearson</strong>")}</li>
+              <li class="sep">${RDR.box(`camp.craft:${d.id}`, "<strong>Crafted by Pearson</strong>")}</li>
             </ul>
           </section>`).join("")}</div>`,
         refresh: (def, el) => DECOR.forEach(d => {
@@ -83,24 +82,23 @@
           const done = !!RDR.get(`camp.craft:${d.id}`);
           const card = el.querySelector(`[data-decor="${d.id}"]`);
           card.classList.toggle("done", done);
-          card.querySelector(".status").textContent = done ? "✓ gemaakt" : have === slots.length ? "klaar om te maken" : `${have}/${slots.length} items`;
+          card.querySelector(".status").textContent = done ? "✓ crafted" : have === slots.length ? "ready to craft" : `${have}/${slots.length} items`;
         }) },
-      { type: "custom", title: "Boodschappenlijst per dier",
-        intro: "Dezelfde vakjes als hierboven, gegroepeerd per diersoort. Een vinkje hier verschijnt ook bij de decoratie.",
+      { type: "custom", title: "Shopping list per animal",
+        intro: "The same boxes as above, grouped by species. A check here also shows up on the decoration.",
         render: () => {
           const by = {};
           SLOTS.forEach(s => (by[s.animal] = by[s.animal] || []).push(s));
           return Object.keys(by).sort((a, b) => by[b].length - by[a].length || RDR.animalLabel(a).localeCompare(RDR.animalLabel(b)))
-            .map(a => RDR.animalCard(a, by[a].length, by[a].map(s => `<li>${RDR.box(s.key, `voor ${s.decor.name}${nth(s)}${RDR.tag(KINDS[s.kind])}`)}</li>`).join(""))).join("");
+            .map(a => RDR.animalCard(a, by[a].length, by[a].map(s => `<li>${RDR.box(s.key, `for ${s.decor.name}${nth(s)}${RDR.tag(s.kind)}`)}</li>`).join(""))).join("");
         },
         refresh: () => RDR.refreshAnimalCards(RDR.pref("camp.hide")) },
-      { type: "html", title: "Wapen per grootte", html: "<div class=\"card table-wrap\"> <table> <thead><tr><th>Grootte</th><th>Dieren</th><th>Beste wapen + munitie</th><th>Alternatief</th></tr></thead> <tbody> <tr><td>Tiny</td><td>Slang</td><td><strong>Boog + Small Game Arrows</strong></td><td>Varmint Rifle (kan de huid beschadigen)</td></tr> <tr><td>Small</td><td>Bever, muskusrat</td><td><strong>Varmint Rifle</strong> (gewone .22-munitie)</td><td>Boog + Small Game Arrows</td></tr> <tr><td>Medium</td><td>Vos</td><td><strong>Boog met gewone pijlen</strong></td><td>Varmint Rifle of repeater</td></tr> <tr><td>Big</td><td>Zwijn, wolf, poema, ram, pronghorn, geit, kleine alligator</td><td><strong>Springfield of Bolt Action Rifle</strong>, gewone munitie</td><td>Boog met gewone pijlen (of gifpijlen)</td></tr> <tr><td>Gigantic</td><td>Os, koe, volwassen alligator, moose, elk</td><td><strong>Rolling Block of Carcano (sniper)</strong>, gewone munitie</td><td>Springfield/Bolt Action, of boog met Improved Arrows</td></tr> </tbody> </table> </div>" }
+      { type: "html", title: "Weapon by size", html: "<div class=\"card table-wrap\"> <table> <thead><tr><th>Size</th><th>Animals</th><th>Best weapon + ammo</th><th>Alternative</th></tr></thead> <tbody> <tr><td>Tiny</td><td>Snake</td><td><strong>Bow + Small Game Arrows</strong></td><td>Varmint Rifle (can damage the pelt)</td></tr> <tr><td>Small</td><td>Beaver, muskrat</td><td><strong>Varmint Rifle</strong> (regular .22 ammo)</td><td>Bow + Small Game Arrows</td></tr> <tr><td>Medium</td><td>Fox</td><td><strong>Bow with regular arrows</strong></td><td>Varmint Rifle or repeater</td></tr> <tr><td>Big</td><td>Boar, wolf, cougar, ram, pronghorn, goat, small alligator</td><td><strong>Springfield or Bolt Action Rifle</strong>, regular ammo</td><td>Bow with regular arrows (or poison arrows)</td></tr> <tr><td>Gigantic</td><td>Ox, cow, adult alligator, moose, elk</td><td><strong>Rolling Block or Carcano (sniper)</strong>, regular ammo</td><td>Springfield/Bolt Action, or bow with Improved Arrows</td></tr> </tbody> </table> </div>" }
     ],
     metrics: {
       items: () => RDR.ratio(SLOTS.map(s => s.key)),
       crafted: () => RDR.ratio(DECOR.map(d => `camp.craft:${d.id}`))
     },
-    meters: [["items", "Items verzameld"], ["crafted", "Decoraties gemaakt"]],
-    v1: { store: "rdr2-camp-decor-v1", map: k => k === "leather" ? "satchels.leather" : `camp.${k}` }
+    meters: [["items", "Items collected"], ["crafted", "Decorations crafted"]]
   });
 })();

@@ -1,5 +1,5 @@
-// Regressietest: node tests/smoke.mjs [pad-naar-chrome]
-// Start headless Chrome, opent index.html en stuurt de app via het Chrome DevTools-protocol.
+// Regression test: node tests/smoke.mjs [path-to-chrome]
+// Starts headless Chrome, opens index.html and drives the app over the Chrome DevTools protocol.
 import { spawn } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
@@ -16,7 +16,7 @@ const profile = fs.mkdtempSync(path.join(os.tmpdir(), "rdr2-smoke-"));
 const port = 9400 + Math.floor(Math.random() * 400);
 const proc = spawn(chrome, ["--headless=new", "--disable-gpu", "--no-first-run", `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, "about:blank"]);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-// Chrome altijd afsluiten, ook als de test halverwege crasht.
+// Always shut Chrome down, even if the test crashes halfway.
 const quit = code => { try { proc.kill(); } catch {} process.exit(code); };
 process.on("uncaughtException", e => { console.error(e); quit(3); });
 process.on("unhandledRejection", e => { console.error(e); quit(3); });
@@ -26,12 +26,12 @@ const pending = {}, errors = [];
 for (let i = 0; i < 60 && !ws; i++) {
   try {
     const page = (await (await fetch(`http://127.0.0.1:${port}/json`)).json()).find(t => t.type === "page");
-    // Direct op 'open' wachten, anders kan het event al voorbij zijn.
+    // Wait for 'open' right away, or the event may already have passed.
     if (page) { ws = new WebSocket(page.webSocketDebuggerUrl); await new Promise(r => (ws.onopen = r)); break; }
   } catch {}
   await sleep(200);
 }
-if (!ws) { console.error("Kon geen verbinding maken met Chrome"); proc.kill(); process.exit(2); }
+if (!ws) { console.error("Could not connect to Chrome"); proc.kill(); process.exit(2); }
 ws.onmessage = m => {
   const d = JSON.parse(m.data);
   if (d.id && pending[d.id]) { pending[d.id](d); delete pending[d.id]; }
@@ -46,15 +46,15 @@ const ev = async expr => {
 };
 await send("Runtime.enable"); await send("Page.enable");
 const url = "file:///" + root.split(path.sep).join("/") + "/index.html";
-// Een unieke query forceert een echte herlaadactie (alleen de hash wijzigen herlaadt niet).
+// A unique query forces a real reload (changing only the hash does not reload).
 let loads = 0;
-// Wacht tot de pagina geladen is en de app de navigatie heeft opgebouwd (vaste pauzes zijn op OneDrive te kort).
+// Wait until the page has loaded and the app has built the navigation (fixed pauses are too short on OneDrive).
 const ready = async () => {
   for (let i = 0; i < 100; i++) {
     if (await ev(`document.readyState === "complete" && document.querySelectorAll("nav a").length > 0`)) return;
     await sleep(100);
   }
-  throw new Error("Pagina werd niet geladen");
+  throw new Error("Page did not load");
 };
 const go = async (route = "") => { await send("Page.navigate", { url: `${url}?r=${++loads}#/${route}` }); await sleep(100); await ready(); };
 const hash = async route => { await ev(`location.hash = "#/${route}"`); await sleep(150); };
@@ -65,63 +65,47 @@ const n = sel => ev(`document.querySelectorAll(${JSON.stringify(sel)}).length`);
 const checked = key => ev(`!!document.querySelector('[data-key="${key}"]')?.checked`);
 const click = sel => ev(`document.querySelector(${JSON.stringify(sel)}).click()`);
 
-// ---------- 1. Migratie van de oude opslag ----------
-console.log("Migratie");
+// ---------- 1. Seeded state ----------
+console.log("Seed");
+// Progress as the app stores it; the old Dutch-era "rdr2-v2" key must be ignored.
+const SEED = {
+  "weapons.revolvers.flacos-revolver": true, "exotics.r2.heron": 7, "exotics.r1.done": true, "exotics.prep.start": true,
+  "legendary.animals.bear.kill": true, "legendary.animals.bear.fence": true, "legendary.trapper.bearhat": true, "legendary.extras.crow": true,
+  "trinkets.ingredients.quartz-chunk": true, "satchels.leather": true, "satchels.pelt:valuables:deer": true, "camp.craft:bones": true,
+  "collectibles.graves.davey-callander": true, "collectibles.bones.done": true, "cigcards.horses.done": true, "cigcards.gems.hattie-langtry": true,
+  "treasure.jackhall.treasure-found-at-ocreaghs-run": true, "challenges.explorer.find-the-first-treasure-map": true,
+  "challenges.bandit.hold-up-5-townsfolk": true, "recipes.tonics.potent-health-cure": true, "recipes.meat.tender-pork-loin": true,
+  "strangers.c2.noblest": true, "bounties.valentine.swan": true, "hideouts.hideouts.sixpoint": true, "hideouts.gangs.raiders": true,
+  "horses.breeds.arabian": true, "horses.bond.2": true, "horses.wild.morgan": true, "horses.special.buell": true, "plants.herbs.yarrow": true,
+  "plants.orchids.ghost": true, "gold.fixed.statues": true, "fish.fish.legendary-bluegill": true, "fish.fish.done": true, "encounters.town.beggar": true,
+  "hundred.missions-and-events.story": 1, "hundred.missions-and-events.strangers": 7, "hundred.miscellaneous.bath": 1
+};
 await go();
 await ev(`localStorage.clear();
-  const s = (k, v) => localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
-  s("rdr2-weapons-v1", {"revolvers:6": true});
-  s("rdr2-weapons-v1:hide", "1");
-  s("rdr2-exotics-v1", {"n:heron": 7, "done:r1": true, "start": true});
-  s("rdr2-legendary-v1", {"kill:bear": true, "fence:bear": true, "trap:bearhat": true, "extra:crow": true, "ing:quartz-chunk": true});
-  s("rdr2-legendary-v1:trap", "1");
-  s("rdr2-satchel-pelts-v1", {"leather": true, "pelt:valuables:deer": true});
-  s("rdr2-camp-decor-v1", {"craft:bones": true});
-  s("rdr2-collectibles-v1", {"graves:2": true, "bones:finish": true});
-  s("rdr2-cigcards-v1", {"sent:horses": true, "gems:3": true});
-  s("rdr2-treasure-v1", {"jackhall:4": true});
-  s("rdr2-challenges-v1", {"explorer:1": true, "bandit:1": true});
-  s("rdr2-challenges-v1:explorer-hide", "1");
-  s("rdr2-recipes-v1", {"tonics:2": true, "meat:3": true});
-  s("rdr2-strangers-v1", {"s:noblest": true});
-  s("rdr2-bounties-v1", {"b:swan": true});
-  s("rdr2-hideouts-v1", {"h:sixpoint": true, "g:raiders": true});
-  s("rdr2-horses-v1", {"breed:arabian": true, "bond:2": true, "wild:morgan": true, "own:buell": true});
-  s("rdr2-plants-v1", {"herb:yarrow": true, "orchid:ghost": true});
-  s("rdr2-gold-v1", {"f:statues": true});
-  s("rdr2-fish-v1", {"fish:1": true, "fish:finish": true});
-  s("rdr2-encounters-v1", {"town:1": true});
-  s("rdr2-hundred-v1", {"n:story": 1, "n:strangers": 7, "n:bath": 1});`);
-await go();
-if (errors.length) console.log("  fouten:", errors);
-const v2 = JSON.parse(await ev(`localStorage.getItem("rdr2-v2")`)) || { checks: {}, prefs: {} };
-const expectKeys = [
-  "weapons.revolvers.flacos-revolver", "exotics.r2.heron", "exotics.r1.done", "exotics.prep.start",
-  "legendary.animals.bear.kill", "legendary.animals.bear.fence", "legendary.trapper.bearhat", "legendary.extras.crow",
-  "trinkets.ingredients.quartz-chunk", "satchels.leather", "satchels.pelt:valuables:deer", "camp.craft:bones",
-  "collectibles.graves.davey-callander", "collectibles.bones.done", "cigcards.horses.done", "cigcards.gems.hattie-langtry",
-  "treasure.jackhall.schat-gevonden-bij-ocreaghs-run", "challenges.explorer.vind-de-eerste-schatkaart",
-  "challenges.bandit.beroof-5-burgers-hold-up", "recipes.tonics.potent-health-cure", "recipes.meat.tender-pork-loin",
-  "strangers.c2.noblest", "bounties.valentine.swan", "hideouts.hideouts.sixpoint", "hideouts.gangs.raiders",
-  "horses.breeds.arabian", "horses.bond.2", "horses.wild.morgan", "horses.special.buell", "plants.herbs.yarrow",
-  "plants.orchids.ghost", "gold.fixed.statues", "fish.fish.legendary-bluegill", "fish.fish.done", "encounters.town.beggar",
-  "hundred.missies-en-events.story", "hundred.overig.bath"
-];
-const missing = expectKeys.filter(k => !v2.checks[k]);
-check("alle oude vinkjes zijn omgezet", missing.length === 0, missing.join(", "));
-check("teller heron = 7", v2.checks["exotics.r2.heron"] === 7);
-check("automatische 100%-onderdelen worden niet overgenomen", !("hundred.missies-en-events.strangers" in v2.checks));
-check("filters omgezet", v2.prefs["weapons.hide"] && v2.prefs["legendary.trap"] && v2.prefs["explorer.hide"]);
+  localStorage.setItem("rdr2-v2", JSON.stringify({ v: 2, checks: { "weapons.revolvers.cattleman-revolver": true }, prefs: {} }));
+  localStorage.setItem("rdr2", JSON.stringify({ v: 3, checks: ${JSON.stringify(SEED)},
+    prefs: { "weapons.hide": true, "legendary.trap": true, "explorer.hide": true } }));`);
+// Every seeded key must exist on its own page (automatic 100% parts are not rendered as inputs).
+const missing = [];
+for (const list of [...new Set(Object.keys(SEED).map(k => k.split(".")[0]))]) {
+  await go(list);
+  for (const k of Object.keys(SEED).filter(k => k.startsWith(list + ".") && k !== "hundred.missions-and-events.strangers"))
+    if (!(await n(`[data-key="${k}"], [data-count="${k}"]`))) missing.push(k);
+}
+if (errors.length) console.log("  errors:", errors);
+check("every seeded key exists in the app", missing.length === 0, missing.join(", "));
+await go("weapons");
+check("old rdr2-v2 storage is ignored", !(await checked("weapons.revolvers.cattleman-revolver")));
 
-// ---------- 2. Elke route ----------
+// ---------- 2. Every route ----------
 console.log("Routes");
-const EXPECT = { // minimaal aantal vinkjes (data-key) per route
+const EXPECT = { // minimum number of checkboxes (data-key) per route
   satchels: 36, camp: 46, legendary: 88, trinkets: 30, horses: 41, weapons: 65, exotics: 6, plants: 43, recipes: 55,
   collectibles: 72, fish: 20, poi: 50, shacks: 19, strangers: 26, bounties: 14, hideouts: 15, encounters: 113, challenges: 90,
   cigcards: 156, treasure: 30, explorer: 10, gold: 4, hundred: 0
 };
 const routes = await ev(`[...document.querySelectorAll("nav a")].map(a => a.getAttribute("href").slice(2))`);
-check("navigatie: overzicht + 23 lijsten", routes.length === 24, routes.length);
+check("navigation: overview + 23 lists", routes.length === 24, routes.length);
 for (const r of routes) {
   errors.length = 0;
   await hash(r);
@@ -129,73 +113,86 @@ for (const r of routes) {
   const title = await ev("document.querySelector('h1').textContent");
   const current = await ev(`document.querySelector('nav a[aria-current]')?.getAttribute("href")`);
   const ok = errors.length === 0 && current === `#/${r}` && (r === "" || keys >= EXPECT[r]);
-  check(`#/${r || ""} ${title}`, ok, `${keys} vinkjes${errors.length ? "; " + errors.join("; ") : ""}`);
+  check(`#/${r || ""} ${title}`, ok, `${keys} checkboxes${errors.length ? "; " + errors.join("; ") : ""}`);
 }
 
-// ---------- 3. Interactie, opslag en koppelingen ----------
-console.log("Interactie");
+// ---------- 3. Interaction, storage and cross-list links ----------
+console.log("Interaction");
 await go("weapons");
-check("migratie zichtbaar: Flaco's Revolver aangevinkt", await checked("weapons.revolvers.flacos-revolver"));
-check("filter weapons.hide aan en toegepast", await ev(`document.querySelector('[data-pref="weapons.hide"]').checked && document.querySelector('.sec.hide-checked') !== null`));
+check("seed visible: Flaco's Revolver checked", await checked("weapons.revolvers.flacos-revolver"));
+check("filter weapons.hide on and applied", await ev(`document.querySelector('[data-pref="weapons.hide"]').checked && document.querySelector('.sec.hide-checked') !== null`));
 await click('[data-key="weapons.revolvers.cattleman-revolver"]');
 await go("weapons");
-check("vinkje blijft na herladen", await checked("weapons.revolvers.cattleman-revolver"));
+check("checkbox persists after reload", await checked("weapons.revolvers.cattleman-revolver"));
 
 await go("exotics");
 await click('button[data-count="exotics.r2.heron"][data-step="1"]');
 await go("exotics");
-check("teller blijft na herladen (heron 7 + 1 = 8)", (await ev(`document.querySelector('[data-n="exotics.r2.heron"]').textContent`)) === "8");
-check("ingeleverde opdracht telt als compleet", (await ev(`document.querySelector('[data-n="exotics.r1.ladynight"]').textContent`)) === "15");
+check("counter persists after reload (heron 7 + 1 = 8)", (await ev(`document.querySelector('[data-n="exotics.r2.heron"]').textContent`)) === "8");
+check("turned-in request counts as complete", (await ev(`document.querySelector('[data-n="exotics.r1.ladynight"]').textContent`)) === "15");
 
 await go("trinkets");
-check("trinkets: Bear Claw gemaakt (gedeeld met legendarisch)", await checked("legendary.animals.bear.fence"));
-check("trinkets: deel 'in bezit' bij Bear Claw", (await ev(`document.querySelector('[data-part="bear"]').textContent`)).includes("in bezit"));
+check("trinkets: Bear Claw crafted (shared with legendary)", await checked("legendary.animals.bear.fence"));
+check("trinkets: part 'owned' for Bear Claw", (await ev(`document.querySelector('[data-part="bear"]').textContent`)).includes("owned"));
 await ev(`window.confirm = () => true`);
 await click("#reset");
 await go("legendary");
-check("trinkets-reset laat 'gedood' staan", await checked("legendary.animals.bear.kill"));
-check("trinkets-reset wist 'gemaakt'", !(await checked("legendary.animals.bear.fence")));
-check("trapper-filter verbergt niet-koopbare items", (await ev(`[...document.querySelectorAll('[data-row]')].filter(r => !r.hidden).length`)) < 34);
+check("trinkets reset keeps 'killed'", await checked("legendary.animals.bear.kill"));
+check("trinkets reset clears 'crafted'", !(await checked("legendary.animals.bear.fence")));
+check("trapper filter hides items you cannot buy", (await ev(`[...document.querySelectorAll('[data-row]')].filter(r => !r.hidden).length`)) < 34);
 
 await go("hundred");
 const auto = id => ev(`document.querySelector('[data-auto="hundred.${id}"]')?.textContent`);
-check("100%: strangers automatisch (1, oude 7 genegeerd)", (await auto("missies-en-events.strangers")) === "1");
-check("100%: graven automatisch 1", (await auto("verzamelobjecten.graves")) === "1");
-check("100%: kaarten automatisch 13", (await auto("verzamelobjecten.cards")) === "13");
-check("100%: bad-vinkje uit migratie", await ev(`document.getElementById("c-hundred-overig-bath").checked`));
+check("100%: strangers automatic (1, stored 7 ignored)", (await auto("missions-and-events.strangers")) === "1");
+check("100%: graves automatic 1", (await auto("collectibles.graves")) === "1");
+check("100%: cards automatic 13", (await auto("collectibles.cards")) === "13");
+check("100%: bath checkbox from seed", await ev(`document.getElementById("c-hundred-miscellaneous-bath").checked`));
 
-check("100%: points of interest nog 0", (await auto("verzamelobjecten.poi")) === "0");
+check("100%: points of interest still 0", (await auto("collectibles.poi")) === "0");
 await go("poi");
 await click('[data-key="poi.ambarino.mysterious-hill-home"]');
 await go("hundred");
-check("100%: points of interest automatisch 1 na vinkje", (await auto("verzamelobjecten.poi")) === "1");
+check("100%: points of interest automatic 1 after check", (await auto("collectibles.poi")) === "1");
 
 await go("shacks");
 for (const s of ["dormin-crest", "snowfield", "dodds-bluff", "clawsons-rest", "hanis-bethel", "lenora-view"])
   await click(`[data-key="shacks.shacks.${s}"]`);
 await go("hundred");
-check("100%: shacks automatisch 5 (6 bezocht, max 5)", (await auto("overig.shacks")) === "5");
+check("100%: shacks automatic 5 (6 visited, max 5)", (await auto("miscellaneous.shacks")) === "5");
 
 await go("explorer");
-check("explorer: rang 1 gehaald (uit uitdagingen)", await checked("challenges.explorer.vind-de-eerste-schatkaart"));
-check("explorer: rang 4 schat gevonden (uit schatkaarten)", (await ev(`document.querySelector('[data-card="rank-4"] .status').textContent`)) === "schat gevonden");
+check("explorer: rank 1 reached (from challenges)", await checked("challenges.explorer.find-the-first-treasure-map"));
+check("explorer: rank 4 treasure found (from treasure maps)", (await ev(`document.querySelector('[data-card="rank-4"] .status').textContent`)) === "treasure found");
 
 await go("gold");
-check("goud: Jack Hall (2) + Strange Statues (3) = 5 staven", (await meters()).includes("5 / 28"), await meters());
+check("gold: Jack Hall (2) + Strange Statues (3) = 5 bars", (await meters()).includes("5 / 28"), await meters());
 
 await go("plants");
-check("planten: orchidee toont Exotics-telling", (await ev(`document.querySelector('[data-exotic="r1.ladynight"]').textContent`)) === "15");
+check("plants: orchid shows Exotics count", (await ev(`document.querySelector('[data-exotic="r1.ladynight"]').textContent`)) === "15");
 
 await go("");
-check("overzicht: 23 lijstkaarten", (await n("[data-list]")) === 23);
+check("overview: 23 list cards", (await n("[data-list]")) === 23);
 
-// ---------- 4. Telefoonbreedte ----------
+// Grouped navigation and the day/night button.
+check("nav: every list in a group", (await n(".toc-group a")) === 23, await n(".toc-group a"));
+check("nav: no 'Other' group", !(await ev(`[...document.querySelectorAll(".toc-label")].some(l => l.textContent === "Other")`)));
+const theme = () => ev(`document.documentElement.dataset.theme || ""`);
+await click("#theme");
+const picked = await theme();
+check("theme button sets data-theme", picked === "dark" || picked === "light", picked);
+await go("");
+check("theme persists after reload", (await theme()) === picked, await theme());
+await click("#theme");
+check("theme button switches back", (await theme()) !== picked && (await theme()) !== "", await theme());
+
+// ---------- 4. Phone width ----------
 console.log("Layout 375px");
 await send("Emulation.setDeviceMetricsOverride", { width: 375, height: 800, deviceScaleFactor: 1, mobile: true });
 const wide = [];
-for (const r of routes) { await go(r); if ((await ev("document.documentElement.scrollWidth")) > 375) wide.push(r || "overzicht"); }
-check("geen horizontale scroll", wide.length === 0, wide.join(", "));
+for (const r of routes) { await go(r); if ((await ev("document.documentElement.scrollWidth")) > 375) wide.push(r || "overview"); }
+check("no horizontal scroll", wide.length === 0, wide.join(", "));
+check("nav collapsed on phone", !(await ev(`document.querySelector(".toc").open`)));
 
 ws.close();
-console.log(failed ? `\n${failed} controle(s) mislukt` : "\nAlle controles geslaagd");
+console.log(failed ? `\n${failed} check(s) failed` : "\nAll checks passed");
 quit(failed ? 1 : 0);

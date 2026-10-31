@@ -2,26 +2,26 @@
   const all = () => RDR.groupsOf("weapons").flatMap(g => g.items);
   const tagged = t => RDR.ratio(all().filter(i => i.tag === t).map(i => i.key));
   RDR.list({
-    id: "weapons", title: "Wapens", order: 60,
-    heading: "Wapens Checklist", sub: "Red Dead Redemption 2 (story mode): alle 65 wapens, van revolvers tot bijlen, met de unieke exemplaren en waar je ze vindt.", blurb: "Alle 65 wapens in story mode, met de unieke en missable exemplaren. 48 wapentypes zijn nodig voor 100%.",
-    filter: "Verberg wapens die je al hebt gebruikt",
+    id: "weapons", title: "Weapons", order: 60, group: "Gear",
+    heading: "Weapons Checklist", sub: "Red Dead Redemption 2 (story mode): all 65 weapons, from revolvers to hatchets, including the unique ones and where to find them.", blurb: "All 65 weapons in story mode, including the unique and missable ones. 48 weapon types are needed for 100%.",
+    filter: "Hide weapons you have already used",
     tips: [
-    "Voor 100% moet je <strong>48 wapentypes gebruiken</strong>. Vink een wapen af zodra je het hebt gebruikt. De telling gaat automatisch mee naar de pagina <a href=\"#/hundred\">100%</a>.",
-    "Wapens bij de <strong>gunsmith</strong> komen vrij naarmate het verhaal vordert. Daar kun je ze ook aanpassen, en onderhoud doe je met <strong>gun oil</strong>.",
-    "Wapens met de tag <strong>Crafting</strong> maak je zelf bij het kampvuur, zodra je het recept hebt. Ze tellen ook voor de uitdagingen bij <a href=\"#/challenges\">Survivalist en Weapons Expert</a>.",
-    "Wapens met de tag <strong>Versie</strong> zitten niet in elke versie van de game, of waren een bonus. Het kan zijn dat jij ze niet kunt krijgen."
+    "For 100% you need to <strong>use 48 weapon types</strong>. Check a weapon off as soon as you have used it. The count carries over automatically to the <a href=\"#/hundred\">100%</a> page.",
+    "Weapons at the <strong>gunsmith</strong> unlock as the story progresses. You can also customize them there, and maintain them with <strong>gun oil</strong>.",
+    "Weapons tagged <strong>Crafting</strong> are made at the campfire once you have the recipe. They also count for the <a href=\"#/challenges\">Survivalist and Weapons Expert</a> challenges.",
+    "Weapons tagged <strong>Version</strong> are not in every version of the game, or were a bonus. You may not be able to get them."
   ],
     sources: [
     [
-      "PowerPyx (alle wapens)",
+      "PowerPyx (all weapons)",
       "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"
     ],
     [
-      "GosuNoob (unieke wapens)",
+      "GosuNoob (unique weapons)",
       "https://www.gosunoob.com/red-dead-redemption-2/legendary-unique-weapons/"
     ],
     [
-      "rdr2.org (zeldzame wapens)",
+      "rdr2.org (rare weapons)",
       "https://www.rdr2.org/guides/red-dead-redemption-2-rare-weapons-guide/"
     ],
     [
@@ -30,97 +30,96 @@
     ]
   ],
     sections: [
-      { type: "html", title: "Let op: missable", html: "<div class=\"card\"> <ul class=\"tips\"> <li><strong>De revolvers en het pistool van de gunslingers</strong> (Flaco, Granger, Calloway en Billy Midnight) liggen na elk duel op de grond. Raap ze direct op, anders zijn ze voorgoed weg. Ze horen bij de stranger-missie <em>The Noblest of Men, and a Woman</em>, die je begint bij Jimmy Brooks.</li> <li><strong>De Rare Rolling Block Rifle</strong> pak je alleen tijdens de hoofdstuk 3-missie <em>Magicians for Sport</em>, van de sluipschutter in de schuur.</li> </ul> </div> <div id=\"hideFilter\" style=\"margin-top:24px\"></div> <div class=\"grid\" id=\"groups\"></div>" },
+      { type: "html", title: "Watch out: missable", html: "<div class=\"card\"> <ul class=\"tips\"> <li><strong>The gunslingers' revolvers and pistol</strong> (Flaco, Granger, Calloway and Billy Midnight) drop to the ground after each duel. Pick them up right away, or they are gone for good. They belong to the stranger mission <em>The Noblest of Men, and a Woman</em>, which you start with Jimmy Brooks.</li> <li><strong>The Rare Rolling Block Rifle</strong> can only be taken during the chapter 3 mission <em>Magicians for Sport</em>, from the sniper in the barn.</li> </ul> </div>" },
       { type: "checklist", grid: true, groups: [
     { id: "revolvers", title: "Revolvers", items: [
-      ["Cattleman Revolver", "Heb je vanaf het begin"],
-      ["Double-Action Revolver", "Bij elke gunsmith, vanaf hoofdstuk 2"],
-      ["Schofield Revolver", "Bij elke gunsmith vanaf hoofdstuk 2, of uit de wapenkast in de drogisterij van Valentine"],
-      ["Navy Revolver", "Kwam later met een update. Bij de gunsmith.", "Versie"],
-      ["High Roller Double-Action Revolver", "Bij elke Fence, na de missie <em>A Fine Night of Debauchery</em>"],
-      ["Flaco's Revolver", "Pak hem op na het duel met Flaco Hernandez (<em>The Noblest of Men, and a Woman</em>)", "Missable"],
-      ["Granger's Revolver", "Pak hem op na het duel met Emmet Granger (<em>The Noblest of Men, and a Woman</em>)", "Missable"],
-      ["Calloway's Revolver", "Pak hem op na het laatste duel, met Jim Calloway (<em>The Noblest of Men, and a Woman</em>)", "Missable"],
-      ["Algernon's Revolver", "Beloning van de laatste <a href=\"#/exotics\">Exotics</a>-opdracht voor Algernon Wasp", "Uniek"],
-      ["Otis Miller's Revolver", "In een kist in een grotje aan de noordrand van Cholla Springs (zie <a href=\"#/treasure\">Mended Treasure Map</a>)", "Epiloog"],
-      ["Micah's Revolver", "Na het einde van de epiloog: ga terug naar Mount Hagen en pak hem van het bevroren lichaam", "Epiloog"],
-      ["John's Cattleman Revolver", "Krijg je automatisch in de epiloog", "Epiloog"]
+      ["Cattleman Revolver", "You have it from the start"],
+      ["Double-Action Revolver", "At any gunsmith, from chapter 2"],
+      ["Schofield Revolver", "At any gunsmith from chapter 2, or from the gun cabinet in the Valentine doctor's office"],
+      ["Navy Revolver", "Added later in an update. At the gunsmith.", "Version"],
+      ["High Roller Double-Action Revolver", "At any Fence, after the mission <em>A Fine Night of Debauchery</em>"],
+      ["Flaco's Revolver", "Pick it up after the duel with Flaco Hernandez (<em>The Noblest of Men, and a Woman</em>)", "Missable"],
+      ["Granger's Revolver", "Pick it up after the duel with Emmet Granger (<em>The Noblest of Men, and a Woman</em>)", "Missable"],
+      ["Calloway's Revolver", "Pick it up after the final duel, with Jim Calloway (<em>The Noblest of Men, and a Woman</em>)", "Missable"],
+      ["Algernon's Revolver", "Reward for the last <a href=\"#/exotics\">Exotics</a> request for Algernon Wasp", "Unique"],
+      ["Otis Miller's Revolver", "In a chest in a small cave on the northern edge of Cholla Springs (see <a href=\"#/treasure\">Mended Treasure Map</a>)", "Epilogue"],
+      ["Micah's Revolver", "After the end of the epilogue: go back to Mount Hagen and take it from the frozen body", "Epilogue"],
+      ["John's Cattleman Revolver", "You get it automatically in the epilogue", "Epilogue"]
     ] },
-    { id: "pistols", title: "Pistolen", items: [
-      ["Volcanic Pistol", "Bij elke gunsmith, vanaf hoofdstuk 1"],
-      ["Semi-Automatic Pistol", "Bij elke gunsmith, vanaf hoofdstuk 4"],
-      ["Mauser Pistol", "Bij elke gunsmith, vanaf hoofdstuk 5"],
-      ["M1899 Pistol", "Gunsmith in Saint Denis, na <em>The Battle for Shady Belle</em>. Kwam met de pc-versie.", "Versie"],
-      ["Midnight's Pistol", "Pak hem op na het duel met Billy Midnight (<em>The Noblest of Men, and a Woman</em>)", "Missable"]
+    { id: "pistols", title: "Pistols", items: [
+      ["Volcanic Pistol", "At any gunsmith, from chapter 1"],
+      ["Semi-Automatic Pistol", "At any gunsmith, from chapter 4"],
+      ["Mauser Pistol", "At any gunsmith, from chapter 5"],
+      ["M1899 Pistol", "Gunsmith in Saint Denis, after <em>The Battle for Shady Belle</em>. Came with the PC version.", "Version"],
+      ["Midnight's Pistol", "Pick it up after the duel with Billy Midnight (<em>The Noblest of Men, and a Woman</em>)", "Missable"]
     ] },
     { id: "repeaters", title: "Repeaters", items: [
-      ["Carbine Repeater", "Krijg je automatisch in hoofdstuk 1"],
-      ["Lancaster Repeater", "Krijg je automatisch in hoofdstuk 2"],
-      ["Litchfield Repeater", "Krijg je automatisch in hoofdstuk 6"],
-      ["Evans Repeater", "Bij elke gunsmith, na <em>A Strange Kindness</em>. Kwam met de pc-versie.", "Versie"]
+      ["Carbine Repeater", "You get it automatically in chapter 1"],
+      ["Lancaster Repeater", "You get it automatically in chapter 2"],
+      ["Litchfield Repeater", "You get it automatically in chapter 6"],
+      ["Evans Repeater", "At any gunsmith, after <em>A Strange Kindness</em>. Came with the PC version.", "Version"]
     ] },
-    { id: "rifles", title: "Geweren en sniper rifles", items: [
-      ["Varmint Rifle", "Bij elke gunsmith, vanaf hoofdstuk 1. Voor klein wild."],
-      ["Springfield Rifle", "Bij elke gunsmith, vanaf hoofdstuk 1"],
-      ["Bolt-Action Rifle", "Krijg je automatisch in hoofdstuk 3"],
-      ["Rolling Block Rifle", "Bij elke gunsmith, vanaf hoofdstuk 2"],
-      ["Rare Rolling Block Rifle", "Pak hem op van de sluipschutter in de schuur, in de hoofdstuk 3-missie <em>Magicians for Sport</em>", "Missable"],
-      ["Carcano Rifle", "Bij elke gunsmith, na de missie <em>Goodbye, Dear Friend</em>"]
+    { id: "rifles", title: "Rifles and sniper rifles", items: [
+      ["Varmint Rifle", "At any gunsmith, from chapter 1. For small game."],
+      ["Springfield Rifle", "At any gunsmith, from chapter 1"],
+      ["Bolt-Action Rifle", "You get it automatically in chapter 3"],
+      ["Rolling Block Rifle", "At any gunsmith, from chapter 2"],
+      ["Rare Rolling Block Rifle", "Take it from the sniper in the barn, in the chapter 3 mission <em>Magicians for Sport</em>", "Missable"],
+      ["Carcano Rifle", "At any gunsmith, after the mission <em>Goodbye, Dear Friend</em>"]
     ] },
     { id: "shotguns", title: "Shotguns", items: [
-      ["Double-Barreled Shotgun", "Bij elke gunsmith"],
-      ["Sawed-Off Shotgun", "Krijg je automatisch in hoofdstuk 1"],
-      ["Pump-Action Shotgun", "Bij elke gunsmith, vanaf hoofdstuk 2"],
-      ["Semi-Auto Shotgun", "Bij elke gunsmith, vanaf hoofdstuk 4"],
-      ["Repeating Shotgun", "Bij elke gunsmith, vanaf hoofdstuk 6"],
-      ["Rare Shotgun", "Vanaf hoofdstuk 2 heeft een man in een hut ten noorden van Annesburg dit wapen", "Uniek"]
+      ["Double-Barreled Shotgun", "At any gunsmith"],
+      ["Sawed-Off Shotgun", "You get it automatically in chapter 1"],
+      ["Pump-Action Shotgun", "At any gunsmith, from chapter 2"],
+      ["Semi-Auto Shotgun", "At any gunsmith, from chapter 4"],
+      ["Repeating Shotgun", "At any gunsmith, from chapter 6"],
+      ["Rare Shotgun", "From chapter 2, a man in a cabin north of Annesburg has this weapon", "Unique"]
     ] },
-    { id: "bow", title: "Boog", items: [
-      ["Bow", "Krijg je automatisch vroeg in het spel"]
+    { id: "bow", title: "Bow", items: [
+      ["Bow", "You get it automatically early in the game"]
     ] },
-    { id: "throw", title: "Werpwapens en explosieven", items: [
-      ["Throwing Knives", "Krijg je automatisch in de eerste missies"],
-      ["Improved Throwing Knives", "Zelf maken", "Crafting"],
-      ["Poison Throwing Knives", "Zelf maken", "Crafting"],
-      ["Tomahawk", "Bij elke gunsmith, vanaf hoofdstuk 2"],
-      ["Improved Tomahawk", "Zelf maken", "Crafting"],
-      ["Homing Tomahawk", "Zelf maken", "Crafting"],
-      ["Ancient Tomahawk", "Steekt in een kapot schietdoel in het oosten van Calumet Valley", "Uniek"],
-      ["Dynamite", "Krijg je automatisch in hoofdstuk 1"],
-      ["Volatile Dynamite", "Zelf maken", "Crafting"],
-      ["Fire Bottle", "Krijg je automatisch tijdens het verhaal"],
-      ["Volatile Fire Bottle", "Zelf maken", "Crafting"],
-      ["Incendiary Bottle", "Bij elke gunsmith, vanaf hoofdstuk 3"]
+    { id: "throw", title: "Thrown weapons and explosives", items: [
+      ["Throwing Knives", "You get them automatically in the first missions"],
+      ["Improved Throwing Knives", "Craft them yourself", "Crafting"],
+      ["Poison Throwing Knives", "Craft them yourself", "Crafting"],
+      ["Tomahawk", "At any gunsmith, from chapter 2"],
+      ["Improved Tomahawk", "Craft it yourself", "Crafting"],
+      ["Homing Tomahawk", "Craft it yourself", "Crafting"],
+      ["Ancient Tomahawk", "Stuck in a broken shooting target in eastern Calumet Valley", "Unique"],
+      ["Dynamite", "You get it automatically in chapter 1"],
+      ["Volatile Dynamite", "Craft it yourself", "Crafting"],
+      ["Fire Bottle", "You get it automatically during the story"],
+      ["Volatile Fire Bottle", "Craft it yourself", "Crafting"],
+      ["Incendiary Bottle", "At any gunsmith, from chapter 3"]
     ] },
-    { id: "melee", title: "Messen, bijlen en melee", items: [
-      ["Unarmed (vuisten)", "Vanaf het begin"],
-      ["Hunting Knife", "Vanaf het begin"],
-      ["John's Knife", "Krijg je automatisch in de epiloog", "Epiloog"],
-      ["Machete", "Bij elke gunsmith, vanaf hoofdstuk 5"],
-      ["Cleaver", "Bij elke gunsmith, vanaf hoofdstuk 5"],
-      ["Hatchet", "Bij elke gunsmith, vanaf hoofdstuk 5"],
-      ["Civil War Knife", "In een kist in de kelder van Fort Brennand, ten zuidwesten van Van Horn", "Uniek"],
-      ["Jawbone Knife", "Beloning voor alle 30 <a href=\"#/collectibles\">dinosaurusbotten</a>", "Uniek"],
-      ["Wide-Blade Knife", "Bij een lijk in de mijn van Beryl's Dream, ten westen van Mount Shann", "Uniek"],
-      ["Antler Knife", "Bij een dode beer ten noordwesten van Hanging Dog Ranch", "Uniek"],
-      ["Ornate Dagger", "Van de vampier in Saint Denis, nadat je 5 markeringen op muren hebt gevonden", "Uniek"],
-      ["Broken Pirate Sword", "In een wrak op het eilandje ten zuiden van de brug bij Saint Denis", "Uniek"],
-      ["Viking Hatchet", "In een oud Vikinggraf aan de zuidkant van Roanoke Valley", "Uniek"],
-      ["Double Bit Hatchet", "Op een boomstronk ten noordwesten van Wallace Station", "Uniek"],
-      ["Rusted Double Bit Hatchet", "Op een boomstronk in Annesburg, iets ten noorden van de kolenmijn", "Uniek"],
-      ["Hunter Hatchet", "Op een boomstronk bij een hut ten zuiden van Window Rock", "Uniek"],
-      ["Rusted Hunter Hatchet", "Op een boomstronk bij een hut tussen Elysian Pool en O'Creagh's Run", "Uniek"],
-      ["Hewing Hatchet", "Op een boomstronk aan de zuidrand van Moonstone Pond", "Uniek"],
-      ["Stone Hatchet", "Alleen als je een bepaalde schattenjacht in GTA Online hebt gedaan (oude bonus)", "Versie"]
+    { id: "melee", title: "Knives, hatchets and melee", items: [
+      ["Unarmed", "From the start"],
+      ["Hunting Knife", "From the start"],
+      ["John's Knife", "You get it automatically in the epilogue", "Epilogue"],
+      ["Machete", "At any gunsmith, from chapter 5"],
+      ["Cleaver", "At any gunsmith, from chapter 5"],
+      ["Hatchet", "At any gunsmith, from chapter 5"],
+      ["Civil War Knife", "In a chest in the cellar of Fort Brennand, southwest of Van Horn", "Unique"],
+      ["Jawbone Knife", "Reward for all 30 <a href=\"#/collectibles\">dinosaur bones</a>", "Unique"],
+      ["Wide-Blade Knife", "On a body in the Beryl's Dream mine, west of Mount Shann", "Unique"],
+      ["Antler Knife", "Next to a dead bear northwest of Hanging Dog Ranch", "Unique"],
+      ["Ornate Dagger", "From the vampire in Saint Denis, after you have found 5 markings on walls", "Unique"],
+      ["Broken Pirate Sword", "In a wreck on the islet south of the bridge at Saint Denis", "Unique"],
+      ["Viking Hatchet", "In an old Viking grave on the south side of Roanoke Valley", "Unique"],
+      ["Double Bit Hatchet", "On a tree stump northwest of Wallace Station", "Unique"],
+      ["Rusted Double Bit Hatchet", "On a tree stump in Annesburg, just north of the coal mine", "Unique"],
+      ["Hunter Hatchet", "On a tree stump at a cabin south of Window Rock", "Unique"],
+      ["Rusted Hunter Hatchet", "On a tree stump at a cabin between Elysian Pool and O'Creagh's Run", "Unique"],
+      ["Hewing Hatchet", "On a tree stump on the southern edge of Moonstone Pond", "Unique"],
+      ["Stone Hatchet", "Only if you completed a certain treasure hunt in GTA Online (old bonus)", "Version"]
     ] }
   ] }
     ],
     metrics: {
       used: () => RDR.ratio(all().map(i => i.key)),
-      unique: () => tagged("Uniek"),
+      unique: () => tagged("Unique"),
       missable: () => tagged("Missable")
     },
-    meters: [["used", "Wapens gebruikt"], ["unique", "Unieke wapens"], ["missable", "Missable wapens"]],
-    v1: { store: "rdr2-weapons-v1", map: RDR.v1.byIndex("weapons") }
+    meters: [["used", "Weapons used"], ["unique", "Unique weapons"], ["missable", "Missable weapons"]]
   });
 })();

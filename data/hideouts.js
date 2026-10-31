@@ -1,41 +1,41 @@
 (() => {
   const hideouts = [
-    ["sixpoint",  "Six Point Cabin",   "O'Driscoll Boys", "Cumberland Forest, ten noordoosten van Valentine", "Hoofdstuk 2 (verhaal)", true, ["Verhaal"],
-      "Een stille aanpak met boog en jachtmes werkt hier goed, voordat het vuurgevecht begint."],
-    ["shadybelle","Shady Belle",       "Lemoyne Raiders", "Ten zuidwesten van Saint Denis", "Hoofdstuk 3 (verhaal)", true, ["Verhaal"],
-      "Wordt daarna het kamp van de bende. Stil of direct aanvallen kan allebei."],
-    ["beaver",    "Beaver Hollow",     "Murfree Brood",   "Een grot ten westen van Annesburg", "Hoofdstuk 5 (verhaal)", true, ["Verhaal"],
-      "Grot met twee ingangen. Bij de hoofdingang is een stille aanpak bijna onmogelijk."],
-    ["hangingdog","Hanging Dog Ranch", "O'Driscoll Boys (epiloog: Laramie Gang)", "Ten westen van Valentine, bij Little Creek River", "Hoofdstuk 6 (verhaal)", true, ["Verhaal"],
-      "Schakel eerst de man achter het Maxim-machinegeweer in de schuur uit."],
-    ["thieves",   "Thieves' Landing",  "Del Lobo Gang",   "Het dorp Thieves' Landing", "Epiloog", true, ["Epiloog"],
-      "Een van de lastigste: heel veel vijanden. Dood ze allemaal, anders telt het niet."],
-    ["mercer",    "Fort Mercer",       "Del Lobo Gang",   "Ten zuiden van Mercer Station (New Austin)", "Epiloog", true, ["Epiloog"],
-      "Ruim eerst de poort op en zoek dekking, zodat je niet van opzij wordt aangevallen. Dood iedereen."],
-    ["twinrocks", "Twin Rocks",        "Del Lobo Gang",   "Ten noordwesten van Armadillo (New Austin)", "Epiloog", false, ["Epiloog", "Versie"],
-      "Alleen in de Special/Ultimate Edition."],
-    ["solomon",   "Solomon's Folly",   "Del Lobo Gang",   "Een verlaten boerderij ten zuiden van Benedict Point (Gaptooth Ridge)", "Epiloog", false, ["Epiloog", "Versie"],
-      "Kwam met de pc-versie."]
+    ["sixpoint",  "Six Point Cabin",   "O'Driscoll Boys", "Cumberland Forest, northeast of Valentine", "Chapter 2 (story)", true, ["Story"],
+      "A stealthy approach with bow and hunting knife works well here, before the gunfight starts."],
+    ["shadybelle","Shady Belle",       "Lemoyne Raiders", "Southwest of Saint Denis", "Chapter 3 (story)", true, ["Story"],
+      "Becomes the gang's camp afterwards. Both a stealthy and a direct attack work."],
+    ["beaver",    "Beaver Hollow",     "Murfree Brood",   "A cave west of Annesburg", "Chapter 5 (story)", true, ["Story"],
+      "A cave with two entrances. A stealthy approach at the main entrance is nearly impossible."],
+    ["hangingdog","Hanging Dog Ranch", "O'Driscoll Boys (epilogue: Laramie Gang)", "West of Valentine, near Little Creek River", "Chapter 6 (story)", true, ["Story"],
+      "Take out the man on the Maxim gun in the barn first."],
+    ["thieves",   "Thieves' Landing",  "Del Lobo Gang",   "The village of Thieves' Landing", "Epilogue", true, ["Epilogue"],
+      "One of the hardest: a lot of enemies. Kill them all, or it does not count."],
+    ["mercer",    "Fort Mercer",       "Del Lobo Gang",   "South of Mercer Station (New Austin)", "Epilogue", true, ["Epilogue"],
+      "Clear the gate first and find cover, so you are not attacked from the side. Kill everyone."],
+    ["twinrocks", "Twin Rocks",        "Del Lobo Gang",   "Northwest of Armadillo (New Austin)", "Epilogue", false, ["Epilogue", "Version"],
+      "Only in the Special/Ultimate Edition."],
+    ["solomon",   "Solomon's Folly",   "Del Lobo Gang",   "An abandoned farm south of Benedict Point (Gaptooth Ridge)", "Epilogue", false, ["Epilogue", "Version"],
+      "Came with the PC version."]
   ];
   const gangs = [
-    ["odriscoll", "O'Driscoll Boys",  "Vooral New Hanover en Ambarino, tot en met hoofdstuk 6"],
-    ["raiders",   "Lemoyne Raiders",  "Lemoyne, onder andere Scarlett Meadows en Bluewater Marsh"],
-    ["murfree",   "Murfree Brood",    "Roanoke Ridge, in de bossen en grotten"],
-    ["nightfolk", "Night Folk",       "Bayou Nwa, vooral 's nachts"],
+    ["odriscoll", "O'Driscoll Boys",  "Mainly New Hanover and Ambarino, up to and including chapter 6"],
+    ["raiders",   "Lemoyne Raiders",  "Lemoyne, including Scarlett Meadows and Bluewater Marsh"],
+    ["murfree",   "Murfree Brood",    "Roanoke Ridge, in the woods and caves"],
+    ["nightfolk", "Night Folk",       "Bayou Nwa, mostly at night"],
     ["skinner",   "Skinner Brothers", "Tall Trees (West Elizabeth)"],
-    ["dellobo",   "Del Lobo Gang",    "West Elizabeth en New Austin"],
-    ["laramie",   "Laramie Gang",     "Pas in de epiloog, onder andere bij Hanging Dog Ranch"]
+    ["dellobo",   "Del Lobo Gang",    "West Elizabeth and New Austin"],
+    ["laramie",   "Laramie Gang",     "Only in the epilogue, including at Hanging Dog Ranch"]
   ];
   const cards = () => RDR.itemsOf("hideouts", "hideouts");
   RDR.list({
-    id: "hideouts", title: "Gang hideouts", nav: "Hideouts", order: 140,
-    heading: "Gang Hideouts Checklist", sub: "Red Dead Redemption 2 (story mode): de schuilplaatsen van de bendes om op te ruimen, en de bendes voor het compendium.", blurb: "De schuilplaatsen van de bendes en de 7 bendes voor het compendium. 6 schuilplaatsen zijn nodig voor 100%.",
-    filter: "Verberg wat je al hebt gedaan",
+    id: "hideouts", title: "Gang hideouts", nav: "Hideouts", order: 140, group: "Missions",
+    heading: "Gang Hideouts Checklist", sub: "Red Dead Redemption 2 (story mode): the gang hideouts to clear out, and the gangs for the compendium.", blurb: "The gang hideouts and the 7 gangs for the compendium. 6 hideouts are needed for 100%.",
+    filter: "Hide what you have already done",
     tips: [
-    "Voor 100% heb je <strong>6 schuilplaatsen</strong> nodig, en alleen die met de tag <em>100%</em> tellen mee. Vier ervan doe je vanzelf in het verhaal. De andere twee, Thieves' Landing en Fort Mercer, ruim je in de epiloog op. Het aantal gaat automatisch naar de pagina <a href=\"#/hundred\">100%</a>.",
-    "Een schuilplaats telt pas als je <strong>alle vijanden</strong> hebt gedood. Daarna kun je de buit doorzoeken: kisten, lockboxes en lijken.",
-    "Een opgeruimde schuilplaats raakt na een tijdje weer bewoond, dus je kunt hem later opnieuw doen voor meer buit.",
-    "Voor het compendium moet je <strong>6 bendes</strong> ontdekken. Een bende telt zodra je ze tegenkomt, bijvoorbeeld bij een hinderlaag of in hun schuilplaats."
+    "For 100% you need <strong>6 hideouts</strong>, and only those tagged <em>100%</em> count. Four of them happen in the story. The other two, Thieves' Landing and Fort Mercer, you clear in the epilogue. The count goes automatically to the <a href=\"#/hundred\">100%</a> page.",
+    "A hideout only counts once you have killed <strong>every enemy</strong>. After that you can search the loot: chests, lockboxes and bodies.",
+    "A cleared hideout fills up again after a while, so you can do it again later for more loot.",
+    "For the compendium you need to discover <strong>6 gangs</strong>. A gang counts as soon as you run into them, for example in an ambush or at their hideout."
   ],
     sources: [
     [
@@ -51,29 +51,24 @@
       "https://exputer.com/guides/all-rd2-gang-hideout-locations/"
     ],
     [
-      "GTABase (bendes)",
+      "GTABase (gangs)",
       "https://gtabase.com/red-dead-redemption-2/gangs"
     ]
   ],
     sections: [
-      { type: "cards", id: "hideouts", title: "Schuilplaatsen", checkLabel: "<strong>Opgeruimd</strong>", doneText: "✓ opgeruimd",
+      { type: "cards", id: "hideouts", title: "Hideouts", checkLabel: "<strong>Cleared</strong>", doneText: "✓ cleared",
         items: hideouts.map(([id, name, gang, where, when, counts, tags, tip]) => ({
-          id, name, counts, tags: [counts ? "100%" : "telt niet", ...tags],
-          fields: [["Bende", gang], ["Waar", where], ["Wanneer", when]], note: tip
+          id, name, counts, tags: [counts ? "100%" : "does not count", ...tags],
+          fields: [["Gang", gang], ["Where", where], ["When", when]], note: tip
         })) },
-      { type: "checklist", title: "Bendes (compendium)", fields: ["id", "name", "where"], columns: true,
-        groups: [{ id: "gangs", title: "Bendes", items: gangs }] }
+      { type: "checklist", title: "Gangs (compendium)", fields: ["id", "name", "where"], columns: true,
+        groups: [{ id: "gangs", title: "Gangs", items: gangs }] }
     ],
     metrics: {
       done: () => RDR.ratio(RDR.keysOf("hideouts", "hideouts")),
       counted: () => RDR.capped(RDR.ratio(cards().filter(c => c.counts).map(c => c.checks[0].key)), 6),
       gangs: () => RDR.ratio(RDR.keysOf("hideouts", "gangs"))
     },
-    meters: [["done", "Schuilplaatsen opgeruimd"], ["counted", "Voor 100% (6 nodig)"], ["gangs", "Bendes ontdekt"]],
-    v1: {
-      store: "rdr2-hideouts-v1",
-      map: k => k.startsWith("h:") ? RDR.v1.byId("hideouts", "hideouts")(k.slice(2))
-        : k.startsWith("g:") ? RDR.v1.byId("hideouts", "gangs")(k.slice(2)) : null
-    }
+    meters: [["done", "Hideouts cleared"], ["counted", "For 100% (6 needed)"], ["gangs", "Gangs discovered"]]
   });
 })();
