@@ -324,7 +324,8 @@ window.RDR = (() => {
         <summary>Contents <span class="muted">· ${hereLabel}</span></summary>
         ${grouped().map(([g, ds]) => `
           <div class="toc-group"><span class="toc-label">${g}</span>
-            <span class="toc-links">${ds.map(d => link(d.id, d.nav || d.title)).join("")}</span>
+            <span class="toc-links">${ds.map(d => [d.id, d.nav || d.title]).sort((a, b) => a[1].localeCompare(b[1]))
+              .map(([id, label]) => link(id, label)).join("")}</span>
           </div>`).join("")}
       </details>`;
   }
@@ -338,7 +339,7 @@ window.RDR = (() => {
         <p class="sub">${home.sub}</p>
       </header>
       ${grouped().map(([g, ds]) => `<h2>${g}</h2>
-      <div class="grid dash">${ds.map(d => {
+      <div class="grid dash">${[...ds].sort((a, b) => a.title.localeCompare(b.title)).map(d => {
         const meters = metersOf(d);
         const done = meters.length > 0 && meters.every(([, m]) => m.total > 0 && m.have === m.total);
         const main = meters[0] ? meters[0][1] : { have: 0, total: 0 };
