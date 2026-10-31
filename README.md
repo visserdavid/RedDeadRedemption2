@@ -8,14 +8,14 @@ Checklists for everything you can collect, hunt and complete in **Red Dead Redem
 
 ## Features
 
-- **23 checklists**, grouped like a table of contents:
-  - **Hunting & camp:** satchels, camp decorations, legendary animals, trinkets & talismans
+- **29 checklists**, grouped like a table of contents:
+  - **Hunting & camp:** satchels, camp decorations, camp upgrades and gang item requests, legendary animals, hunting requests, trinkets & talismans
   - **Gear:** horses, weapons, exotics, plants, recipes
-  - **The world:** collectibles (dinosaur bones, dreamcatchers, rock carvings, graves), points of interest, shacks, legendary fish
-  - **Missions:** stranger missions, bounties, gang hideouts, chance encounters
+  - **The world:** collectibles (dinosaur bones, dreamcatchers, rock carvings, graves), points of interest, shacks, homestead stashes, special characters, legendary fish and fish species
+  - **Missions:** all 110 story missions with Gold Medals, stranger missions, bounties, gang hideouts, chance encounters
   - **Challenges & treasure:** all 90 challenges, cigarette cards, treasure maps, Explorer treasures, gold bars
-  - **Completion:** a 100% checklist
-- **Linked lists.** Shared items are one checkbox: a trinket crafted on the Trinkets page is also checked on Legendary animals. Counts feed into other pages automatically; the 100% page, for example, picks up your weapons, plants, graves and challenges.
+  - **Completion:** a 100% checklist and the 34 story-mode trophies
+- **Linked lists.** Shared items are one checkbox: a trinket crafted on the Trinkets page is also checked on Legendary animals. Counts feed into other pages automatically; the 100% page, for example, picks up your weapons, plants, graves and challenges, and the trophies page follows your missions, strangers and homesteads.
 - **Where, when and how.** Every item has its location, requirements and tips. Missable items and epilogue-only items are marked.
 - **Progress meters** on every page and on the overview.
 - **Day and night theme:** light "newspaper & poster" and dark "leather & lamplight". It follows your system setting until you choose one.

@@ -27,7 +27,7 @@ The format of a list definition is documented in the header comment of this file
 
 - **`RDR.list({...})` registers one list.** It includes id/route, title, group, order, an optional `heading` (default: the title in title case + " Checklist"), tips, sources, a filter label, `sections`, `metrics` and `meters`, plus an optional `refresh(view)` hook.
 - **`RDR.setHome({...})`** supplies the overview page text (`data/home.js`).
-- **Six section renderers** do all rendering. `checklist`, `cards`, `table` and `counters` are data-driven; `html` holds static HTML; `custom` has its own `render`/`refresh` and is only used by satchels/camp for their per-item and per-animal double views.
+- **Six section renderers** do all rendering. A `table` can have several checkbox columns per row via `checks: [[id, label], …]` (keys `<list>.<section>.<row>.<id>`; used by missions for Done + Gold). `checklist`, `cards`, `table` and `counters` are data-driven; `html` holds static HTML; `custom` has its own `render`/`refresh` and is only used by satchels/camp for their per-item and per-animal double views.
 - **Rendering cycle:** a list page is rendered once per route change. After every change, `refresh()` syncs checkboxes, statuses and meters in place, without re-rendering. Events are delegated once on `document`.
 - **State:** one localStorage key, `rdr2` = `{ v: 3, checks: {key: true|number}, prefs: {key: true|string} }`. Older keys (`rdr2-v2` and the per-list `rdr2-*-v1` keys from the Dutch version) are deliberately ignored.
 

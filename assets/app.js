@@ -9,7 +9,7 @@
 //   sections               – array (or function returning an array) of { type, ... }:
 //       checklist  groups of checkboxes      { groups:[{ id, title, items, finish? }], fields?, columns?, grid?, numbered? }
 //       cards      one card per item         { id, items:[{ id, name, checks?, fields? }], layout?: "animal" }
-//       table      rows with optional box    { id, rows, columns:[[heading, row => html, class?]], check?: false }
+//       table      rows with optional box    { id, rows, columns:[[heading, row => html, class?]], check?: false, checks?:[[id, label]] }
 //       counters   counters (−/+)            { groups:[{ id, title, items:[{ id, name, max, auto? }] }] }
 //       html       free content              { html }
 //       custom     own rendering             { render(def), refresh(def, el) }
@@ -104,7 +104,11 @@ window.RDR = (() => {
       } else if (s.type === "table") {
         s.rows = rows(s.fields || ["id", "name"], s.rows).map(r => {
           r.id = r.id || slug(r.name);
-          r.key = s.check === false ? null : (r.key || claim(`${L}.${s.id}.${r.id}`));
+          if (s.checks) {
+            // Several checkbox columns per row; r.key is the first one (done/hidden state).
+            r.keys = Object.fromEntries(s.checks.map(([c]) => [c, claim(`${L}.${s.id}.${r.id}.${c}`)]));
+            r.key = r.keys[s.checks[0][0]];
+          } else r.key = s.check === false ? null : (r.key || claim(`${L}.${s.id}.${r.id}`));
           return r;
         });
       }
@@ -128,7 +132,7 @@ window.RDR = (() => {
       const p = part(listId, id);
       if (p.keys) return p.keys;
       if (p.items) return p.items.flatMap(it => it.checks.map(c => c.key));
-      return p.rows.filter(r => r.key).map(r => r.key);
+      return p.rows.flatMap(r => r.keys ? Object.values(r.keys) : r.key ? [r.key] : []);
     });
   }
   // Items of groups/sections, and all groups of a list (checklist and counters).
@@ -242,9 +246,11 @@ window.RDR = (() => {
     table: {
       html: (def, s) => `
         <div class="card table-wrap"><table>
-          <thead><tr>${s.check !== false ? "<th></th>" : ""}${s.columns.map(c => `<th>${c[0]}</th>`).join("")}</tr></thead>
+          <thead><tr>${s.checks ? s.checks.map(([, label]) => `<th class="tick">${label}</th>`).join("")
+            : s.check !== false ? "<th></th>" : ""}${s.columns.map(c => `<th>${c[0]}</th>`).join("")}</tr></thead>
           <tbody>${s.rows.map(r => `<tr data-row="${r.id}">
-            ${r.key ? `<td><input type="checkbox" data-key="${r.key}" aria-label="${r.name}"></td>` : ""}
+            ${s.checks ? s.checks.map(([c, label]) => `<td class="tick"><input type="checkbox" data-key="${r.keys[c]}" aria-label="${r.name}: ${label}"></td>`).join("")
+              : r.key ? `<td><input type="checkbox" data-key="${r.key}" aria-label="${r.name}"></td>` : ""}
             ${s.columns.map(c => `<td class="${c[2] || ""}">${c[1](r)}</td>`).join("")}
           </tr>`).join("")}</tbody>
         </table></div>`,

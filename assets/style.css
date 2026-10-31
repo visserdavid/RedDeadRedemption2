@@ -181,6 +181,7 @@ th, td { text-align: left; padding: 6px 8px; border-bottom: 1px dotted var(--lin
 th { font-weight: normal; color: var(--muted); font-variant: small-caps; letter-spacing: .06em; border-bottom: 3px double var(--rule); }
 .table-wrap { overflow-x: auto; }
 td input[type=checkbox] { margin-top: 3px; }
+th.tick, td.tick { width: 1%; text-align: center; white-space: nowrap; }
 tr.bought { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--stamp); }
 
 .tips li { margin-bottom: 6px; }

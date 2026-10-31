@@ -2,7 +2,7 @@
   // [id, description, count, link, hint]
   const SECTIONS = [
     { title: "Missions and Events", items: [
-      ["story",     "Complete all story missions, including the epilogue", 1, "", ""],
+      ["story",     "Complete all story missions, including the epilogue", 1, "#/missions", ""],
       ["strangers", "Stranger mission strands completed", 10, "#/strangers", ""],
       ["bounties",  "Bounties completed", 5, "#/bounties", ""],
       ["chance",    "Chance encounters", 25, "#/encounters", ""],
@@ -17,14 +17,14 @@
       ["fish",      "Legendary fish", 13, "#/fish", ""],
       ["exotics",   "Exotics requests for Algernon Wasp", 5, "#/exotics", ""],
       ["carvings",  "Rock carvings", 10, "#/collectibles", ""],
-      ["hunting",   "All hunting requests from the train stations", 1, "", ""],
+      ["hunting",   "All hunting requests (Ms. Hobbs)", 1, "#/hunting", ""],
       ["treasure",  "One treasure hunt completed", 1, "#/treasure", ""],
       ["dream",     "Dreamcatchers", 20, "#/collectibles", ""]
     ] },
     { title: "Compendium", items: [
       ["c-animals", "Animals discovered (of 178)", 50, "", "Studying with binoculars already counts"],
       ["c-equip",   "Equipment obtained (of 72)", 10, "", ""],
-      ["c-fish",    "Fish species caught (of 30)", 10, "", ""],
+      ["c-fish",    "Fish species caught (of 30)", 10, "#/fish", ""],
       ["c-gangs",   "Gangs discovered", 6, "#/hideouts", ""],
       ["c-horses",  "Horse breeds discovered (of 19)", 10, "#/horses", ""],
       ["c-plants",  "Plant types collected (of 43)", 20, "#/plants", ""],
@@ -39,7 +39,7 @@
       ["shacks",    "Shacks found", 5, "#/shacks", ""],
       ["legend",    "Legendary animals killed", 5, "#/legendary", ""],
       ["games",     "Table games played", 4, "", "Poker, blackjack, dominoes and Five Finger Fillet"],
-      ["ranters",   "Ranters, ravers and campaigners interacted with", 5, "", ""],
+      ["ranters",   "Ranters, ravers and campaigners interacted with", 5, "#/characters", ""],
       ["bath",      "Bath taken (at a hotel)", 1, "", ""],
       ["show",      "Show watched", 1, "", ""],
       ["theater",   "Theater visited (Théâtre Râleur, Saint Denis)", 1, "", ""],
@@ -54,7 +54,8 @@
     challenges: "challenges.categories", legend: "legendary.kills", "c-horses": "horses.breeds", bond: "horses.bond",
     "c-weapons": "weapons.used", strangers: "strangers.counted", "c-plants": "plants.species", bounties: "bounties.counted",
     hideouts: "hideouts.counted", "c-gangs": "hideouts.gangs", chance: "encounters.counted", recipes: "recipes.counted",
-    poi: "poi.counted", shacks: "shacks.counted"
+    poi: "poi.counted", shacks: "shacks.counted", story: "missions.story", hunting: "hunting.all",
+    "c-fish": "fish.species", ranters: "characters.counted"
   };
   const groups = SECTIONS.map(s => ({
     id: RDR.slug(s.title), title: s.title,

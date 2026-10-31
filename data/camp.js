@@ -39,7 +39,7 @@
     "For antlers you need a <strong>male</strong>: a bull elk, a bull moose or a buck. You get the antlers when you skin it.",
     "Your horse carries only one large carcass or one large pelt at a time, so plan short trips and bring everything straight to Pearson. Carcasses rot over time.",
     "The Boar Skin Rug needs 4 boar pelts. If you also craft the satchels, you need 6 perfect boar pelts in total.",
-    "Pearson only crafts in camp (chapter 2 through 6), so collect everything before the epilogue."
+    "Pearson only crafts in camp (chapter 2 through 6), so collect everything before the epilogue. The other camp upgrades from the ledger, and the gang's item requests, are on <a href=\"#/camplife\">Camp life</a>."
   ],
     sources: [
     [
