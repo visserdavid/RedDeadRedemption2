@@ -1,0 +1,8 @@
+# Store and check out text files with LF line endings on every platform,
+# regardless of the local core.autocrlf setting.
+* text=auto eol=lf
+
+# Binary files: never convert or diff as text.
+*.woff2 binary
+*.jpg   binary
+*.png   binary
