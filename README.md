@@ -8,8 +8,8 @@ Checklists for everything you can collect, hunt and complete in **Red Dead Redem
 
 ## Features
 
-- **29 checklists**, grouped like a table of contents:
-  - **Hunting & camp:** satchels, camp decorations, camp upgrades and gang item requests, legendary animals, hunting requests, trinkets & talismans
+- **30 checklists**, grouped like a table of contents:
+  - **Hunting & camp:** satchels, camp decorations, camp upgrades and gang item requests, legendary animals, hunting requests, trinkets & talismans, and the Trapper (clothing, saddles, hat accessories and his 16 outfits, with a shopping list of pelts)
   - **Gear:** horses, weapons, exotics, plants, recipes
   - **The world:** collectibles (dinosaur bones, dreamcatchers, rock carvings, graves), points of interest, shacks, homestead stashes, special characters, legendary fish and fish species
   - **Missions:** all 110 story missions with Gold Medals, stranger missions, bounties, gang hideouts, chance encounters

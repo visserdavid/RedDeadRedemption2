@@ -8,7 +8,7 @@
 //   filter?                – text for the "hide checked" toggle (pref <id>.hide)
 //   sections               – array (or function returning an array) of { type, ... }:
 //       checklist  groups of checkboxes      { groups:[{ id, title, items, finish? }], fields?, columns?, grid?, numbered? }
-//       cards      one card per item         { id, items:[{ id, name, checks?, fields? }], layout?: "animal" }
+//       cards      one card per item         { id, items:[{ id, name, checks?, fields? }], layout?: "animal", all? }
 //       table      rows with optional box    { id, rows, columns:[[heading, row => html, class?]], check?: false, checks?:[[id, label]] }
 //       counters   counters (−/+)            { groups:[{ id, title, items:[{ id, name, max, auto? }] }] }
 //       html       free content              { html }
@@ -223,14 +223,14 @@ window.RDR = (() => {
             ${it.note ? `<p class="small muted">${it.note}</p>` : ""}
             ${s.live ? `<p class="small" data-live></p>` : ""}
             <ul class="checks">${it.checks.map((c, i) =>
-              `<li${i === it.checks.length - 1 ? ' class="sep"' : ""}>${box(c.key, c.label)}</li>`).join("")}</ul>
+              `<li${!s.all && i === it.checks.length - 1 ? ' class="sep"' : ""}>${box(c.key, c.label)}</li>`).join("")}</ul>
           </section>`).join("")}</div>`,
       refresh: (def, s, el) => {
         s.items.forEach(it => {
           const card = el.querySelector(`[data-card="${it.id}"]`);
           const have = count(it.checks.map(c => c.key));
-          // With layout "animal" every box must be checked; otherwise the last box counts (e.g. "Crafted").
-          const done = s.layout === "animal" ? have === it.checks.length : !!get(it.checks[it.checks.length - 1].key);
+          // With layout "animal" or `all` every box must be checked; otherwise the last box counts (e.g. "Crafted").
+          const done = s.layout === "animal" || s.all ? have === it.checks.length : !!get(it.checks[it.checks.length - 1].key);
           card.classList.toggle("done", done);
           card.hidden = pref(`${def.id}.hide`) && done;
           const haveEl = card.querySelector(".have");

@@ -70,7 +70,7 @@ console.log("Seed");
 // Progress as the app stores it; the old Dutch-era "rdr2-v2" key must be ignored.
 const SEED = {
   "weapons.revolvers.flacos-revolver": true, "exotics.r2.heron": 7, "exotics.r1.done": true, "exotics.prep.start": true,
-  "legendary.animals.bear.kill": true, "legendary.animals.bear.fence": true, "legendary.trapper.bearhat": true, "legendary.extras.crow": true,
+  "legendary.animals.bear.kill": true, "legendary.animals.bear.fence": true, "legendary.trapper.bearhat": true, "trapper.gloves.boar-riding-gloves": true, "legendary.extras.crow": true,
   "trinkets.ingredients.quartz-chunk": true, "satchels.leather": true, "satchels.pelt:valuables:deer": true, "camp.craft:bones": true,
   "collectibles.graves.davey-callander": true, "collectibles.bones.done": true, "cigcards.horses.done": true, "cigcards.gems.hattie-langtry": true,
   "treasure.jackhall.treasure-found-at-ocreaghs-run": true, "challenges.explorer.find-the-first-treasure-map": true,
@@ -100,13 +100,13 @@ check("old rdr2-v2 storage is ignored", !(await checked("weapons.revolvers.cattl
 // ---------- 2. Every route ----------
 console.log("Routes");
 const EXPECT = { // minimum number of checkboxes (data-key) per route
-  satchels: 36, camp: 46, legendary: 88, trinkets: 30, horses: 41, weapons: 65, exotics: 6, plants: 43, recipes: 55,
+  satchels: 36, camp: 46, legendary: 88, trinkets: 30, trapper: 198, horses: 41, weapons: 65, exotics: 6, plants: 43, recipes: 55,
   collectibles: 72, fish: 20, poi: 50, shacks: 19, strangers: 26, bounties: 14, hideouts: 15, encounters: 113, challenges: 90,
   cigcards: 156, treasure: 30, explorer: 10, gold: 4, hundred: 0,
   missions: 220, hunting: 27, camplife: 38, homesteads: 7, characters: 28, trophies: 0
 };
 const routes = await ev(`[...document.querySelectorAll("nav a")].map(a => a.getAttribute("href").slice(2))`);
-check("navigation: overview + 29 lists", routes.length === 30, routes.length);
+check("navigation: overview + 30 lists", routes.length === 31, routes.length);
 for (const r of routes) {
   errors.length = 0;
   await hash(r);
@@ -172,7 +172,7 @@ await go("plants");
 check("plants: orchid shows Exotics count", (await ev(`document.querySelector('[data-exotic="r1.ladynight"]').textContent`)) === "15");
 
 await go("");
-check("overview: 29 list cards", (await n("[data-list]")) === 29);
+check("overview: 30 list cards", (await n("[data-list]")) === 30);
 
 // The lists added from research, and their automatic links.
 await go("missions");
@@ -187,11 +187,20 @@ check("100%: story still 0 (only one mission done)", (await auto("missions-and-e
 await go("trophies");
 check("trophies: Paying Respects counts the seeded grave", (await ev(`document.querySelector('[data-auto="trophies.completion.respects"]').textContent`)) === "1");
 check("trophies: Back in the Mud counts chapter 1 missions", (await ev(`document.querySelector('[data-auto="trophies.story.mud"]').textContent`)) === "1");
+// Trapper: legendary pieces share their key with the legendary page, outfits count shared pieces.
+await go("trapper");
+check("trapper: Legendary Bear Head Hat shared with legendary", await checked("legendary.trapper.bearhat"));
+for (const k of ["legendary.trapper.bearcoat", "legendary.trapper.bearroper"]) await click(`[data-key="${k}"]`);
+check("trapper: The Bear Hunter complete", await ev(`document.querySelector('[data-card="the-bear-hunter"]').classList.contains("done")`));
+check("trapper: outfits meter 1 / 16", (await meters()).startsWith("1 / 16"), await meters());
+check("trapper: shopping list skips bought items", !(await ev(`document.querySelector('[data-need="pelts"]').textContent.includes("Legendary Bear Coat")`)));
+await go("legendary");
+check("legendary: Bear Coat bought on the trapper page", await checked("legendary.trapper.bearcoat"));
 await go("camplife");
 check("camp life: Leather Working Tools shares the satchels key", await checked("satchels.leather"));
 
 // Grouped navigation and the day/night button.
-check("nav: every list in a group", (await n(".toc-group a")) === 29, await n(".toc-group a"));
+check("nav: every list in a group", (await n(".toc-group a")) === 30, await n(".toc-group a"));
 check("nav: no 'Other' group", !(await ev(`[...document.querySelectorAll(".toc-label")].some(l => l.textContent === "Other")`)));
 const theme = () => ev(`document.documentElement.dataset.theme || ""`);
 await click("#theme");

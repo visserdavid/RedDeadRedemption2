@@ -38,6 +38,7 @@ The format of a list definition is documented in the header comment of this file
 - **Duplicates:** keys must be unique within a list. Duplicates are reported with `console.error`, and the smoke test then fails.
 - **Shared items use explicit absolute keys** (`key:` on an item or check) instead of copying state.
   - Trinkets reuses `legendary.animals.<id>.fence` and `legendary.extras.<id>`.
+  - Trapper reuses `legendary.trapper.<id>` for the legendary clothing (its data, with structured materials, stays in `data/legendary.js`). Trapper materials are the ids of `RDR.MATS` in `data/animals.js`.
   - Explorer reuses `challenges.explorer.*`.
   - Satchels and camp share `satchels.leather`.
 - **Reset** deletes only the keys rendered on the current page, so a shared key is cleared from either page.
