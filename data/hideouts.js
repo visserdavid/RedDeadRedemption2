@@ -57,6 +57,7 @@
   ],
     sections: [
       { type: "cards", id: "hideouts", title: "Hideouts", checkLabel: "<strong>Cleared</strong>", doneText: "✓ cleared",
+        src: [["rdr2.org (gang hideouts)", "https://www.rdr2.org/guides/red-dead-redemption-2-gang-hideouts-guide/"], ["PowerPyx (map)", "https://www.powerpyx.com/red-dead-redemption-2-all-gang-hideout-locations/"]],
         items: hideouts.map(([id, name, gang, where, when, counts, tags, tip]) => ({
           id, name, counts, tags: [counts ? "100%" : "does not count", ...tags],
           fields: [["Gang", gang], ["Where", where], ["When", when]], note: tip

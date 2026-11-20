@@ -18,7 +18,9 @@
       ["PowerPyx (count and 100%)", "https://www.powerpyx.com/red-dead-redemption-2-all-shack-locations/"],
       ["GamingBolt (what counts)", "https://gamingbolt.com/red-dead-redemption-2-guide-shacks-for-100-completion-and-fence-locations"]
     ],
-    sections: [{ type: "checklist", columns: true, groups: [{ id: "shacks", title: "Shacks (19)", items: [
+    sections: [{ type: "checklist", columns: true,
+      src: ["SegmentNext (all 19 shacks)", "https://segmentnext.com/red-dead-redemption-2-shacks-locations-guide/"],
+      groups: [{ id: "shacks", title: "Shacks (19)", items: [
       ["Dormin Crest", "In the icy northwest, west of Spider Gorge. Cigarette card and provisions."],
       ["Fairvale Shanty", "East of Calumet Ravine, north of O'Creagh's Run. Bodies, a gold nugget, a platinum pocket watch and jewelry."],
       ["Snowfield", "South of Dormin Crest, west of Lake Isabella. A locked drawer holds a note with a cheat code."],

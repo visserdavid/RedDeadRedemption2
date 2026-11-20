@@ -64,7 +64,8 @@
         items: herbs.map(([id, name, where, use, tag]) => ({ id, name, where, note: `<em>Use:</em> ${use}`, tag })) }] },
       { type: "checklist", title: "Orchids (13)", columns: true,
         intro: "Orchids grow mainly in the swamps of Lemoyne (Bayou Nwa, Bluewater Marsh) and in Roanoke Ridge, on trees or on the ground (see the tag). How many you already have for the <a href=\"#/exotics\">Exotics</a> is shown with each one.",
-        groups: [{ id: "orchids", title: "Orchids", items: orchids().map(([r, [id, name, need, tag]]) => ({
+        groups: [{ id: "orchids", title: "Orchids",
+          src: [["PowerPyx (orchid map)", "https://www.powerpyx.com/red-dead-redemption-2-plants-locations/"], ["rdr2.org (orchids)", "https://www.rdr2.org/guides/herbs-and-orchids-guide/"]], items: orchids().map(([r, [id, name, need, tag]]) => ({
           id, name, tag, where: `Exotics ${r.name.toLowerCase()}: <span data-exotic="${r.id}.${id}"></span> / ${need}`
         })) }] }
     ],

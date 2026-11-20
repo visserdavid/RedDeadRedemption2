@@ -20,7 +20,9 @@
       ["GIGA (interessante Orte, German)", "https://www.giga.de/spiele/red-dead-redemption-2/gallery/red-dead-redemption-2-alle-interessanten-orte-fundorte-auf-der-karte/"],
       ["PowerPyx (100%)", "https://www.powerpyx.com/red-dead-redemption-2-100-guide-checklist/"]
     ],
-    sections: [{ type: "checklist", columns: true, groups: [
+    sections: [{ type: "checklist", columns: true,
+      src: [["PixelTwelve (all 50 by region)", "https://pixeltwelve.com/articles/red-dead-redemption-2-points-of-interest"], ["rdr2.org (map)", "https://rdr2.org/guides/points-of-interest-guide"]],
+      groups: [
       { id: "newhanover", title: "New Hanover (17)", items: [
         ["Abandoned Trading Post", "North of Roanoke Valley"],
         ["Brush Fire", "The Heartlands, south of Valentine"],

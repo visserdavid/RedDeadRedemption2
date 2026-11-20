@@ -45,8 +45,10 @@ The format of a list definition is documented in the header comment of this file
 
 ### Guide links per item
 
-- Puzzles and hard-to-find spots (treasure hunts, the Strange Statues, the vampire, …) get `src: [label, url]` (or a list of pairs) on their checklist group, checklist item or card. It renders as "Guide: label ↗" in a new tab.
-- Every `src` url must also be in that list's `sources`; the smoke test checks this per page. Ordinary items do not get one: the page-level sources cover them.
+- Puzzles and everything at a fixed spot get `src: [label, url]` (or a list of pairs). It renders as "Guide: label ↗" in a new tab.
+  - Put it as high as it stays true: on the section or checklist group when one map guide covers all of it (collectibles, POI, cigarette cards, …), and on the single item or card when only that one has a fixed spot (unique weapons, the White Arabian, …).
+  - In a table column, use `RDR.guide(src)`.
+- Every `src` url must also be in that list's `sources`; the smoke test checks this per page. Things without a fixed spot (shop items, animals that roam an area, herbs) do not get one.
 
 ### Styling
 

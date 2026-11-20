@@ -27,6 +27,10 @@
     [
       "rdr2.org (gunslingers)",
       "https://www.rdr2.org/guides/the-noblest-of-men-and-a-woman-stranger-mission-guide/"
+    ],
+    [
+      "rdr2.org (Ornate Dagger)",
+      "https://www.rdr2.org/guides/saint-denis-vampire-guide/"
     ]
   ],
     sections: [
@@ -42,8 +46,8 @@
       ["Granger's Revolver", "Pick it up after the duel with Emmet Granger (<em>The Noblest of Men, and a Woman</em>)", "Missable"],
       ["Calloway's Revolver", "Pick it up after the final duel, with Jim Calloway (<em>The Noblest of Men, and a Woman</em>)", "Missable"],
       ["Algernon's Revolver", "Reward for the last <a href=\"#/exotics\">Exotics</a> request for Algernon Wasp", "Unique"],
-      ["Otis Miller's Revolver", "In a chest in a small cave on the northern edge of Cholla Springs (see <a href=\"#/treasure\">Mended Treasure Map</a>)", "Epilogue"],
-      ["Micah's Revolver", "After the end of the epilogue: go back to Mount Hagen and take it from the frozen body", "Epilogue"],
+      { name: "Otis Miller's Revolver", where: "In a chest in a small cave on the northern edge of Cholla Springs (see <a href=\"#/treasure\">Mended Treasure Map</a>)", tag: "Epilogue", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
+      { name: "Micah's Revolver", where: "After the end of the epilogue: go back to Mount Hagen and take it from the frozen body", tag: "Epilogue", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
       ["John's Cattleman Revolver", "You get it automatically in the epilogue", "Epilogue"]
     ] },
     { id: "pistols", title: "Pistols", items: [
@@ -73,7 +77,7 @@
       ["Pump-Action Shotgun", "At any gunsmith, from chapter 2"],
       ["Semi-Auto Shotgun", "At any gunsmith, from chapter 4"],
       ["Repeating Shotgun", "At any gunsmith, from chapter 6"],
-      ["Rare Shotgun", "From chapter 2, a man in a cabin north of Annesburg has this weapon", "Unique"]
+      { name: "Rare Shotgun", where: "From chapter 2, a man in a cabin north of Annesburg has this weapon", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] }
     ] },
     { id: "bow", title: "Bow", items: [
       ["Bow", "You get it automatically early in the game"]
@@ -85,7 +89,7 @@
       ["Tomahawk", "At any gunsmith, from chapter 2"],
       ["Improved Tomahawk", "Craft it yourself", "Crafting"],
       ["Homing Tomahawk", "Craft it yourself", "Crafting"],
-      ["Ancient Tomahawk", "Stuck in a broken shooting target in eastern Calumet Valley", "Unique"],
+      { name: "Ancient Tomahawk", where: "Stuck in a broken shooting target in eastern Calumet Valley", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
       ["Dynamite", "You get it automatically in chapter 1"],
       ["Volatile Dynamite", "Craft it yourself", "Crafting"],
       ["Fire Bottle", "You get it automatically during the story"],
@@ -99,18 +103,19 @@
       ["Machete", "At any gunsmith, from chapter 5"],
       ["Cleaver", "At any gunsmith, from chapter 5"],
       ["Hatchet", "At any gunsmith, from chapter 5"],
-      ["Civil War Knife", "In a chest in the cellar of Fort Brennand, southwest of Van Horn", "Unique"],
+      { name: "Civil War Knife", where: "In a chest in the cellar of Fort Brennand, southwest of Van Horn", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
       ["Jawbone Knife", "Reward for all 30 <a href=\"#/collectibles\">dinosaur bones</a>", "Unique"],
-      ["Wide-Blade Knife", "On a body in the Beryl's Dream mine, west of Mount Shann", "Unique"],
-      ["Antler Knife", "Next to a dead bear northwest of Hanging Dog Ranch", "Unique"],
-      ["Ornate Dagger", "From the vampire in Saint Denis, after you have found 5 markings on walls", "Unique"],
-      ["Broken Pirate Sword", "In a wreck on the islet south of the bridge at Saint Denis", "Unique"],
-      ["Viking Hatchet", "In an old Viking grave on the south side of Roanoke Valley", "Unique"],
-      ["Double Bit Hatchet", "On a tree stump northwest of Wallace Station", "Unique"],
-      ["Rusted Double Bit Hatchet", "On a tree stump in Annesburg, just north of the coal mine", "Unique"],
-      ["Hunter Hatchet", "On a tree stump at a cabin south of Window Rock", "Unique"],
-      ["Rusted Hunter Hatchet", "On a tree stump at a cabin between Elysian Pool and O'Creagh's Run", "Unique"],
-      ["Hewing Hatchet", "On a tree stump on the southern edge of Moonstone Pond", "Unique"],
+      { name: "Wide-Blade Knife", where: "On a body in the Beryl's Dream mine, west of Mount Shann", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
+      { name: "Antler Knife", where: "Next to a dead bear northwest of Hanging Dog Ranch", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
+      { name: "Ornate Dagger", where: "From the vampire in Saint Denis, after you have found 5 markings on walls", tag: "Unique",
+        src: ["rdr2.org (the five notes)", "https://www.rdr2.org/guides/saint-denis-vampire-guide/"] },
+      { name: "Broken Pirate Sword", where: "In a wreck on the islet south of the bridge at Saint Denis", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
+      { name: "Viking Hatchet", where: "In an old Viking grave on the south side of Roanoke Valley", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
+      { name: "Double Bit Hatchet", where: "On a tree stump northwest of Wallace Station", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
+      { name: "Rusted Double Bit Hatchet", where: "On a tree stump in Annesburg, just north of the coal mine", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
+      { name: "Hunter Hatchet", where: "On a tree stump at a cabin south of Window Rock", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
+      { name: "Rusted Hunter Hatchet", where: "On a tree stump at a cabin between Elysian Pool and O'Creagh's Run", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
+      { name: "Hewing Hatchet", where: "On a tree stump on the southern edge of Moonstone Pond", tag: "Unique", src: ["PowerPyx (location)", "https://www.powerpyx.com/red-dead-redemption-2-all-weapons-locations/"] },
       ["Stone Hatchet", "Only if you completed a certain treasure hunt in GTA Online (old bonus)", "Version"]
     ] }
   ] }

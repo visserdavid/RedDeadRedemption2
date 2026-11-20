@@ -42,6 +42,11 @@
     ["ardennes",  "Strawberry Roan Ardennes",          "Van Horn stable, from chapter 6. A war horse that does not spook easily."],
     ["tiger",     "Tiger Striped Bay Mustang",         "Free. Roams wild around Fort Mercer (New Austin, epilogue)."]
   ];
+  // Guides for the special horses at a fixed spot outside the stables.
+  const SRC = {
+    whitearab: ["Sportskeeda (White Arabian)", "https://www.sportskeeda.com/esports/red-dead-redemption-2-find-tame-white-arabian-horse"],
+    buell: ["GTABase (Buell)", "https://www.gtabase.com/red-dead-redemption-2/horses/cremello-dutch-warmblood"]
+  };
   const bondLevels = ["Level 1", "Level 2", "Level 3", "Level 4 (needed for 100%)"];
   RDR.list({
     id: "horses", title: "Horses", order: 50, group: "Gear",
@@ -86,9 +91,10 @@
       { type: "html", html: "<div class=\"card\"> <ul class=\"tips small spaced\"> <li>The bond grows by <strong>riding</strong>, <strong>patting</strong> your horse (especially after a ride or when it gets spooked), <strong>brushing</strong> and <strong>feeding</strong> it.</li> <li>Do not let your horse die: with a new horse the bond starts at level 1 again. If you carry a Horse Reviver, you can save a wounded horse.</li> <li>Each level gives your horse more health and stamina and a new trick.</li> </ul> </div>" },
       { type: "checklist", title: "Taming wild breeds (Horseman 10)", columns: true,
         intro: "The last <a href=\"#/challenges\">Horseman challenge</a>: tame one horse of each wild breed. Herds are not always there. If you see none, set up camp and sleep for a while, or come back later.",
-        groups: [{ id: "wild", title: "Wild breeds", items: wild.map(([id, name, where]) => ({ id, name: `Wild ${name}`, where })) }] },
+        groups: [{ id: "wild", title: "Wild breeds", items: wild.map(([id, name, where]) => ({ id, name: `Wild ${name}`, where })),
+          src: [["PowerPyx (map)", "https://www.powerpyx.com/red-dead-redemption-2-wild-horse-breed-locations/"], ["rdr2.org (map)", "https://www.rdr2.org/guides/wild-horse-locations-guide/"]] }] },
       { type: "cards", id: "special", title: "Special horses", intro: "Worth owning: free wild horses, rewards and the best stable horses.",
-        checkLabel: "<strong>Owned</strong>", items: special.map(([id, name, desc]) => ({ id, name, desc })) },
+        checkLabel: "<strong>Owned</strong>", items: special.map(([id, name, desc]) => ({ id, name, desc, src: SRC[id] })) },
       { type: "table", id: "breeds", title: "All breeds (compendium)", fields: ["id", "name", "type", "where"], rows: breeds,
         columns: [["Breed", r => r.name], ["Type", r => r.type || "–", "small muted"], ["Where to find", r => r.where, "small"]] }
     ],

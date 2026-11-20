@@ -32,6 +32,7 @@
   ],
     sections: [{
       type: "checklist", grid: true,
+      src: [["gamers.wiki (all 144 locations)", "https://gamers.wiki/en/games/red-dead-redemption-2/guides/rdr2-cigarette-cards-all-144-locations-and-set-rewards"], ["GamesRadar (by region)", "https://www.gamesradar.com/red-dead-redemption-2-cigarette-card-locations/"]],
       groups: [
     { id: "inventions", title: "Amazing Inventions", reward: "Volatile Dynamite + $100", items: [
       ["Steam Locomotive", ""], ["Camera", ""], ["Electrical Execution Apparatus", ""], ["Typewriter", ""],

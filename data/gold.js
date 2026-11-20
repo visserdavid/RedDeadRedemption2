@@ -63,6 +63,7 @@
           ["When", r => r.h.meta, "small"],
           ["Status", r => found(r.h) ? "✓ found" : `${RDR.count(r.h.keys)}/${r.h.items.length} steps`, "small"]] },
       { type: "cards", id: "fixed", title: "Fixed locations", checkLabel: "<strong>Found</strong>",
+        src: ["GameSkinny (locations)", GAMESKINNY[1]],
         items: fixed.map(([id, name, n, where, when, tags]) => ({ id, name, bars: n, tags: tags.length ? tags : null, desc: where, note: when, src: SRC[id] })),
         status: it => `${it.bars} ${it.bars === 1 ? "bar" : "bars"}` }
     ],

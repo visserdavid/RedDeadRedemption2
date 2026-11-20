@@ -54,7 +54,9 @@
       "https://segmentnext.com/2018/10/28/red-dead-redemption-2-bounty-hunting-locations"
     ]
   ],
-    sections: [{ type: "checklist", grid: true, groups: offices.map(o => ({ ...o, items: o.items.map(([id, name, where, req, tags]) =>
+    sections: [{ type: "checklist", grid: true,
+      src: ["PowerPyx (bounty locations)", "https://www.powerpyx.com/red-dead-redemption-2-bounty-locations/"],
+      groups: offices.map(o => ({ ...o, items: o.items.map(([id, name, where, req, tags]) =>
       ({ id, name, strong: true, where, note: req && `<em>${req}</em>`, tags })) })) }],
     metrics: {
       done: () => RDR.ratio(keys()),

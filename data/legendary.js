@@ -147,6 +147,7 @@
     legends, extras, animalKey, trapper,
     sections: [
       { type: "cards", id: "animals", title: "Per animal", layout: "animal",
+        src: [["rdr2.org (map)", "https://www.rdr2.org/guides/legendary-animals-locations-guide/"], ["PowerPyx (map)", "https://www.powerpyx.com/red-dead-redemption-2-legendary-animals-locations/"]],
         items: legends.map(l => ({
           id: l.id, name: l.name, sub: l.short,
           fields: [["Where", l.where], ...(l.req ? [["Requirement", l.req]] : []),

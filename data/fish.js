@@ -8,7 +8,7 @@
         ["Bought Special River Lure", "Bait Shop in Lagras"],
         ["Bought Special Swamp Lure", "Bait Shop in Lagras"]
       ] },
-    { id: "fish", title: "The 13 legendary fish",
+    { id: "fish", title: "The 13 legendary fish", src: [["rdr2.org (map)", "https://www.rdr2.org/guides/legendary-fish-locations-guide/"], ["PowerPyx (map)", "https://www.powerpyx.com/red-dead-redemption-2-all-legendary-fish-locations/"]],
       intro: "All 13 are needed for 100% and to complete Jeremy's mission.",
       finish: "All 13 sent to Jeremy Gill from a post office",
       items: [
@@ -26,7 +26,7 @@
         ["Legendary Redfin Pickerel", "Stillwater Creek, east of MacFarlane's Ranch (Great Plains)", "Lake Lure"],
         ["Legendary Largemouth Bass", "San Luis River, west of Lake Don Julio (New Austin, epilogue). The guides list both the Lake and the River lure here, so bring both.", "Lake/River Lure"]
       ] },
-    { id: "bonus", title: "Bonus: Legendary Channel Catfish",
+    { id: "bonus", title: "Bonus: Legendary Channel Catfish", src: [["rdr2.org (map)", "https://www.rdr2.org/guides/legendary-fish-locations-guide/"], ["PowerPyx (map)", "https://www.powerpyx.com/red-dead-redemption-2-all-legendary-fish-locations/"]],
       intro: "Not needed for 100%. A day or two after you have sent in all 13 fish, John gets an invitation from Jeremy Gill to Rio Bravo (New Austin, epilogue).",
       items: [
         ["Received Jeremy Gill's invitation", "After sending in all 13 fish"],

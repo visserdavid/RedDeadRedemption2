@@ -90,7 +90,9 @@
   ],
     sections: [
       { type: "html", title: "Watch out: missable", html: "<div class=\"card\"> <ul class=\"tips\"> <li><strong>Fundraiser</strong> and <strong>The Widow of Willard's Rest</strong> are only available up to and including chapter 6.</li> <li><strong>Help a Brother Out</strong> can only be done in chapter 4.</li> <li>These three do not count for 100%. If you miss them, you only miss the story.</li> </ul> </div>" },
-      { type: "checklist", columns: true, groups: chapters.map(c => ({ ...c, items: c.items.map(s => ({
+      { type: "checklist", columns: true,
+        src: ["PowerPyx (start locations map)", "https://www.powerpyx.com/red-dead-redemption-2-all-stranger-locations-map/"],
+        groups: chapters.map(c => ({ ...c, items: c.items.map(s => ({
         id: s.id, name: s.name, strong: true, counts: s.counts,
         tag: s.counts ? "100%" : "does not count",
         where: `${s.who ? `${s.who} · ` : ""}${s.where}`,

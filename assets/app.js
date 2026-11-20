@@ -15,8 +15,9 @@
 //       custom     own rendering             { render(def), refresh(def, el) }
 //   metrics        – { name: () => ({ have, total }) }, read with RDR.metric("<id>.<name>")
 //   meters         – [["name", "label"], ...] at the top of the page and on the overview
-//   src?           – on a checklist group, a checklist item or a card: a guide for that one puzzle or hard-to-find
-//                    spot, as [label, url] or [[label, url], ...]. Every src url must also be in the list's sources.
+//   src?           – on a section, a checklist group, a checklist item or a card: a guide for a puzzle or for things
+//                    at a fixed spot, as [label, url] or [[label, url], ...]. Every src url must also be in the
+//                    list's sources. In a table column, RDR.guide(src) gives the same link.
 //
 // Storage keys are stable: <list>.<group/section>.<item-id>[.<check>]; item-id = id or slug(name).
 window.RDR = (() => {
@@ -379,6 +380,7 @@ window.RDR = (() => {
       ${sectionsOf(def).map((s, i) => `
         ${s.title ? `<h2>${s.title}</h2>` : ""}
         ${s.intro ? `<p class="muted small">${s.intro}</p>` : ""}
+        ${s.src ? `<p class="small guide">${srcHTML(s.src)}</p>` : ""}
         ${s.filter ? filterHTML(`${def.id}.${s.filter[0]}`, s.filter[1]) : ""}
         <div data-sec="${i}" class="sec">${R[s.type].html(def, s)}</div>`).join("")}
       <p class="gap"><button id="reset">Reset all</button></p>
@@ -455,7 +457,7 @@ window.RDR = (() => {
 
   return {
     list, setHome, lists, start,
-    slug, tag, box, sum,
+    slug, tag, box, sum, guide: srcHTML,
     get, count, pref, keysOf, itemsOf, groupsOf, part, metric, ratio, capped
   };
 })();

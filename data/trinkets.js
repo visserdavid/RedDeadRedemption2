@@ -12,6 +12,11 @@
     "Silver Earring":              "Loot from bodies. If you loot a lot, you probably already have one.",
     "Old Brass Compass":           "At Francis Sinclair's cabin, after all 10 <a href=\"#/collectibles\">rock carvings</a>."
   };
+  // Guides for the ingredients that lie at one fixed spot.
+  const INGREDIENT_SRC = {
+    "Cobalt Petrified Wood":  ["Prodigy Gamers", "https://prodigygamers.com/2018/10/29/red-dead-redemption-2-how-to-get-all-six-talismans"],
+    "Abalone Shell Fragment": ["rdr2.org", "https://www.rdr2.org/guides/abalone-shell-fragment-guide/"]
+  };
   const ingKey = name => `trinkets.ingredients.${RDR.slug(name)}`;
   // Items you do not craft at the Fence, but receive directly.
   const GIFTS = ["owl", "iguana", "eagle", "crow"];
@@ -85,7 +90,7 @@
       { type: "cards", id: "others", title: "Other trinkets", status, items: all().filter(t => t.type === "trinket" && !t.legend).map(card) },
       { type: "table", id: "ingredients", title: "Where to find the extra ingredients",
         rows: Object.entries(INGREDIENTS).map(([name, where]) => ({ id: RDR.slug(name), name, where, key: ingKey(name) })),
-        columns: [["Ingredient", r => r.name], ["Where", r => r.where, "small"],
+        columns: [["Ingredient", r => r.name], ["Where", r => r.where + (INGREDIENT_SRC[r.name] ? `<span class="where">${RDR.guide(INGREDIENT_SRC[r.name])}</span>` : ""), "small"],
           ["For", r => all().filter(t => t.extras.includes(r.name)).map(t => t.name.replace(/ (Trinket|Talisman)$/, "")).join(", "), "small muted"]] }
     ],
     // Whether the part from the legendary animal is already in hand.

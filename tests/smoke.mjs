@@ -125,7 +125,7 @@ for (const r of routes) {
   guides += await n("a.src");
   if (badSrc.length) check(`#/${r} guide links are https, open in a new tab and are in the sources`, false, badSrc.join(", "));
 }
-check("guide links on puzzle items", guides >= 20, guides);
+check("guide links on puzzles and fixed-location items", guides >= 65, guides);
 
 // ---------- 3. Interaction, storage and cross-list links ----------
 console.log("Interaction");

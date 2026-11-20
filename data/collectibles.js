@@ -38,6 +38,7 @@ RDR.list({
     { id: "bones", title: "Dinosaur bones",
       intro: "For Deborah MacGuiness (stranger mission <em>A Test of Faith</em>). You meet her in chapter 2 at Bacchus Station. Send in every location from a post office. A day later she invites you to her cabin at Firewood Rise.",
       finish: "All locations sent in and Deborah visited",
+      src: ["PowerPyx (map)", "https://www.powerpyx.com/red-dead-redemption-2-all-dinosaur-bones-locations/"],
       items: [
         ["Dakota River", "The Heartlands, south of Bacchus Station"],
         ["Dewberry Creek (north)", "The Heartlands"],
@@ -99,6 +100,7 @@ RDR.list({
     { id: "carvings", title: "Rock carvings",
       intro: "For Francis Sinclair (stranger mission <em>Geology for Beginners</em>). His cabin is northwest of Strawberry. Send in the locations from a post office. Afterwards you find the <strong>Old Brass Compass</strong> at his cabin (for the Raven Claw Talisman).",
       finish: "Locations sent in and Old Brass Compass found",
+      src: ["PowerPyx (map)", "https://www.powerpyx.com/red-dead-redemption-2-all-rock-carving-locations/"],
       items: [
         ["Mount Hagen", "Grizzlies West, at the end of the road, in the mountainside"],
         ["Whinyard Strait", "Facing the river"],
@@ -113,6 +115,7 @@ RDR.list({
       ] },
     { id: "graves", title: "Graves",
       intro: "Only after the story (epilogue), as John. Pay your respects at each grave. That earns the trophy/achievement <em>Paying Respects</em>. None of the graves are missable.",
+      src: ["PowerPyx (map)", "https://www.powerpyx.com/red-dead-redemption-2-all-grave-locations/"],
       items: [
         ["Jenny Kirk", "Spider Gorge (Ambarino), in the snow east of a river"],
         ["Davey Callander", "Colter (Ambarino), in the graveyard behind the ruined church"],

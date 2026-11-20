@@ -45,7 +45,8 @@
       ["rdr2.org (special characters)", "https://www.rdr2.org/guides/special-characters-guide/"],
       ["PowerPyx (100%)", "https://www.powerpyx.com/red-dead-redemption-2-100-guide-checklist/"]
     ],
-    sections: [{ type: "checklist", columns: true, groups: [{ id: "people", title: "Characters (28)", items: characters }] }],
+    sections: [{ type: "checklist", columns: true, groups: [{ id: "people", title: "Characters (28)", items: characters,
+      src: ["rdr2.org (special characters)", "https://www.rdr2.org/guides/special-characters-guide/"] }] }],
     metrics: {
       met: () => RDR.ratio(keys()),
       counted: () => RDR.capped(RDR.ratio(keys()), 5)

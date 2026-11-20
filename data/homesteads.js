@@ -31,6 +31,7 @@
       ["GosuNoob (homestead stashes)", "https://www.gosunoob.com/red-dead-redemption-2/homestead-stash-locations-breaking-entering-trophy/"]
     ],
     sections: [{ type: "cards", id: "stashes", checkLabel: "<strong>Stash found</strong>",
+      src: ["PowerPyx (homestead stashes)", "https://powerpyx.com/red-dead-redemption-2-homestead-stash-locations"],
       items: homesteads.map(([id, name, how, note]) => ({ id, name, desc: how, note })) }],
     metrics: { found: () => RDR.ratio(RDR.keysOf("homesteads", "stashes")) },
     meters: [["found", "Stashes found"]]
