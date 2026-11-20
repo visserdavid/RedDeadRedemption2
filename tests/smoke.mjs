@@ -76,7 +76,7 @@ const SEED = {
   "treasure.jackhall.treasure-found-at-ocreaghs-run": true, "challenges.explorer.find-the-first-treasure-map": true,
   "challenges.bandit.hold-up-5-townsfolk": true, "recipes.tonics.potent-health-cure": true, "recipes.meat.tender-pork-loin": true,
   "strangers.c2.noblest": true, "bounties.valentine.swan": true, "hideouts.hideouts.sixpoint": true, "hideouts.gangs.raiders": true,
-  "horses.breeds.arabian": true, "horses.bond.2": true, "horses.wild.morgan": true, "horses.special.buell": true, "plants.herbs.yarrow": true,
+  "horses.breeds.arabian": true, "cheats.money.money": true, "horses.bond.2": true, "horses.wild.morgan": true, "horses.special.buell": true, "plants.herbs.yarrow": true,
   "plants.orchids.ghost": true, "gold.fixed.statues": true, "fish.fish.legendary-bluegill": true, "fish.fish.done": true, "encounters.town.beggar": true,
   "hundred.missions-and-events.strangers": 7, "hundred.miscellaneous.bath": 1
 };
@@ -103,10 +103,10 @@ const EXPECT = { // minimum number of checkboxes (data-key) per route
   satchels: 36, camp: 46, legendary: 88, trinkets: 30, trapper: 198, horses: 41, weapons: 65, exotics: 6, plants: 43, recipes: 55,
   collectibles: 72, fish: 20, poi: 50, shacks: 19, strangers: 26, bounties: 14, hideouts: 15, encounters: 113, challenges: 90,
   cigcards: 156, treasure: 29, explorer: 10, gold: 4, hundred: 0,
-  missions: 220, hunting: 27, camplife: 38, homesteads: 7, characters: 28, trophies: 0
+  missions: 220, hunting: 27, camplife: 38, homesteads: 7, characters: 28, trophies: 0, cheats: 37
 };
 const routes = await ev(`[...document.querySelectorAll("nav a")].map(a => a.getAttribute("href").slice(2))`);
-check("navigation: overview + 30 lists", routes.length === 31, routes.length);
+check("navigation: overview + 31 lists", routes.length === 32, routes.length);
 let guides = 0;
 for (const r of routes) {
   errors.length = 0;
@@ -182,7 +182,7 @@ await go("plants");
 check("plants: orchid shows Exotics count", (await ev(`document.querySelector('[data-exotic="r1.ladynight"]').textContent`)) === "15");
 
 await go("");
-check("overview: 30 list cards", (await n("[data-list]")) === 30);
+check("overview: 31 list cards", (await n("[data-list]")) === 31);
 
 // The lists added from research, and their automatic links.
 await go("missions");
@@ -210,7 +210,7 @@ await go("camplife");
 check("camp life: Leather Working Tools shares the satchels key", await checked("satchels.leather"));
 
 // Grouped navigation and the day/night button.
-check("nav: every list in a group", (await n(".toc-group a")) === 30, await n(".toc-group a"));
+check("nav: every list in a group", (await n(".toc-group a")) === 31, await n(".toc-group a"));
 check("nav: no 'Other' group", !(await ev(`[...document.querySelectorAll(".toc-label")].some(l => l.textContent === "Other")`)));
 const theme = () => ev(`document.documentElement.dataset.theme || ""`);
 await click("#theme");

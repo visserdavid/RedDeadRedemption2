@@ -23,7 +23,7 @@
       groups: [{ id: "shacks", title: "Shacks (19)", items: [
       ["Dormin Crest", "In the icy northwest, west of Spider Gorge. Cigarette card and provisions."],
       ["Fairvale Shanty", "East of Calumet Ravine, north of O'Creagh's Run. Bodies, a gold nugget, a platinum pocket watch and jewelry."],
-      ["Snowfield", "South of Dormin Crest, west of Lake Isabella. A locked drawer holds a note with a cheat code."],
+      ["Snowfield", "South of Dormin Crest, west of Lake Isabella. A locked drawer holds a note with a cheat code (see <a href=\"#/cheats\">Cheat codes</a>)."],
       ["Dodd's Bluff", "South of Window Rock, by the river. Two bloodied bodies, a crowbar and the gold nugget they fought over."],
       ["Clawson's Rest", "West of Valentine, past the Dakota River and the railway. Several bodies, a dime novel and cigarette cards."],
       ["Martha's Swain", "Between Annesburg and Moonstone Pond, near Three Sisters. Provisions and jewelry."],

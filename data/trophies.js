@@ -65,7 +65,8 @@
       "Trophies with a counter fill in <strong>automatically</strong> from the linked list; tick the others yourself. Red Dead Online trophies are not included.",
       "<strong>Missable:</strong> <em>Lending a Hand</em>, <em>Friends With Benefits</em>, <em>Errand Boy</em> and <em>Give to the Poor</em> must be done before the end of chapter 4 or within one playthrough (PowerPyx). Keep a manual save at the start of each chapter.",
       "<em>Skin Deep</em> and <em>Zoologist</em> only count animals in the compendium; Guarma-only animals are not needed.",
-      "On PlayStation the Platinum, <em>Legend of the West</em>, also needs the Red Dead Online trophies."
+      "On PlayStation the Platinum, <em>Legend of the West</em>, also needs the Red Dead Online trophies.",
+      "While a <a href=\"#/cheats\">cheat</a> is active you earn no trophies or achievements and cannot save."
     ],
     sources: [
       ["GTABase (all trophies)", "https://www.gtabase.com/red-dead-redemption-2/guides/red-dead-redemption-2-achievements-trophies-full-list-ps4-xbox-one"],
