@@ -40,7 +40,8 @@
       { name: "Homing Tomahawk", need: "1 Tomahawk, 1 Owl Feather", where: "Pamphlet from the Fence after chapter 2, or in a chest in the collapsed shack south of Moonstone Pond", tag: "Pamphlet",
         src: ["SegmentNext (pamphlet locations)", "https://segmentnext.com/red-dead-redemption-2-crafting-guide"] },
       ["Fire Bottle",             "1 Animal Fat, 1 Gin (or Bourbon, Rum, Brandy)", "Automatically in chapter 2"],
-      ["Volatile Fire Bottle",    "1 Moonshine, 1 Animal Fat",                  "Pamphlet from the Fence after <em>Pouring Forth Oil</em>, or in an abandoned camp northwest of Horseshoe Overlook", "Pamphlet"],
+      { name: "Volatile Fire Bottle", need: "1 Moonshine, 1 Animal Fat", where: "Pamphlet from the Fence after <em>Pouring Forth Oil</em>, or in a chest at the abandoned camp in the burned forest northwest of Horseshoe Overlook", tag: "Pamphlet",
+        src: ["SegmentNext (pamphlet locations)", "https://segmentnext.com/red-dead-redemption-2-crafting-guide"] },
       { name: "Volatile Dynamite", need: "1 Dynamite, 1 Animal Fat, 1 High Velocity Cartridge", where: "Pamphlet from the Fence after <em>American Distillation</em>, or in a chest at Hani's Bethel", tag: "Pamphlet",
         src: ["SegmentNext (pamphlet locations)", "https://segmentnext.com/red-dead-redemption-2-crafting-guide"] }
     ] },
