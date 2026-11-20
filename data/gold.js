@@ -1,6 +1,11 @@
 // Gold bars: fixed locations plus the treasure hunts from the treasure maps.
 (() => {
   const PRICE = 500;
+  const GIGA = ["GIGA (German)", "https://www.giga.de/tipp/red-dead-redemption-2-alle-22-goldbarren-fundorte/"];
+  const RDR2ORG = ["rdr2.org", "https://www.rdr2.org/guides/red-dead-redemption-2-finding-and-selling-gold-bars-guide/"];
+  const GAMESKINNY = ["GameSkinny (statue puzzle)", "https://www.gameskinny.com/tips/red-dead-redemption-2-gold-bar-locations-guide/"];
+  // Guides for the spots that are a puzzle or where the sources disagree.
+  const SRC = { train: [GIGA, RDR2ORG], statues: GAMESKINNY };
   // [id, name, count, where, when, tags]
   const fixed = [
     ["train",      "Derailed train",         2, "An upright train car at Cotorra Springs, in northern Ambarino (rdr2.org says Granite Pass)", "From chapter 2", []],
@@ -58,7 +63,7 @@
           ["When", r => r.h.meta, "small"],
           ["Status", r => found(r.h) ? "✓ found" : `${RDR.count(r.h.keys)}/${r.h.items.length} steps`, "small"]] },
       { type: "cards", id: "fixed", title: "Fixed locations", checkLabel: "<strong>Found</strong>",
-        items: fixed.map(([id, name, n, where, when, tags]) => ({ id, name, bars: n, tags: tags.length ? tags : null, desc: where, note: when })),
+        items: fixed.map(([id, name, n, where, when, tags]) => ({ id, name, bars: n, tags: tags.length ? tags : null, desc: where, note: when, src: SRC[id] })),
         status: it => `${it.bars} ${it.bars === 1 ? "bar" : "bars"}` }
     ],
     metrics: {

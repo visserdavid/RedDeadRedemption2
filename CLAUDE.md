@@ -43,6 +43,11 @@ The format of a list definition is documented in the header comment of this file
   - Satchels and camp share `satchels.leather`.
 - **Reset** deletes only the keys rendered on the current page, so a shared key is cleared from either page.
 
+### Guide links per item
+
+- Puzzles and hard-to-find spots (treasure hunts, the Strange Statues, the vampire, …) get `src: [label, url]` (or a list of pairs) on their checklist group, checklist item or card. It renders as "Guide: label ↗" in a new tab.
+- Every `src` url must also be in that list's `sources`; the smoke test checks this per page. Ordinary items do not get one: the page-level sources cover them.
+
 ### Styling
 
 - **Theme:** `assets/style.css` styles the app as an 1899 newspaper/poster. All colours are CSS variables, with a light set and a dark set ("leather & lamplight").

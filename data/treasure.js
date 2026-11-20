@@ -21,6 +21,26 @@
     [
       "Push Square (High Stakes)",
       "https://pushsquare.com/guides/red-dead-redemption-2-all-high-stakes-treasure-map-locations"
+    ],
+    [
+      "Push Square (Poisonous Trail)",
+      "https://www.pushsquare.com/guides/red-dead-redemption-2-all-poisonous-trail-treasure-map-locations"
+    ],
+    [
+      "rdr2.org (Le Trésor des Morts)",
+      "https://www.rdr2.org/guides/le-tresor-des-morts-treasure-hunt-guide/"
+    ],
+    [
+      "rdr2.org (Landmarks of Riches)",
+      "https://www.rdr2.org/guides/landmark-of-riches-treasure-hunt/"
+    ],
+    [
+      "rdr2.org (Elemental Trail)",
+      "https://www.rdr2.org/guides/elemental-trail-treasure-hunt/"
+    ],
+    [
+      "rdr2.org (torn treasure maps)",
+      "https://www.rdr2.org/guides/torn-treasure-maps-guide/"
     ]
   ],
     sections: [{
@@ -29,6 +49,7 @@
       groups: [
     { id: "jackhall", title: "Jack Hall Gang", gold: 2, meta: "From chapter 2",
       intro: "Reward: 2 gold bars ($1000).",
+      src: ["rdr2.org (Jack Hall Gang)", "https://www.rdr2.org/guides/jack-hall-gang-treasure-hunt-guide/"],
       items: [
         ["Map 1 bought", "From Maximo at Flatneck Station (stranger mission <em>All That Glitters</em>), for $10, or $5 if you haggle"],
         ["Map 2 found at Caliban's Seat", "Follow the ledges on the right-hand side to a crack in the rock face"],
@@ -37,6 +58,7 @@
       ] },
     { id: "poison", title: "Poisonous Trail", gold: 4, meta: "From chapter 2",
       intro: "Reward: 4 gold bars ($2000).",
+      src: ["Push Square (Poisonous Trail)", "https://www.pushsquare.com/guides/red-dead-redemption-2-all-poisonous-trail-treasure-map-locations"],
       items: [
         ["Map 1 found in Cairn Lodge", "In the snowy northwest. The map is in a small box under the bed."],
         ["Map 2 found", "A hill with a fallen tree and a dead tree still standing. The map is in the dead tree."],
@@ -45,6 +67,7 @@
       ] },
     { id: "highstakes", title: "High Stakes", gold: 3, meta: "From chapter 3",
       intro: "Reward: 3 gold bars ($1500).",
+      src: ["Push Square (High Stakes)", "https://pushsquare.com/guides/red-dead-redemption-2-all-high-stakes-treasure-map-locations"],
       items: [
         ["Map 1 from the treasure hunter", "A random encounter with a treasure hunter. Catch him with your lasso and hogtie him to get the map."],
         ["Map 2 found at Cumberland Falls", "Behind the waterfall, along the tree trunk on the right-hand side"],
@@ -53,6 +76,7 @@
       ] },
     { id: "tresor", title: "Le Trésor des Morts", gold: 6, meta: "Special/Ultimate Edition or pre-order bonus only",
       intro: "Reward: 6 gold bars ($3000). PowerPyx says 5, other guides say 6.",
+      src: ["rdr2.org (Le Trésor des Morts)", "https://www.rdr2.org/guides/le-tresor-des-morts-treasure-hunt-guide/"],
       items: [
         ["Map 1 found", "In the only building among the ruins that did not burn down, next to a body"],
         ["Map 2 found under the Saint Denis rail yard", "In the underground passage, in the wall next to a wooden crate"],
@@ -61,6 +85,7 @@
       ] },
     { id: "landmarks", title: "Landmarks of Riches", gold: 6, meta: "From chapter 2. Came with the PC version, later also on PS4 and Xbox One.",
       intro: "Reward: 6 gold bars ($3000); together with Le Trésor des Morts the biggest treasure.",
+      src: ["rdr2.org (Landmarks of Riches)", "https://www.rdr2.org/guides/landmark-of-riches-treasure-hunt/"],
       items: [
         ["Map 1 found at the Obelisk", "Northwest of Strawberry (West Elizabeth). Inspect the picture on the back of the obelisk."],
         ["Map 2 found at the Tiny Church", "Bayou Nwa, north of Saint Denis. In the small bell tower on the roof."],
@@ -70,6 +95,7 @@
       ] },
     { id: "elemental", title: "Elemental Trail", gold: 0, meta: "Epilogue. Came with the PC version.",
       intro: "Reward: the <a href=\"#/trinkets\">Crow Beak Trinket</a> (+10% ammo when looting).",
+      src: ["rdr2.org (Elemental Trail)", "https://www.rdr2.org/guides/elemental-trail-treasure-hunt/"],
       items: [
         ["Map 1 found", "In the far west of New Austin, by the Sea of Coronado. Shoot the rope of a hanged body and search it."],
         ["Map 2 found", "A burned-down house east of Lake Don Julio, south of Armadillo. In the chimney."],
@@ -78,6 +104,7 @@
       ] },
     { id: "mended", title: "Mended Treasure Map (Otis Miller)", gold: 0, meta: "Pieces from chapter 2, treasure only in the epilogue",
       intro: "Reward: Otis Miller's Revolver and a set of photographs. No gold, but a unique revolver.",
+      src: ["rdr2.org (torn treasure maps)", "https://www.rdr2.org/guides/torn-treasure-maps-guide/"],
       items: [
         ["Map piece 1 found", "In a drawer in a wooden cabin at the start of Little Creek River"],
         ["Map piece 2 found", "In a drawer in a house at Manito Glade. Together the pieces form the Mended Treasure Map."],

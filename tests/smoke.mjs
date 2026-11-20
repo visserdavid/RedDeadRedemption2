@@ -107,6 +107,7 @@ const EXPECT = { // minimum number of checkboxes (data-key) per route
 };
 const routes = await ev(`[...document.querySelectorAll("nav a")].map(a => a.getAttribute("href").slice(2))`);
 check("navigation: overview + 30 lists", routes.length === 31, routes.length);
+let guides = 0;
 for (const r of routes) {
   errors.length = 0;
   await hash(r);
@@ -115,7 +116,16 @@ for (const r of routes) {
   const current = await ev(`document.querySelector('nav a[aria-current]')?.getAttribute("href")`);
   const ok = errors.length === 0 && current === `#/${r}` && (r === "" || keys >= EXPECT[r]);
   check(`#/${r || ""} ${title}`, ok, `${keys} checkboxes${errors.length ? "; " + errors.join("; ") : ""}`);
+  // Guide links per item: https, new tab, and listed in the page's sources.
+  const badSrc = await ev(`(() => {
+    const listed = new Set([...document.querySelectorAll("footer a")].map(a => a.href));
+    return [...document.querySelectorAll("a.src")].filter(a => !a.href.startsWith("https://") || a.target !== "_blank"
+      || a.rel !== "noopener" || !listed.has(a.href)).map(a => a.href);
+  })()`);
+  guides += await n("a.src");
+  if (badSrc.length) check(`#/${r} guide links are https, open in a new tab and are in the sources`, false, badSrc.join(", "));
 }
+check("guide links on puzzle items", guides >= 20, guides);
 
 // ---------- 3. Interaction, storage and cross-list links ----------
 console.log("Interaction");

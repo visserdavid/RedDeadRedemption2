@@ -73,6 +73,7 @@ RDR.list({
     { id: "dream", title: "Dreamcatchers",
       intro: "They hang in trees, mostly in New Hanover. Once you have them all, the points on the map form a bison. The missing point leads to a cave at Elysian Pool. There you find the <strong>Ancient Arrowhead</strong>: after that, your bow costs less stamina.",
       finish: "Ancient Arrowhead found in the cave at Elysian Pool",
+      src: ["rdr2.org (map of all dreamcatchers)", "https://www.rdr2.org/guides/dreamcatchers-location-guide/"],
       items: [
         ["Heartlands", "Lone tree in a clearing, near the N of Heartlands"],
         ["Flatneck Station", "Northwest of the station, at a crossroads below a ridge"],

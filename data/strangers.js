@@ -10,7 +10,8 @@
       { id: "fundraiser", name: "Fundraiser", where: "Saint Denis", counts: false,
         note: "<strong>Missable:</strong> only available up to and including chapter 6." },
       { id: "dreams",   name: "American Dreams", where: "Starts at one of the crime scenes (among others near Valentine)", counts: true,
-        note: "Investigate three crime scenes and find the serial killer." },
+        note: "Investigate three crime scenes and find the serial killer.",
+        src: ["PowerPyx (crime scenes)", "https://www.powerpyx.com/red-dead-redemption-2-serial-killer-mystery-guide/"] },
       { id: "night",    name: "A Fine Night For It", where: "At night on the road near Lagras (Bayou Nwa)", counts: true },
       { id: "geology",  name: "Geology for Beginners", who: "Francis Sinclair", where: "Northwest of Strawberry", counts: true,
         note: "The 10 rock carvings.", link: ["#/collectibles", "Collectibles"] },
@@ -75,6 +76,10 @@
       "https://www.powerpyx.com/red-dead-redemption-2-all-stranger-locations-map/"
     ],
     [
+      "PowerPyx (American Dreams)",
+      "https://www.powerpyx.com/red-dead-redemption-2-serial-killer-mystery-guide/"
+    ],
+    [
       "SegmentNext (characters and rewards)",
       "https://segmentnext.com/red-dead-redemption-2-stranger-missions-guide/"
     ],
@@ -90,7 +95,8 @@
         tag: s.counts ? "100%" : "does not count",
         where: `${s.who ? `${s.who} · ` : ""}${s.where}`,
         note: s.note,
-        link: s.link && [s.link[0], `Checklist: ${s.link[1]}`]
+        link: s.link && [s.link[0], `Checklist: ${s.link[1]}`],
+        src: s.src
       })) })) }
     ],
     metrics: {

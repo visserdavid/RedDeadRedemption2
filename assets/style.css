@@ -204,6 +204,8 @@ footer a { color: inherit; }
 /* Shared parts of the list pages */
 .where { display: block; font-size: .9rem; color: var(--muted); }
 label.check input:checked + span .where { text-decoration: none; }
+.guide { margin: 0 0 10px; color: var(--muted); }
+a.src { white-space: nowrap; }
 .cols { columns: 2 320px; column-gap: 28px; column-rule: 1px dotted var(--line); }
 .cols li { break-inside: avoid; }
 .group + .group { margin-top: 14px; }

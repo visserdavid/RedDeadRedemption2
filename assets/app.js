@@ -15,6 +15,8 @@
 //       custom     own rendering             { render(def), refresh(def, el) }
 //   metrics        – { name: () => ({ have, total }) }, read with RDR.metric("<id>.<name>")
 //   meters         – [["name", "label"], ...] at the top of the page and on the overview
+//   src?           – on a checklist group, a checklist item or a card: a guide for that one puzzle or hard-to-find
+//                    spot, as [label, url] or [[label, url], ...]. Every src url must also be in the list's sources.
 //
 // Storage keys are stable: <list>.<group/section>.<item-id>[.<check>]; item-id = id or slug(name).
 window.RDR = (() => {
@@ -32,6 +34,11 @@ window.RDR = (() => {
   const rows = (fields, arr) => arr.map(r => typeof r === "string" ? { name: r }
     : Array.isArray(r) ? Object.fromEntries(fields.map((f, i) => [f, r[i]])) : r);
   const tag = t => `<span class="tag">${t}</span>`;
+  // External links open in a new tab, so the app (often opened from file://) stays where it was.
+  const ext = (url, label) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`;
+  // A guide link for one item or group: src is [label, url] or [[label, url], ...].
+  const srcHTML = src => !src ? "" : `Guide: ${(Array.isArray(src[0]) ? src : [src])
+    .map(([label, url]) => ext(url, `${label} ↗`).replace("<a ", '<a class="src" ')).join(", ")}`;
   const tags = t => (Array.isArray(t) ? t : t ? [t] : []).map(tag).join("");
   const box = (key, html) => `<label class="check"><input type="checkbox" data-key="${key}"><span>${html}</span></label>`;
   const pct = (have, total) => (total ? have / total * 100 : 0);
@@ -163,7 +170,8 @@ window.RDR = (() => {
     (it.need ? `<span class="where"><em>Needed:</em> ${it.need}</span>` : "") +
     (it.where ? `<span class="where">${it.where}</span>` : "") +
     (it.note ? `<span class="where">${it.note}</span>` : "") +
-    (it.link ? `<span class="where"><a href="${it.link[0]}">${it.link[1]}</a></span>` : "");
+    (it.link ? `<span class="where"><a href="${it.link[0]}">${it.link[1]}</a></span>` : "") +
+    (it.src ? `<span class="where">${srcHTML(it.src)}</span>` : "");
   const fieldsHTML = f => f && f.length
     ? `<dl class="small fields">${f.map(([dt, dd]) => `<dt>${dt}</dt><dd>${dd}</dd>`).join("")}</dl>` : "";
 
@@ -179,6 +187,7 @@ window.RDR = (() => {
           ${!s.groupHeadings && g.meta ? `<p class="small muted">${g.meta}</p>` : ""}
           ${g.reward ? `<p class="reward">Reward: ${g.reward}</p>` : ""}
           ${g.intro ? `<p class="intro">${g.intro}</p>` : ""}
+          ${g.src ? `<p class="small guide">${srcHTML(g.src)}</p>` : ""}
           <ul class="checks${s.columns ? " cols" : ""}">${g.items.map((it, i) => {
             const goal = s.goalLast && i === last;
             return `<li${goal ? ' class="sep"' : ""}>${box(it.key, itemLabel(it, s.numbered ? i + 1 : 0, goal))}</li>`;
@@ -221,6 +230,7 @@ window.RDR = (() => {
             ${fieldsHTML(it.fields)}
             ${it.desc ? `<p class="small desc">${it.desc}</p>` : ""}
             ${it.note ? `<p class="small muted">${it.note}</p>` : ""}
+            ${it.src ? `<p class="small guide">${srcHTML(it.src)}</p>` : ""}
             ${s.live ? `<p class="small" data-live></p>` : ""}
             <ul class="checks">${it.checks.map((c, i) =>
               `<li${!s.all && i === it.checks.length - 1 ? ' class="sep"' : ""}>${box(c.key, c.label)}</li>`).join("")}</ul>
@@ -372,7 +382,7 @@ window.RDR = (() => {
         ${s.filter ? filterHTML(`${def.id}.${s.filter[0]}`, s.filter[1]) : ""}
         <div data-sec="${i}" class="sec">${R[s.type].html(def, s)}</div>`).join("")}
       <p class="gap"><button id="reset">Reset all</button></p>
-      <footer>Sources: ${(def.sources || []).map(([label, url]) => `<a href="${url}">${label}</a>`).join(", ")}.
+      <footer>Sources: ${(def.sources || []).map(([label, url]) => ext(url, label)).join(", ")}.
         Your progress is saved only in this browser. The reset button clears only the checkboxes and counters on this page.</footer>`;
   }
 

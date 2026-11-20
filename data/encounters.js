@@ -28,6 +28,14 @@
     [
       "Game Rant (Saint Denis)",
       "https://gamerant.com/red-dead-redemption-2-saint-denis-random-encounters/"
+    ],
+    [
+      "rdr2.org (the vampire)",
+      "https://www.rdr2.org/guides/saint-denis-vampire-guide/"
+    ],
+    [
+      "rdr2.org (the ghost)",
+      "https://www.rdr2.org/guides/red-dead-redemption-2-ghost-easter-egg-guide/"
     ]
   ],
     sections: [{ type: "checklist", columns: true, groups: [
@@ -144,8 +152,10 @@
     { id: "special", title: "Special encounters", intro: "Fixed places or times. Whether these count for 100% is not certain.", items: [
       ["Meditating Monk", "A meditating monk on a cliff.", "Grizzlies East"],
       ["Aberdeen Pig Farm", "A brother and sister invite you for dinner. Careful: it is a trap."],
-      ["The Vampire", "Find five strange notes on walls, then the vampire appears between midnight and 1 AM. Gives you the Ornate Dagger (see <a href=\"#/weapons\">Weapons</a>).", "Saint Denis"],
-      ["Agnes Dowd (ghost)", "At night (9 PM–3 AM), follow a ghostly voice near Bluewater Marsh.", "Lemoyne"],
+      { name: "The Vampire", where: "Find five strange notes on walls, then the vampire appears between midnight and 1 AM. Gives you the Ornate Dagger (see <a href=\"#/weapons\">Weapons</a>).", tag: "Saint Denis",
+        src: ["rdr2.org (the five notes)", "https://www.rdr2.org/guides/saint-denis-vampire-guide/"] },
+      { name: "Agnes Dowd (ghost)", where: "At night (9 PM–3 AM), follow a ghostly voice near Bluewater Marsh.", tag: "Lemoyne",
+        src: ["rdr2.org (ghost)", "https://www.rdr2.org/guides/red-dead-redemption-2-ghost-easter-egg-guide/"] },
       ["Burning Bodies", "A man is burning bodies at Coots Chapel."],
       ["Drunk Camp", "Give a drunk whiskey and he tells you about the fort.", "Fort Riggs"],
       ["Frozen to Death", "A frozen settlement with a note by a body.", "Snow"]

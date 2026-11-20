@@ -1,5 +1,7 @@
 (() => {
   const keys = () => RDR.groupsOf("poi").flatMap(g => g.keys);
+  // Guide for the places whose location only GIGA gives, or that belong to a puzzle.
+  const GIGA = ["GIGA (German)", "https://www.giga.de/spiele/red-dead-redemption-2/gallery/red-dead-redemption-2-alle-interessanten-orte-fundorte-auf-der-karte/"];
   RDR.list({
     id: "poi", title: "Points of interest", nav: "POI", order: 105, group: "The world",
     sub: "Red Dead Redemption 2 (story mode): all 50 remarkable places Arthur sketches in his journal.",
@@ -41,8 +43,8 @@
       { id: "lemoyne", title: "Lemoyne (9)", items: [
         ["Abandoned Church", "South of Rhodes"],
         ["Bolger Glade", "Scarlett Meadows, the old battlefield"],
-        ["Braithwaites' Secret", "Braithwaite Manor, south of Rhodes"],
-        ["Gray's Secret", "According to GIGA at Caliga Hall"],
+        { name: "Braithwaites' Secret", where: "Braithwaite Manor, south of Rhodes", src: GIGA },
+        { name: "Gray's Secret", where: "According to GIGA at Caliga Hall", src: GIGA },
         ["Painting in Cabin", "A painting in a cabin in Lemoyne"],
         ["Phonograph", "On a houseboat in Bluewater Marsh"],
         ["Pleasance", "A ghost town in Lemoyne"],
@@ -58,7 +60,7 @@
         ["Meditating Monk", "Grizzlies East, on a cliff"],
         ["Mysterious Hill Home", "Northeast of Bacchus Station. A quick first one for 100%."],
         ["Strange Statues", "In a cave northeast of Bacchus Station (see <a href=\"#/gold\">Gold bars</a>)"],
-        ["Strange Statues Cave Painting", "A rock painting that belongs to the Strange Statues puzzle, according to GIGA at Window Rock"]
+        { name: "Strange Statues Cave Painting", where: "A rock painting that belongs to the Strange Statues puzzle, according to GIGA at Window Rock", src: GIGA }
       ] },
       { id: "westelizabeth", title: "West Elizabeth (11)", items: [
         ["Circus Wagons", "Tall Trees, near Manzanita Post"],

@@ -41,6 +41,18 @@
     [
       "PowerPyx (treasure maps)",
       "https://www.powerpyx.com/red-dead-redemption-2-treasure-map-locations-solutions/"
+    ],
+    [
+      "rdr2.org (Jack Hall Gang)",
+      "https://www.rdr2.org/guides/jack-hall-gang-treasure-hunt-guide/"
+    ],
+    [
+      "Push Square (Poisonous Trail)",
+      "https://www.pushsquare.com/guides/red-dead-redemption-2-all-poisonous-trail-treasure-map-locations"
+    ],
+    [
+      "Push Square (High Stakes)",
+      "https://pushsquare.com/guides/red-dead-redemption-2-all-high-stakes-treasure-map-locations"
     ]
   ],
     sections: () => [{
@@ -49,6 +61,7 @@
         id: `rank-${r.i + 1}`, name: `Rank ${r.i + 1}: ${r.task}`, r,
         note: `Reward: ${r.reward}`,
         desc: `<strong>${r.hunt.title}</strong>: ${r.what}<span class="where">${r.where}</span>`,
+        src: r.hunt.src,
         checks: [{ id: "done", label: "<strong>Rank reached</strong>", key: r.key }]
       })),
       live: it => RDR.get(it.r.stepKey) ? "✓ Checked off on <a href=\"#/treasure\">Treasure maps</a>"
