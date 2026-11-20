@@ -5,7 +5,7 @@
     "Silver Chain Bracelet":       "Random loot from bodies and small chests. Tip: make a save and reload it if you cannot find one.",
     "Quartz Chunk":                "Reward from Deborah MacGuiness once you send in the first dinosaur bone location (see <a href=\"#/collectibles\">Collectibles</a>).",
     "Gold Earring":                "Loot from bodies, and sometimes found in drawers.",
-    "Cobalt Petrified Wood":       "In a broken-down stagecoach under a cliff at Lake Isabella (Grizzlies West).",
+    "Cobalt Petrified Wood":       "On the northwestern shore of Lake Isabella (Grizzlies West), at a cave in the hill where the river flows into the lake from the north. Climb into the abandoned wagon in front of the cave, next to a frozen body, and open the chest.",
     "Vintage Civil War Handcuffs": "Reward for your first complete set of <a href=\"#/cigcards\">cigarette cards</a>.",
     "Gold Jointed Bracelet":       "Loot from bodies, and found in chests and lockboxes around the map.",
     "Abalone Shell Fragment":      "There is only one! In a boarded-up house on the northern edge of Rhodes, on the workbench in the southern room.",
@@ -14,7 +14,8 @@
   };
   // Guides for the ingredients that lie at one fixed spot.
   const INGREDIENT_SRC = {
-    "Cobalt Petrified Wood":  ["Prodigy Gamers", "https://prodigygamers.com/2018/10/29/red-dead-redemption-2-how-to-get-all-six-talismans"],
+    "Cobalt Petrified Wood":  [["GosuNoob", "https://www.gosunoob.com/red-dead-redemption-2/cobalt-petrified-wood-location/"],
+                               ["Prodigy Gamers", "https://prodigygamers.com/2018/10/29/red-dead-redemption-2-how-to-get-all-six-talismans"]],
     "Abalone Shell Fragment": ["rdr2.org", "https://www.rdr2.org/guides/abalone-shell-fragment-guide/"]
   };
   const ingKey = name => `trinkets.ingredients.${RDR.slug(name)}`;
@@ -81,6 +82,10 @@
     [
       "Hold To Reset (recipes)",
       "https://holdtoreset.com/fence-trinkets-and-talismans-in-red-dead-redemption-2/"
+    ],
+    [
+      "GosuNoob (Cobalt Petrified Wood)",
+      "https://www.gosunoob.com/red-dead-redemption-2/cobalt-petrified-wood-location/"
     ]
   ],
     sections: () => [
