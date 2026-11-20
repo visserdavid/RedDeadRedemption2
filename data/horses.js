@@ -13,7 +13,7 @@
     ["tennessee",  "Tennessee Walker",     "Riding",      "Your first horse in chapter 1. Red Roan at the Valentine stable. Wild in the Heartlands."],
     ["morgan",     "Morgan",               "Riding",      "Palomino and Bay Roan at the Valentine stable. Wild at Little Creek River."],
     ["kentucky",   "Kentucky Saddler",     "Riding",      "Grey at the Valentine stable. Wild in the Heartlands."],
-    ["mustang",    "Mustang",              "",            "Wild in the Heartlands. The Tiger Striped Bay roams wild around Fort Mercer (New Austin, epilogue)."],
+    ["mustang",    "Mustang",              "",            "Wild in the Heartlands. The Tiger Striped Bay only spawns just west of Rio del Lobo Rock (New Austin, epilogue)."],
     ["appaloosa",  "Appaloosa",            "",            "Wild south of Wapiti, near Donner Falls (Ambarino). Leopard coats at the stable."],
     ["paint",      "American Paint",       "",            "Wild south of Tumbleweed (New Austin, epilogue). Grey Overo at the Tumbleweed stable."],
     ["shire",      "Shire",                "Draft",       "Draft horse. You get the Raven Black Shire in the chapter 2 mission <em>Exit Pursued by a Bruised Ego</em>. Also pulls wagons."],
@@ -40,12 +40,14 @@
     ["foxtrot",   "Amber Champagne Missouri Fox Trotter", "Scarlett Meadows stable, from chapter 4, $950. Fast and versatile."],
     ["brindle",   "Brindle Thoroughbred",              "Stable, from chapter 3, about $450. A fast horse for little money."],
     ["ardennes",  "Strawberry Roan Ardennes",          "Van Horn stable, from chapter 6. A war horse that does not spook easily."],
-    ["tiger",     "Tiger Striped Bay Mustang",         "Free. Roams wild around Fort Mercer (New Austin, epilogue)."]
+    ["tiger",     "Tiger Striped Bay Mustang",         "Free. Its only wild spawn is the open ground just west of Rio del Lobo Rock (New Austin, epilogue)."]
   ];
   // Guides for the special horses at a fixed spot outside the stables.
   const SRC = {
     whitearab: ["Sportskeeda (White Arabian)", "https://www.sportskeeda.com/esports/red-dead-redemption-2-find-tame-white-arabian-horse"],
-    buell: ["GTABase (Buell)", "https://www.gtabase.com/red-dead-redemption-2/horses/cremello-dutch-warmblood"]
+    buell: ["GTABase (Buell)", "https://www.gtabase.com/red-dead-redemption-2/horses/cremello-dutch-warmblood"],
+    tiger: [["rdr2.org (wild horses)", "https://www.rdr2.org/guides/wild-horse-locations-guide/"],
+            ["GTABase (Tiger Striped Bay)", "https://www.gtabase.com/red-dead-redemption-2/horses/tiger-striped-bay-mustang"]]
   };
   const bondLevels = ["Level 1", "Level 2", "Level 3", "Level 4 (needed for 100%)"];
   RDR.list({
@@ -83,6 +85,10 @@
     [
       "GTABase (Buell)",
       "https://www.gtabase.com/red-dead-redemption-2/horses/cremello-dutch-warmblood"
+    ],
+    [
+      "GTABase (Tiger Striped Bay)",
+      "https://www.gtabase.com/red-dead-redemption-2/horses/tiger-striped-bay-mustang"
     ]
   ],
     sections: [

@@ -14,8 +14,10 @@
       ["Improved Arrow",    "1 Arrow, 1 Flight Feather",                   "Automatically at the start of chapter 2"],
       ["Fire Arrow",        "1 Arrow, 1 Animal Fat, 1 Flight Feather",     "Automatically at the start of chapter 2"],
       ["Small Game Arrow",  "1 Arrow, 1 Flight Feather, 1 Shotgun Shell",  "Automatically at the start of chapter 2"],
-      ["Poison Arrow",      "1 Arrow, 1 Oleander Sage, 1 Flight Feather",  "Pamphlet from the Fence after chapter 2, or in a chest at the Mysterious Hill Home (northeast of Bacchus Station)", "Pamphlet"],
-      ["Dynamite Arrow",    "1 Arrow, 1 Dynamite, 1 Flight Feather",       "Pamphlet from the Fence after <em>A Short Walk in a Pretty Town</em>, or in a chest by the wooden bridge in the south of the Wapiti reservation", "Pamphlet"]
+      { name: "Poison Arrow", need: "1 Arrow, 1 Oleander Sage, 1 Flight Feather", where: "Pamphlet from the Fence after chapter 2, or in a chest at the Mysterious Hill Home (northeast of Bacchus Station)", tag: "Pamphlet",
+        src: ["SegmentNext (pamphlet locations)", "https://segmentnext.com/red-dead-redemption-2-crafting-guide"] },
+      { name: "Dynamite Arrow", need: "1 Arrow, 1 Dynamite, 1 Flight Feather", where: "Pamphlet from the Fence after <em>A Short Walk in a Pretty Town</em>, or in a chest by the wooden bridge in the south of the Wapiti reservation", tag: "Pamphlet",
+        src: ["SegmentNext (pamphlet locations)", "https://segmentnext.com/red-dead-redemption-2-crafting-guide"] }
     ] },
     { id: "ammo", title: "Ammo", items: [
       ["Revolver Cartridge – Split Point", "1 Revolver Cartridge",           "From chapter 2"],
@@ -27,16 +29,20 @@
       ["Repeater Cartridge – Explosive",   "1 Repeater Cartridge, 1 Animal Fat", "From chapter 2"],
       ["Rifle Cartridge – Explosive",      "1 Rifle Cartridge, 1 Animal Fat",    "From chapter 2"],
       ["Shotgun Slug – Explosive",         "1 Shotgun Shell, 1 Animal Fat",      "Pamphlet from the Fence after <em>A Short Walk in a Pretty Town</em>, or at a burned-down house between Gaptooth Ridge and Cholla Springs (epilogue)", "Pamphlet"],
-      ["Shotgun Shell – Incendiary Buckshot", "1 Shotgun Shell, 1 Moonshine",    "Pamphlet from the Fence after <em>Pouring Forth Oil</em>, or under the floor of a shack at Copperhead Landing", "Pamphlet"]
+      { name: "Shotgun Shell – Incendiary Buckshot", need: "1 Shotgun Shell, 1 Moonshine", where: "Pamphlet from the Fence after <em>Pouring Forth Oil</em>, or under the floor of a shack at Copperhead Landing", tag: "Pamphlet",
+        src: ["SegmentNext (pamphlet locations)", "https://segmentnext.com/red-dead-redemption-2-crafting-guide"] }
     ] },
     { id: "throw", title: "Thrown weapons and explosives", items: [
       ["Improved Throwing Knife", "1 Throwing Knife, 2 Eagle or Hawk Feathers", "Automatically in chapter 2"],
-      ["Poison Throwing Knife",   "1 Throwing Knife, 1 Oleander Sage",          "Pamphlet from the Fence after <em>Pouring Forth Oil</em>, or under the floor of a shack northeast of Saint Denis", "Pamphlet"],
+      { name: "Poison Throwing Knife", need: "1 Throwing Knife, 1 Oleander Sage", where: "Pamphlet from the Fence after <em>Pouring Forth Oil</em>, or under the floor of a shack northeast of Saint Denis", tag: "Pamphlet",
+        src: ["SegmentNext (pamphlet locations)", "https://segmentnext.com/red-dead-redemption-2-crafting-guide"] },
       ["Improved Tomahawk",       "1 Tomahawk, 1 Eagle or Hawk Feather",        "Automatically in chapter 2"],
-      ["Homing Tomahawk",         "1 Tomahawk, 1 Owl Feather",                  "Pamphlet from the Fence after chapter 2, or in a chest in the collapsed shack south of Moonstone Pond", "Pamphlet"],
+      { name: "Homing Tomahawk", need: "1 Tomahawk, 1 Owl Feather", where: "Pamphlet from the Fence after chapter 2, or in a chest in the collapsed shack south of Moonstone Pond", tag: "Pamphlet",
+        src: ["SegmentNext (pamphlet locations)", "https://segmentnext.com/red-dead-redemption-2-crafting-guide"] },
       ["Fire Bottle",             "1 Animal Fat, 1 Gin (or Bourbon, Rum, Brandy)", "Automatically in chapter 2"],
       ["Volatile Fire Bottle",    "1 Moonshine, 1 Animal Fat",                  "Pamphlet from the Fence after <em>Pouring Forth Oil</em>, or in an abandoned camp northwest of Horseshoe Overlook", "Pamphlet"],
-      ["Volatile Dynamite",       "1 Dynamite, 1 Animal Fat, 1 High Velocity Cartridge", "Pamphlet from the Fence after <em>American Distillation</em>, or in a chest at Hani's Bethel", "Pamphlet"]
+      { name: "Volatile Dynamite", need: "1 Dynamite, 1 Animal Fat, 1 High Velocity Cartridge", where: "Pamphlet from the Fence after <em>American Distillation</em>, or in a chest at Hani's Bethel", tag: "Pamphlet",
+        src: ["SegmentNext (pamphlet locations)", "https://segmentnext.com/red-dead-redemption-2-crafting-guide"] }
     ] },
     { id: "hunting", title: "Hunting", items: [
       ["Predator Bait",          "1 Stringy Meat, 1 Blackberry",                 "At the start of chapter 2"],
@@ -85,6 +91,10 @@
     [
       "rdr2.org (overview)",
       "https://www.rdr2.org/guides/cooking-and-crafting-guide/"
+    ],
+    [
+      "SegmentNext (pamphlet locations)",
+      "https://segmentnext.com/red-dead-redemption-2-crafting-guide"
     ]
   ],
     sections: [
