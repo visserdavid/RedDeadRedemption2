@@ -31,6 +31,14 @@
       "https://www.rdr2.org/guides/le-tresor-des-morts-treasure-hunt-guide/"
     ],
     [
+      "Shacknews (Le Trésor des Morts)",
+      "https://www.shacknews.com/article/130067/le-tresor-des-morts-treasure-hunt-red-dead-redemption-2"
+    ],
+    [
+      "Rockstar Support (who gets Le Trésor des Morts)",
+      "https://support.rockstargames.com/articles/484JVvL5NIZR0HK0ATnL48/le-tresor-des-morts-map-1-misprint-in-red-dead-redemption-2-complete-official-guide"
+    ],
+    [
       "rdr2.org (Landmarks of Riches)",
       "https://www.rdr2.org/guides/landmark-of-riches-treasure-hunt/"
     ],
@@ -74,14 +82,13 @@
         ["Map 3 found at Barrow Lagoon", "A broken tree stump among the rocks on a small hill"],
         ["Treasure found at Bacchus Station", "Climb down the rock plateaus above the river until you reach a crack in the rocks"]
       ] },
-    { id: "tresor", title: "Le Trésor des Morts", gold: 6, meta: "Special/Ultimate Edition or pre-order bonus only",
-      intro: "Reward: 6 gold bars ($3000). PowerPyx says 5, other guides say 6.",
+    { id: "tresor", title: "Le Trésor des Morts", gold: 6, meta: "Only if you pre-ordered the digital version before 15 August 2018",
+      intro: "Reward: 6 gold bars ($3000) according to rdr2.org and Shacknews; PowerPyx says 5. According to Rockstar Support, only players who pre-ordered the digital version before 15 August 2018 get the first map. The official guide wrongly said the Special and Ultimate Editions also include it.",
       src: ["rdr2.org (Le Trésor des Morts)", "https://www.rdr2.org/guides/le-tresor-des-morts-treasure-hunt-guide/"],
       items: [
-        ["Map 1 found", "In the only building among the ruins that did not burn down, next to a body"],
-        ["Map 2 found under the Saint Denis rail yard", "In the underground passage, in the wall next to a wooden crate"],
-        ["Map 3 found in the Saint Denis cemetery", "In a building in the cemetery"],
-        ["Treasure found", "The gold bars are in the cemetery"]
+        ["Map 1 found", "In the jail of Limpany, the burned-down town north of Flatneck Station: the only building still standing. Next to a dead prisoner in the cell."],
+        ["Map 2 found under the Saint Denis rail yard", "Take the stairs down near the Cornwall Freight Station into the underground passage. The note is in the wall next to a wooden crate; its riddle points to the cemetery."],
+        ["Treasure found", "In a small building on the west side of the Saint Denis cemetery. The chest is in a hole in the wall."]
       ] },
     { id: "landmarks", title: "Landmarks of Riches", gold: 6, meta: "From chapter 2. Came with the PC version, later also on PS4 and Xbox One.",
       intro: "Reward: 6 gold bars ($3000); together with Le Trésor des Morts the biggest treasure.",
@@ -93,8 +100,8 @@
         ["Map 4 found at Bolger Glade", "Scarlett Meadows (Lemoyne). In a hole at the bottom of a tree near a broken cannon."],
         ["Treasure found on Mount Shann", "At the large sundial on top of Mount Shann (West Elizabeth). Inspect the marked stone."]
       ] },
-    { id: "elemental", title: "Elemental Trail", gold: 0, meta: "Epilogue. Came with the PC version.",
-      intro: "Reward: the <a href=\"#/trinkets\">Crow Beak Trinket</a> (+10% ammo when looting).",
+    { id: "elemental", title: "Elemental Trail", gold: 1, meta: "Epilogue. Came with the PC version.",
+      intro: "Reward: 1 gold bar ($500) and the <a href=\"#/trinkets\">Crow Beak Trinket</a> (+10% ammo when looting).",
       src: ["rdr2.org (Elemental Trail)", "https://www.rdr2.org/guides/elemental-trail-treasure-hunt/"],
       items: [
         ["Map 1 found", "In the far west of New Austin, by the Sea of Coronado. Shoot the rope of a hanged body and search it."],

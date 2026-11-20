@@ -102,7 +102,7 @@ console.log("Routes");
 const EXPECT = { // minimum number of checkboxes (data-key) per route
   satchels: 36, camp: 46, legendary: 88, trinkets: 30, trapper: 198, horses: 41, weapons: 65, exotics: 6, plants: 43, recipes: 55,
   collectibles: 72, fish: 20, poi: 50, shacks: 19, strangers: 26, bounties: 14, hideouts: 15, encounters: 113, challenges: 90,
-  cigcards: 156, treasure: 30, explorer: 10, gold: 4, hundred: 0,
+  cigcards: 156, treasure: 29, explorer: 10, gold: 4, hundred: 0,
   missions: 220, hunting: 27, camplife: 38, homesteads: 7, characters: 28, trophies: 0
 };
 const routes = await ev(`[...document.querySelectorAll("nav a")].map(a => a.getAttribute("href").slice(2))`);
@@ -176,7 +176,7 @@ check("explorer: rank 1 reached (from challenges)", await checked("challenges.ex
 check("explorer: rank 4 treasure found (from treasure maps)", (await ev(`document.querySelector('[data-card="rank-4"] .status').textContent`)) === "treasure found");
 
 await go("gold");
-check("gold: Jack Hall (2) + Strange Statues (3) = 5 bars", (await meters()).includes("5 / 28"), await meters());
+check("gold: Jack Hall (2) + Strange Statues (3) = 5 bars", (await meters()).includes("5 / 29"), await meters());
 
 await go("plants");
 check("plants: orchid shows Exotics count", (await ev(`document.querySelector('[data-exotic="r1.ladynight"]').textContent`)) === "15");

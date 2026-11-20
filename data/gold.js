@@ -31,7 +31,7 @@
     "A gold bar is worth <strong>$500</strong>. It is stolen goods, so you can only sell it to a <strong>Fence</strong>, for example in Saint Denis, Rhodes, Emerald Ranch or Van Horn.",
     "A lot of gold is already within reach in chapter 2. It easily pays for camp upgrades, weapons and a good horse.",
     "The treasure hunts count here <strong>automatically</strong> as soon as you have checked off the treasure on <a href=\"#/treasure\">Treasure maps</a>. You check off the fixed locations below yourself.",
-    "<em>Le Trésor des Morts</em> is only in the Special/Ultimate Edition or was a pre-order bonus. <em>Landmarks of Riches</em> came with the PC version and later also on PS4 and Xbox One. So you may not have both."
+    "<em>Le Trésor des Morts</em> was only a bonus for digital pre-orders placed before 15 August 2018 (see <a href=\"#/treasure\">Treasure maps</a>). <em>Landmarks of Riches</em> came with the PC version and later also on PS4 and Xbox One. <em>Elemental Trail</em> (1 bar, epilogue) came with the PC version. So you may not have all of them."
   ],
     sources: [
     [
